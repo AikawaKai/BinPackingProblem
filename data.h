@@ -1,6 +1,7 @@
 
 typedef struct dataset
  {
+  char name[255]; // case test name
   int n;          // numero di oggetti da inserire nei bin
   int *items;     // vettore degli oggetti totali
   int *inserted;  // vettore degli oggetti inseriti nei bin
