@@ -4,7 +4,7 @@
 #include <string.h>
 
 
-void load_dataset(char *filename, dataset d_s)
+void load_dataset(char *filename, dataset *d_s)
 {
   FILE *fp;
   char buff[255];
@@ -58,5 +58,7 @@ void load_dataset(char *filename, dataset d_s)
     printf("item%d: %d\n", i+1, tmp);
     items[i] = tmp;
   }
-
+  strcpy(d_s->name, problem_identifier);
+  d_s->n = num_items;
+  d_s->items = (int *)items;
 }

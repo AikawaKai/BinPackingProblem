@@ -9,4 +9,4 @@ typedef struct dataset
 } dataset;
 
 
-void load_dataset(char *filename, dataset d_s);
+void load_dataset(char *filename, dataset *d_s);
