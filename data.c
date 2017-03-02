@@ -12,8 +12,9 @@ void load_dataset(char *filename, dataset d_s)
   char problem_identifier[255];
   char problem_header[255];
   int bin_capacity;
-  int num_instances;
+  int num_items;
   int best_solution;
+  int tmp;
 
   // apertura del file
   printf("\nOpening File: %s\n", filename);
@@ -38,14 +39,24 @@ void load_dataset(char *filename, dataset d_s)
   bin_capacity = atoi(buff);
   printf("bin_capacity: %d\n", bin_capacity);
 
-  // numero di istanze del caso di test
+  // numero di oggetti del caso di test
   fscanf(fp, "%s", buff);
-  num_instances = atoi(buff);
-  printf("Instances number: %d\n", num_instances);
+  num_items = atoi(buff);
+  printf("Items number: %d\n", num_items);
 
   // miglior soluzione fino ad ora
   fscanf(fp, "%s", buff);
   best_solution = atoi(buff);
   printf("Best Solution: %d\n", best_solution);
+
+  // carico tutti gli oggetti
+  int items[num_items];
+  for(int i=0; i<num_items; i++)
+  {
+    fscanf(fp, "%s", buff);
+    tmp = atoi(buff);
+    printf("item%d: %d\n", i+1, tmp);
+    items[i] = tmp;
+  }
 
 }
