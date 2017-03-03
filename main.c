@@ -4,9 +4,10 @@
 
 int main(int argc, char *argv[]){
   dataset test1;
+  sol s1;
   char *filename = argv[1];
   load_dataset(filename, &test1); // carica il caso di test nella struct dataset
-
+  initialize_solution(&s1);
 
   /*
   bin b;
@@ -22,4 +23,5 @@ int main(int argc, char *argv[]){
   }
   free_bin(&b);*/
   free_dataset(&test1); // libero lo spazio occupato dal dataset
+  free_solution(&s1);
 }

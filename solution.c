@@ -38,3 +38,18 @@ void add_item_to_bin(bin *b, int item)
     b->items = new_items;
   }
 }
+
+void initialize_solution(sol *s)
+{
+  s->n = 0;
+  s->full_bins = malloc(0 * sizeof(s->full_bins));
+  s->slack_bins = malloc(0 * sizeof(s->full_bins));
+}
+
+void free_solution(sol *s)
+{
+  free(s->full_bins);
+  free(s->slack_bins);
+  s->n = 0;
+  printf("free(solution) ok\n");
+}
