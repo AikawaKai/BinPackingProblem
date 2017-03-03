@@ -78,10 +78,14 @@ void free_dataset(dataset *d_s)
 {
   // libero lo spazio occupato
   free(d_s->name);
+  d_s->name = NULL;
   free(d_s->items);
+  d_s->items = NULL;
   free(d_s->inserted);
+  d_s->inserted = NULL;
   free(d_s->to_insert);
-  d_s->n = 0;          
+  d_s->to_insert = NULL;
+  d_s->n = 0;
   d_s->bin_size = 0;
   d_s->best_sol = 0;
   printf("free(dataset) ok\n");
