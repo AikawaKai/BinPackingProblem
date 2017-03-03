@@ -27,7 +27,8 @@ void load_dataset(char *filename, dataset *d_s)
   // numero di casi di test nel file
   fscanf(fp, "%s", buff);
   num_cases = atoi(buff);
-  printf("Number of cases : %d\n", num_cases);
+  printf("Number of test cases : %d\n\n", num_cases);
+  printf("######################\n\n");
 
   // nome del caso di test specifico
   fscanf(fp, "%s", buff);
@@ -55,10 +56,10 @@ void load_dataset(char *filename, dataset *d_s)
   {
     fscanf(fp, "%s", buff);
     tmp = atoi(buff);
-    printf("item%d: %d\n", i+1, tmp);
     items[i] = tmp;
   }
   strcpy(d_s->name, problem_identifier);
   d_s->n = num_items;
   d_s->items = (int *)items;
+  printf("Items Loading done.\n");
 }
