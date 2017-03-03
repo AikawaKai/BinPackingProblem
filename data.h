@@ -1,7 +1,8 @@
+#include <stdlib.h>
 
 typedef struct dataset
  {
-  char name[255]; // case test name
+  char *name; // case test name
   int n;          // numero di oggetti da inserire nei bin
   int bin_size;   // grandezza del bin
   int best_sol;   // miglior soluzione fino ad ora

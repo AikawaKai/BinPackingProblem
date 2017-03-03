@@ -58,10 +58,17 @@ void load_dataset(char *filename, dataset *d_s)
     tmp = atoi(buff);
     items[i] = tmp;
   }
+  d_s->name = malloc(strlen(problem_identifier) * sizeof(d_s->name));
   strcpy(d_s->name, problem_identifier);
   d_s->bin_size = bin_size;
   d_s->best_sol = best_solution;
   d_s->n = num_items;
   d_s->items = (int *)items;
+  d_s->inserted = malloc(0 * sizeof(d_s->inserted));
+  d_s->to_insert = malloc(num_items * sizeof(d_s->to_insert));
+  for(int i=0; i<num_items; i++)
+  {
+    d_s->to_insert[i] = d_s->items[i];
+  }
   printf("Items Loading done.\n");
 }
