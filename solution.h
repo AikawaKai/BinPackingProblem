@@ -1,4 +1,4 @@
-
+#include <stdlib.h>
 
 typedef struct sol_bin
 {

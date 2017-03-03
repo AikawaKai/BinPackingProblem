@@ -7,9 +7,16 @@ int main(int argc, char *argv[]){
   char *filename = argv[1];
   load_dataset(filename, &test1); // carica il caso di test nella struct dataset
 
+  /*
   bin b;
   initialize_bin(&b, test1.bin_size);
-  printf("bin size: %d, bin elements: %d\n",b.size, b.n);
-  /*
-  add_item_to_bin(&b, 20); */
+  printf("bin size: %d, bin elements: %d, current slack: %d\n",b.size, b.n, b.slack);
+  add_item_to_bin(&b, 20);
+  printf("bin size: %d, bin elements: %d, current slack: %d\n",b.size, b.n, b.slack);
+  add_item_to_bin(&b, 30);
+  printf("bin size: %d, bin elements: %d, current slack: %d\n",b.size, b.n, b.slack);
+  for (int i=0; i< b.n; i++)
+  {
+    printf("curr element in: %d\n", b.items[i]);
+  }*/
 }
