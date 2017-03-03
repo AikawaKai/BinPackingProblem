@@ -81,5 +81,8 @@ void free_dataset(dataset *d_s)
   free(d_s->items);
   free(d_s->inserted);
   free(d_s->to_insert);
+  d_s->n = 0;          
+  d_s->bin_size = 0;
+  d_s->best_sol = 0;
   printf("free(dataset) ok\n");
 }
