@@ -13,3 +13,4 @@ typedef struct dataset
 
 
 void load_dataset(char *filename, dataset *d_s);
+void free_dataset(dataset *d_s);

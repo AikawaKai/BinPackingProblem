@@ -63,12 +63,23 @@ void load_dataset(char *filename, dataset *d_s)
   d_s->bin_size = bin_size;
   d_s->best_sol = best_solution;
   d_s->n = num_items;
-  d_s->items = (int *)items;
+  d_s->items = malloc(num_items * sizeof(d_s->items));
   d_s->inserted = malloc(0 * sizeof(d_s->inserted));
   d_s->to_insert = malloc(num_items * sizeof(d_s->to_insert));
   for(int i=0; i<num_items; i++)
   {
+    d_s->items[i] = items[i];
     d_s->to_insert[i] = d_s->items[i];
   }
   printf("Items Loading done.\n");
+}
+
+void free_dataset(dataset *d_s)
+{
+  // libero lo spazio occupato
+  free(d_s->name);
+  free(d_s->items);
+  free(d_s->inserted);
+  free(d_s->to_insert);
+  printf("free(dataset) ok\n");
 }

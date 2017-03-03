@@ -16,7 +16,7 @@ void add_item_to_bin(bin *b, int item)
   b->n++;
   b->sum = b->sum + item;
   b->slack = b->slack - item;
-  int *new_items = realloc(b->items, b->n * sizeof(int));
+  int *new_items = realloc(b->items, b->n * sizeof(*new_items));
   if (new_items==NULL)
   {
     printf("REALLOC FAILED add_item_to_bin\n");
