@@ -11,6 +11,16 @@ void initialize_bin(bin *b, int size)
   b->slack = size;
 }
 
+void free_bin(bin *b)
+{
+  // libero lo spazio occupato dal bin
+  free(b->items);
+  b->n = 0;
+  b->sum = 0;
+  b->size = 0;
+  b->slack = 0;
+}
+
 void add_item_to_bin(bin *b, int item)
 {
   b->n++;
