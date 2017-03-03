@@ -11,7 +11,7 @@ void load_dataset(char *filename, dataset *d_s)
   int num_cases;
   char problem_identifier[255];
   char problem_header[255];
-  int bin_capacity;
+  int bin_size;
   int num_items;
   int best_solution;
   int tmp;
@@ -37,8 +37,8 @@ void load_dataset(char *filename, dataset *d_s)
 
   // bin capacity del caso di test
   fscanf(fp, "%s", buff);
-  bin_capacity = atoi(buff);
-  printf("bin_capacity: %d\n", bin_capacity);
+  bin_size = atoi(buff);
+  printf("bin_size: %d\n", bin_size);
 
   // numero di oggetti del caso di test
   fscanf(fp, "%s", buff);
@@ -59,6 +59,8 @@ void load_dataset(char *filename, dataset *d_s)
     items[i] = tmp;
   }
   strcpy(d_s->name, problem_identifier);
+  d_s->bin_size = bin_size;
+  d_s->best_sol = best_solution;
   d_s->n = num_items;
   d_s->items = (int *)items;
   printf("Items Loading done.\n");
