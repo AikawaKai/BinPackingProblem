@@ -4,9 +4,13 @@
 int main(int argc, char *argv[]){
   dataset_t test1;
   sol_t s1;
+  int max_num_elem;
   char *filename = argv[1];
+
   load_dataset(filename, &test1); // carica il caso di test nella struct dataset
-  initialize_solution(&s1, test1.bin_size, 51);
+  printf("Min element: %d\n", test1.sorteditems[0]);
+  max_num_elem = (test1.bin_size / test1.sorteditems[0])+1;
+  initialize_solution(&s1, test1.bin_size, test1.n, max_num_elem);
   firstfit(&test1, &s1);
   printf("%s\n", test1.name);
 

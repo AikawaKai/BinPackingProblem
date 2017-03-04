@@ -49,10 +49,11 @@ bool add_item_to_bin_if_fits(bin_t *b, int item)
   }
 }
 
-void initialize_solution(sol_t *s, int b_size, int num_items)
+void initialize_solution(sol_t *s, int b_size, int num_items, int max_num_el)
 {
   s->n = 1;
   s->bin_size = b_size;
+  s->max_num_el = max_num_el;
   s->bins = (bin_t *)calloc(num_items, sizeof(bin_t));
   if(s->bins == NULL)
   {
@@ -60,7 +61,7 @@ void initialize_solution(sol_t *s, int b_size, int num_items)
     exit(-1);
   }
   bin_t b1;
-  initialize_bin(&b1, b_size, num_items);
+  initialize_bin(&b1, b_size, s->max_num_el);
   s->bins[0] = b1;
 }
 
@@ -68,7 +69,7 @@ void add_new_bin(sol_t *s)
 {
   s->n = s->n+1;
   bin_t n_b;
-  initialize_bin(&n_b, s->bin_size, s->n);
+  initialize_bin(&n_b, s->bin_size, s->max_num_el);
   s->bins[s->n-1]=n_b;
 }
 

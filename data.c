@@ -3,6 +3,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+int compare_function(const void *a,const void *b) {
+  int *x = (int *) a;
+  int *y = (int *) b;
+  return *x - *y;
+}
+
 
 void load_dataset(char *filename, dataset_t *d_s)
 {
@@ -10,6 +16,7 @@ void load_dataset(char *filename, dataset_t *d_s)
   char buff[255];
   int num_cases;
   char *problem_identifier;
+  int *sorteditems;
   int bin_size;
   int num_items;
   int best_solution;
@@ -72,6 +79,18 @@ void load_dataset(char *filename, dataset_t *d_s)
   {
     d_s->items[i] = items[i];
   }
+  sorteditems = (int *)calloc(num_items, sizeof(int));
+  if(sorteditems == NULL)
+  {
+    printf("MALLOC FAILED load_dataset\n");
+    exit(-1);
+  }
+  for(int i=0; i<num_items; i++)
+  {
+    sorteditems[i] = d_s->items[i];
+  }
+  qsort(sorteditems,num_items, sizeof(int), compare_function);
+  d_s->sorteditems = sorteditems;
   printf("Items Loading done.\n\n");
 }
 
@@ -80,6 +99,7 @@ void free_dataset(dataset_t *d_s)
   // libero lo spazio occupato
   free(d_s->name);
   free(d_s->items);
+  free(d_s->sorteditems);
   d_s->items = NULL;
   d_s->n = 0;
   d_s->bin_size = 0;

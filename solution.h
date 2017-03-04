@@ -23,9 +23,10 @@ typedef struct sol
 {
   int n;
   int bin_size;
+  int max_num_el;
   bin_t *bins;
 } sol_t;
 
-void initialize_solution(sol_t *s, int b_size, int num_items);
+void initialize_solution(sol_t *s, int b_size, int num_item, int max_num_el);
 void add_new_bin(sol_t *s);
 void free_solution(sol_t *s);
