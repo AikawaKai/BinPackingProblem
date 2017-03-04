@@ -15,6 +15,7 @@ void free_bin(bin *b)
 {
   // libero lo spazio occupato dal bin
   free(b->items);
+  b->items = NULL;
   b->n = 0;
   b->sum = 0;
   b->size = 0;
@@ -32,24 +33,33 @@ void add_item_to_bin(bin *b, int item)
     printf("REALLOC FAILED add_item_to_bin\n");
     exit(-1);
   }
-  else
-  {
-    new_items[b->n-1] = item;
-    b->items = new_items;
-  }
+  new_items[b->n-1] = item;
+  b->items = new_items;
 }
 
 void initialize_solution(sol *s)
 {
   s->n = 0;
   s->full_bins = malloc(0 * sizeof(s->full_bins));
+  if(s->full_bins == NULL)
+  {
+    printf("MALLOC FAILED initialize_solution\n");
+    exit(-1);
+  }
   s->slack_bins = malloc(0 * sizeof(s->full_bins));
+  if(s->slack_bins == NULL)
+  {
+    printf("MALLOC FAILED initialize_solution\n");
+    exit(-1);
+  }
 }
 
 void free_solution(sol *s)
 {
   free(s->full_bins);
+  s->full_bins = NULL;
   free(s->slack_bins);
+  s->slack_bins = NULL;
   s->n = 0;
   printf("free(solution) ok\n");
 }
