@@ -7,18 +7,18 @@ typedef struct sol_bin
   int size;
   int sum;
   int slack;
-} bin;
+} bin_t;
 
-void initialize_bin(bin *b, int size);
-void free_bin(bin *b);
-void add_item_to_bin(bin *b, int item);
-int get_bin_slack(bin *b);
+void initialize_bin(bin_t *b, int size);
+void free_bin(bin_t *b);
+void add_item_to_bin(bin_t *b, int item);
+int get_bin_slack(bin_t *b);
 
 typedef struct sol
 {
   int n;
-  bin *bins;
-} sol;
+  bin_t *bins;
+} sol_t;
 
-void initialize_solution(sol *s);
-void free_solution(sol *s);
+void initialize_solution(sol_t *s);
+void free_solution(sol_t *s);

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void initialize_bin(bin *b, int size)
+void initialize_bin(bin_t *b, int size)
 {
   b->items = malloc(0 * sizeof (b->items));
   b->n = 0;
@@ -11,7 +11,7 @@ void initialize_bin(bin *b, int size)
   b->slack = size;
 }
 
-void free_bin(bin *b)
+void free_bin(bin_t *b)
 {
   // libero lo spazio occupato dal bin
   free(b->items);
@@ -22,7 +22,7 @@ void free_bin(bin *b)
   b->slack = 0;
 }
 
-void add_item_to_bin(bin *b, int item)
+void add_item_to_bin(bin_t *b, int item)
 {
   b->n++;
   b->sum = b->sum + item;
@@ -37,12 +37,12 @@ void add_item_to_bin(bin *b, int item)
   b->items = new_items;
 }
 
-int get_bin_slack(bin *b)
+int get_bin_slack(bin_t *b)
 {
   return b->slack;
 }
 
-void initialize_solution(sol *s)
+void initialize_solution(sol_t *s)
 {
   s->n = 0;
   s->bins = malloc(0 * sizeof(s->bins));
@@ -53,7 +53,7 @@ void initialize_solution(sol *s)
   }
 }
 
-void free_solution(sol *s)
+void free_solution(sol_t *s)
 {
   free(s->bins);
   s->bins = NULL;

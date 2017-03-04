@@ -3,8 +3,8 @@
 #include "solution.h"
 
 int main(int argc, char *argv[]){
-  dataset test1;
-  sol s1;
+  dataset_t test1;
+  sol_t s1;
   char *filename = argv[1];
   load_dataset(filename, &test1); // carica il caso di test nella struct dataset
   initialize_solution(&s1);

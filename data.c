@@ -4,7 +4,7 @@
 #include <string.h>
 
 
-void load_dataset(char *filename, dataset *d_s)
+void load_dataset(char *filename, dataset_t *d_s)
 {
   FILE *fp;
   char buff[255];
@@ -81,7 +81,7 @@ void load_dataset(char *filename, dataset *d_s)
   printf("Items Loading done.\n");
 }
 
-void free_dataset(dataset *d_s)
+void free_dataset(dataset_t *d_s)
 {
   // libero lo spazio occupato
   free(d_s->name);

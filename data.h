@@ -7,8 +7,8 @@ typedef struct dataset
   int bin_size;   // grandezza del bin
   int best_sol;   // miglior soluzione fino ad ora
   int *items;     // vettore degli oggetti totali
-} dataset;
+} dataset_t;
 
 
-void load_dataset(char *filename, dataset *d_s);
-void free_dataset(dataset *d_s);
+void load_dataset(char *filename, dataset_t *d_s);
+void free_dataset(dataset_t *d_s);
