@@ -24,20 +24,10 @@ void free_bin(bin_t *b)
 
 void add_item_to_bin(bin_t *b, int item)
 {
-  printf("########################\n");
-  printf("--- Bin prima ---\n");
-  printf("Numero di el: %d\n", b->n);
-  printf("Somma: %d\n", b->sum);
-  printf("Slack: %d\n", b->slack);
   b->n++;
   b->sum = b->sum + item;
   b->slack = b->slack - item;
   b->items[b->n-1] = item;
-  printf("+++ Bin Dopo +++\n");
-  printf("Numero di el: %d\n", b->n);
-  printf("Somma: %d\n", b->sum);
-  printf("Slack: %d\n", b->slack);
-  printf("########################\n");
 }
 
 int get_bin_slack(bin_t *b)
@@ -79,7 +69,6 @@ void add_new_bin(sol_t *s)
   s->n++;
   bin_t n_b;
   initialize_bin(&n_b, s->bin_size, s->n);
-  printf("%d, %d, %d, %d\n",n_b.n, n_b.sum, n_b.size, n_b.slack);
   s->bins[s->n]=n_b;
 }
 

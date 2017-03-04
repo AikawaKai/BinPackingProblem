@@ -78,7 +78,7 @@ void load_dataset(char *filename, dataset_t *d_s)
   {
     d_s->items[i] = items[i];
   }
-  printf("Items Loading done.\n");
+  printf("Items Loading done.\n\n");
 }
 
 void free_dataset(dataset_t *d_s)
