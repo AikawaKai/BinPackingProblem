@@ -75,6 +75,10 @@ void add_new_bin(sol_t *s)
 
 void free_solution(sol_t *s)
 {
+  for(int i=0; i<s->n; i++)
+  {
+    free((s->bins[i]).items);
+  }
   free(s->bins);
   s->bins = NULL;
   s->n = 0;
