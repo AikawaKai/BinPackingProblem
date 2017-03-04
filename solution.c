@@ -40,14 +40,8 @@ void add_item_to_bin(bin *b, int item)
 void initialize_solution(sol *s)
 {
   s->n = 0;
-  s->full_bins = malloc(0 * sizeof(s->full_bins));
-  if(s->full_bins == NULL)
-  {
-    printf("MALLOC FAILED initialize_solution\n");
-    exit(-1);
-  }
-  s->slack_bins = malloc(0 * sizeof(s->full_bins));
-  if(s->slack_bins == NULL)
+  s->bins = malloc(0 * sizeof(s->bins));
+  if(s->bins == NULL)
   {
     printf("MALLOC FAILED initialize_solution\n");
     exit(-1);
@@ -56,10 +50,8 @@ void initialize_solution(sol *s)
 
 void free_solution(sol *s)
 {
-  free(s->full_bins);
-  s->full_bins = NULL;
-  free(s->slack_bins);
-  s->slack_bins = NULL;
+  free(s->bins);
+  s->bins = NULL;
   s->n = 0;
   printf("free(solution) ok\n");
 }

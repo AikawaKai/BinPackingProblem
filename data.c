@@ -74,22 +74,9 @@ void load_dataset(char *filename, dataset *d_s)
     printf("MALLOC FAILED load_dataset\n");
     exit(-1);
   }
-  d_s->inserted = malloc(0 * sizeof(d_s->inserted));
-  if(d_s->inserted == NULL)
-  {
-    printf("MALLOC FAILED load_dataset\n");
-    exit(-1);
-  }
-  d_s->to_insert = malloc(num_items * sizeof(d_s->to_insert));
-  if(d_s->to_insert == NULL)
-  {
-    printf("MALLOC FAILED load_dataset\n");
-    exit(-1);
-  }
   for(int i=0; i<num_items; i++)
   {
     d_s->items[i] = items[i];
-    d_s->to_insert[i] = d_s->items[i];
   }
   printf("Items Loading done.\n");
 }
@@ -101,10 +88,6 @@ void free_dataset(dataset *d_s)
   d_s->name = NULL;
   free(d_s->items);
   d_s->items = NULL;
-  free(d_s->inserted);
-  d_s->inserted = NULL;
-  free(d_s->to_insert);
-  d_s->to_insert = NULL;
   d_s->n = 0;
   d_s->bin_size = 0;
   d_s->best_sol = 0;

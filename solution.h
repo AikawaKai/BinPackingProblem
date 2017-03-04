@@ -16,8 +16,7 @@ void add_item_to_bin(bin *b, int item);
 typedef struct sol
 {
   int n;
-  bin *full_bins;
-  bin *slack_bins;
+  bin *bins;
 } sol;
 
 void initialize_solution(sol *s);

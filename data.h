@@ -7,8 +7,6 @@ typedef struct dataset
   int bin_size;   // grandezza del bin
   int best_sol;   // miglior soluzione fino ad ora
   int *items;     // vettore degli oggetti totali
-  int *inserted;  // vettore degli oggetti inseriti nei bin
-  int *to_insert; // vettore degli oggetti da inserire nei bin
 } dataset;
 
 
