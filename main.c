@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include "data.h"
-#include "solution.h"
+#include "firstfit.h"
 
 int main(int argc, char *argv[]){
   dataset_t test1;
@@ -8,6 +7,7 @@ int main(int argc, char *argv[]){
   char *filename = argv[1];
   load_dataset(filename, &test1); // carica il caso di test nella struct dataset
   initialize_solution(&s1);
+  firstfit(&test1, &s1);
 
   /*
   bin b;

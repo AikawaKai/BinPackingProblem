@@ -2,4 +2,4 @@
 #include "solution.h"
 
 
-void firstfit();
+void firstfit(dataset_t *ds, sol_t *sol);
