@@ -3,11 +3,15 @@
 #include <stdlib.h>
 #include <string.h>
 
-int compare_function(const void *a,const void *b) {
-  int *x = (int *) a;
-  int *y = (int *) b;
-  return *x - *y;
-}
+int compare_function(const void* p1, const void* p2)
+{
+   int i1 = *(int*) p1;
+   int i2 = *(int*) p2;
+   if (i1 > i2) return -1;
+   else if (i1 == i2) return 0;
+   else return 1;
+   /* or simply: return i1 - i2; */
+ }
 
 
 void load_dataset(char *filename, dataset_t *d_s)
