@@ -4,7 +4,7 @@
 
 void initialize_bin(bin_t *b, int size, int num_items)
 {
-  b->items = (int *)malloc(num_items * sizeof (int));
+  b->items = malloc(num_items * sizeof (int));
   b->n = 0;
   b->sum = 0;
   b->size = size;
@@ -53,7 +53,7 @@ void initialize_solution(sol_t *s, int b_size, int num_items)
 {
   s->n = 1;
   s->bin_size = b_size;
-  s->bins = (bin_t *)malloc(num_items * sizeof(bin_t));
+  s->bins = malloc(num_items * sizeof(bin_t));
   if(s->bins == NULL)
   {
     printf("MALLOC FAILED initialize_solution\n");
