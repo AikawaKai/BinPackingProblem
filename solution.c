@@ -42,6 +42,16 @@ int get_bin_slack(bin_t *b)
   return b->slack;
 }
 
+bool add_item_to_bin_if_fits(bin_t *b, int item)
+{
+  if (get_bin_slack(b) - item >= 0)
+  {
+    add_item_to_bin(b, item);
+    return TRUE;
+  }
+  return FALSE;
+}
+
 void initialize_solution(sol_t *s, int b_size)
 {
   s->n = 1;
