@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void initialize_bin(bin_t *b, int size)
+void initialize_bin(bin_t *b, int size, int num_items)
 {
-  b->items = (int *)malloc(0 * sizeof (int));
+  b->items = (int *)malloc(num_items * sizeof (int));
   b->n = 0;
   b->sum = 0;
   b->size = size;
@@ -32,12 +32,6 @@ void add_item_to_bin(bin_t *b, int item)
   b->n++;
   b->sum = b->sum + item;
   b->slack = b->slack - item;
-  b->items = (int *)realloc(b->items, b->n * sizeof(int));
-  if (b->items==NULL)
-  {
-    printf("REALLOC FAILED add_item_to_bin\n");
-    exit(-1);
-  }
   b->items[b->n-1] = item;
   printf("+++ Bin Dopo +++\n");
   printf("Numero di el: %d\n", b->n);
@@ -65,33 +59,26 @@ bool add_item_to_bin_if_fits(bin_t *b, int item)
   }
 }
 
-void initialize_solution(sol_t *s, int b_size)
+void initialize_solution(sol_t *s, int b_size, int num_items)
 {
   s->n = 1;
   s->bin_size = b_size;
-  s->bins = (bin_t *)malloc(1 * sizeof(bin_t));
+  s->bins = (bin_t *)malloc(num_items * sizeof(bin_t));
   if(s->bins == NULL)
   {
     printf("MALLOC FAILED initialize_solution\n");
     exit(-1);
   }
   bin_t b1;
-  initialize_bin(&b1, b_size);
+  initialize_bin(&b1, b_size, num_items);
   s->bins[0] = b1;
 }
 
 void add_new_bin(sol_t *s)
 {
-  s->n = s->n + 1;
-  s->bins = (bin_t *)realloc(s->bins, s->n * sizeof(bin_t));
-  if(s->bins == NULL)
-  {
-    printf("REALLOC FAILED add_new_bin\n");
-    exit(-1);
-  }
+  s->n++;
   bin_t n_b;
-  printf("Size passed %d\n", s->bin_size);
-  initialize_bin(&n_b, s->bin_size);
+  initialize_bin(&n_b, s->bin_size, s->n);
   printf("%d, %d, %d, %d\n",n_b.n, n_b.sum, n_b.size, n_b.slack);
   s->bins[s->n]=n_b;
 }

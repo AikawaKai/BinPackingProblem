@@ -6,7 +6,7 @@ int main(int argc, char *argv[]){
   sol_t s1;
   char *filename = argv[1];
   load_dataset(filename, &test1); // carica il caso di test nella struct dataset
-  initialize_solution(&s1, test1.bin_size);
+  initialize_solution(&s1, test1.bin_size, test1.n);
   firstfit(&test1, &s1);
 
   /*
