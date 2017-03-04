@@ -12,6 +12,7 @@ void firstfit(dataset_t *ds, sol_t *sol)
     {
       if(add_item_to_bin_if_fits(&(sol->bins[j]), ds->items[i]))
       {
+        printf("bin j: %d, added item %d: %d\n",j, i, ds->items[i]);
         fixed = TRUE;
         break;
       }
@@ -19,6 +20,7 @@ void firstfit(dataset_t *ds, sol_t *sol)
     if(fixed==FALSE && j==(sol->n))
     {
       add_new_bin(sol);
+      printf("bin j: %d, added item %d: %d\n",j, i, ds->items[i]);
       add_item_to_bin(&(sol->bins[sol->n]), ds->items[i]);
     }
   }
