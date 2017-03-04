@@ -31,9 +31,9 @@ void load_dataset(char *filename, dataset_t *d_s)
 
   // nome del caso di test specifico
   fscanf(fp, "%s", buff);
-  problem_identifier = (char *)calloc(strlen(buff), sizeof(char));
+  problem_identifier = (char *)calloc(strlen(buff)+1, sizeof(char));
   strcpy(problem_identifier, buff);
-  printf("identifier: %s", problem_identifier);
+  printf("Identifier: %s\n", problem_identifier);
   d_s->name = problem_identifier;
 
   // bin capacity del caso di test
@@ -78,8 +78,7 @@ void load_dataset(char *filename, dataset_t *d_s)
 void free_dataset(dataset_t *d_s)
 {
   // libero lo spazio occupato
-  d_s->name;
-  d_s->name = NULL;
+  free(d_s->name);
   free(d_s->items);
   d_s->items = NULL;
   d_s->n = 0;
