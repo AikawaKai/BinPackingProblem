@@ -4,7 +4,7 @@
 
 void initialize_bin(bin_t *b, int size)
 {
-  b->items = malloc(0 * sizeof (b->items));
+  b->items = (int *)malloc(0 * sizeof (int));
   b->n = 0;
   b->sum = 0;
   b->size = size;
@@ -24,17 +24,26 @@ void free_bin(bin_t *b)
 
 void add_item_to_bin(bin_t *b, int item)
 {
+  printf("########################\n");
+  printf("--- Bin prima ---\n");
+  printf("Numero di el: %d\n", b->n);
+  printf("Somma: %d\n", b->sum);
+  printf("Slack: %d\n", b->slack);
   b->n++;
   b->sum = b->sum + item;
   b->slack = b->slack - item;
-  int *new_items = realloc(b->items, b->n * sizeof(*new_items));
-  if (new_items==NULL)
+  b->items = (int *)realloc(b->items, b->n * sizeof(int));
+  if (b->items==NULL)
   {
     printf("REALLOC FAILED add_item_to_bin\n");
     exit(-1);
   }
-  new_items[b->n-1] = item;
-  b->items = new_items;
+  b->items[b->n-1] = item;
+  printf("+++ Bin Dopo +++\n");
+  printf("Numero di el: %d\n", b->n);
+  printf("Somma: %d\n", b->sum);
+  printf("Slack: %d\n", b->slack);
+  printf("########################\n");
 }
 
 int get_bin_slack(bin_t *b)
@@ -44,19 +53,23 @@ int get_bin_slack(bin_t *b)
 
 bool add_item_to_bin_if_fits(bin_t *b, int item)
 {
-  if (get_bin_slack(b) - item >= 0)
+  int partial = get_bin_slack(b) - item;
+  if (partial >= 0)
   {
     add_item_to_bin(b, item);
     return TRUE;
   }
-  return FALSE;
+  else
+  {
+    return FALSE;
+  }
 }
 
 void initialize_solution(sol_t *s, int b_size)
 {
   s->n = 1;
   s->bin_size = b_size;
-  s->bins = malloc(1 * sizeof(s->bins));
+  s->bins = (bin_t *)malloc(1 * sizeof(bin_t));
   if(s->bins == NULL)
   {
     printf("MALLOC FAILED initialize_solution\n");
@@ -69,16 +82,18 @@ void initialize_solution(sol_t *s, int b_size)
 
 void add_new_bin(sol_t *s)
 {
-  s->n++;
-  s->bins = realloc(s->bins, s->n * sizeof(s->bins));
+  s->n = s->n + 1;
+  s->bins = (bin_t *)realloc(s->bins, s->n * sizeof(bin_t));
   if(s->bins == NULL)
   {
     printf("REALLOC FAILED add_new_bin\n");
     exit(-1);
   }
   bin_t n_b;
+  printf("Size passed %d\n", s->bin_size);
   initialize_bin(&n_b, s->bin_size);
-  s->bins[s->n-1]=n_b;
+  printf("%d, %d, %d, %d\n",n_b.n, n_b.sum, n_b.size, n_b.slack);
+  s->bins[s->n]=n_b;
 }
 
 void free_solution(sol_t *s)

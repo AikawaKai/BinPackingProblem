@@ -68,7 +68,7 @@ void load_dataset(char *filename, dataset_t *d_s)
   d_s->bin_size = bin_size;
   d_s->best_sol = best_solution;
   d_s->n = num_items;
-  d_s->items = malloc(num_items * sizeof(d_s->items));
+  d_s->items = malloc(num_items * sizeof(int));
   if(d_s->items == NULL)
   {
     printf("MALLOC FAILED load_dataset\n");
