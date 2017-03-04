@@ -42,15 +42,18 @@ int get_bin_slack(bin_t *b)
   return b->slack;
 }
 
-void initialize_solution(sol_t *s)
+void initialize_solution(sol_t *s, int b_size)
 {
-  s->n = 0;
-  s->bins = malloc(0 * sizeof(s->bins));
+  s->n = 1;
+  s->bins = malloc(1 * sizeof(s->bins));
   if(s->bins == NULL)
   {
     printf("MALLOC FAILED initialize_solution\n");
     exit(-1);
   }
+  bin_t b1;
+  initialize_bin(&b1, b_size);
+  s->bins[0] = b1;
 }
 
 void free_solution(sol_t *s)

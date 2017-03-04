@@ -7,7 +7,7 @@ void firstfit(dataset_t *ds, sol_t *sol)
   {
     for(int j=0; j<sol->n; j++)
     {
-
+      printf("i:%d j:%d\n",i,j);
     }
   }
 }
