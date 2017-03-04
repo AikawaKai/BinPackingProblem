@@ -12,6 +12,7 @@ typedef struct sol_bin
 void initialize_bin(bin *b, int size);
 void free_bin(bin *b);
 void add_item_to_bin(bin *b, int item);
+int get_bin_slack(bin *b);
 
 typedef struct sol
 {

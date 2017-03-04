@@ -37,6 +37,11 @@ void add_item_to_bin(bin *b, int item)
   b->items = new_items;
 }
 
+int get_bin_slack(bin *b)
+{
+  return b->slack;
+}
+
 void initialize_solution(sol *s)
 {
   s->n = 0;
