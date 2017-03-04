@@ -9,8 +9,7 @@ void load_dataset(char *filename, dataset_t *d_s)
   FILE *fp;
   char buff[255];
   int num_cases;
-  char problem_identifier[255];
-  char problem_header[255];
+  char *problem_identifier;
   int bin_size;
   int num_items;
   int best_solution;
@@ -32,8 +31,10 @@ void load_dataset(char *filename, dataset_t *d_s)
 
   // nome del caso di test specifico
   fscanf(fp, "%s", buff);
+  problem_identifier = (char *)calloc(strlen(buff), sizeof(char));
   strcpy(problem_identifier, buff);
-  printf("Problem string: %s\n", problem_identifier);
+  printf("identifier: %s", problem_identifier);
+  d_s->name = problem_identifier;
 
   // bin capacity del caso di test
   fscanf(fp, "%s", buff);
@@ -58,17 +59,10 @@ void load_dataset(char *filename, dataset_t *d_s)
     tmp = atoi(buff);
     items[i] = tmp;
   }
-  d_s->name = malloc(strlen(problem_identifier) * sizeof(d_s->name));
-  if(d_s->name == NULL)
-  {
-    printf("MALLOC FAILED load_dataset\n");
-    exit(-1);
-  }
-  strcpy(d_s->name, problem_identifier);
   d_s->bin_size = bin_size;
   d_s->best_sol = best_solution;
   d_s->n = num_items;
-  d_s->items = malloc(num_items * sizeof(int));
+  d_s->items = (int *)calloc(num_items, sizeof(int));
   if(d_s->items == NULL)
   {
     printf("MALLOC FAILED load_dataset\n");
@@ -84,7 +78,7 @@ void load_dataset(char *filename, dataset_t *d_s)
 void free_dataset(dataset_t *d_s)
 {
   // libero lo spazio occupato
-  free(d_s->name);
+  d_s->name;
   d_s->name = NULL;
   free(d_s->items);
   d_s->items = NULL;

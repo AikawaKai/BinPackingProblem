@@ -8,6 +8,7 @@ int main(int argc, char *argv[]){
   load_dataset(filename, &test1); // carica il caso di test nella struct dataset
   initialize_solution(&s1, test1.bin_size, 51);
   firstfit(&test1, &s1);
+  printf("%s\n", test1.name);
 
   /*
   bin b;

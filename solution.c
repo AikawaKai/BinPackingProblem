@@ -4,7 +4,7 @@
 
 void initialize_bin(bin_t *b, int size, int num_items)
 {
-  b->items = malloc(num_items * sizeof (int));
+  b->items = (int *) calloc(num_items, sizeof (int));
   b->n = 0;
   b->sum = 0;
   b->size = size;
@@ -24,10 +24,10 @@ void free_bin(bin_t *b)
 
 void add_item_to_bin(bin_t *b, int item)
 {
-  b->n++;
+  b->n = b->n + 1;
   b->sum = b->sum + item;
   b->slack = b->slack - item;
-  b->items[b->n-1] = item;
+  // b->items[b->n-1] = item;
 }
 
 int get_bin_slack(bin_t *b)
@@ -53,7 +53,7 @@ void initialize_solution(sol_t *s, int b_size, int num_items)
 {
   s->n = 1;
   s->bin_size = b_size;
-  s->bins = malloc(num_items * sizeof(bin_t));
+  s->bins = (bin_t *)calloc(num_items, sizeof(bin_t));
   if(s->bins == NULL)
   {
     printf("MALLOC FAILED initialize_solution\n");
@@ -66,10 +66,10 @@ void initialize_solution(sol_t *s, int b_size, int num_items)
 
 void add_new_bin(sol_t *s)
 {
-  s->n++;
+  s->n = s->n+1;
   bin_t n_b;
   initialize_bin(&n_b, s->bin_size, s->n);
-  s->bins[s->n]=n_b;
+  s->bins[s->n-1]=n_b;
 }
 
 void free_solution(sol_t *s)
