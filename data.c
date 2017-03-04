@@ -59,13 +59,33 @@ void load_dataset(char *filename, dataset *d_s)
     items[i] = tmp;
   }
   d_s->name = malloc(strlen(problem_identifier) * sizeof(d_s->name));
+  if(d_s->name == NULL)
+  {
+    printf("MALLOC FAILED load_dataset\n");
+    exit(-1);
+  }
   strcpy(d_s->name, problem_identifier);
   d_s->bin_size = bin_size;
   d_s->best_sol = best_solution;
   d_s->n = num_items;
   d_s->items = malloc(num_items * sizeof(d_s->items));
+  if(d_s->items == NULL)
+  {
+    printf("MALLOC FAILED load_dataset\n");
+    exit(-1);
+  }
   d_s->inserted = malloc(0 * sizeof(d_s->inserted));
+  if(d_s->inserted == NULL)
+  {
+    printf("MALLOC FAILED load_dataset\n");
+    exit(-1);
+  }
   d_s->to_insert = malloc(num_items * sizeof(d_s->to_insert));
+  if(d_s->to_insert == NULL)
+  {
+    printf("MALLOC FAILED load_dataset\n");
+    exit(-1);
+  }
   for(int i=0; i<num_items; i++)
   {
     d_s->items[i] = items[i];
