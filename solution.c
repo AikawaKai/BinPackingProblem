@@ -55,6 +55,7 @@ bool add_item_to_bin_if_fits(bin_t *b, int item)
 void initialize_solution(sol_t *s, int b_size)
 {
   s->n = 1;
+  s->bin_size = b_size;
   s->bins = malloc(1 * sizeof(s->bins));
   if(s->bins == NULL)
   {
@@ -64,6 +65,20 @@ void initialize_solution(sol_t *s, int b_size)
   bin_t b1;
   initialize_bin(&b1, b_size);
   s->bins[0] = b1;
+}
+
+void add_new_bin(sol_t *s)
+{
+  s->n++;
+  s->bins = realloc(s->bins, s->n * sizeof(s->bins));
+  if(s->bins == NULL)
+  {
+    printf("REALLOC FAILED add_new_bin\n");
+    exit(-1);
+  }
+  bin_t n_b;
+  initialize_bin(&n_b, s->bin_size);
+  s->bins[s->n-1]=n_b;
 }
 
 void free_solution(sol_t *s)

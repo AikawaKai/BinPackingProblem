@@ -22,8 +22,10 @@ bool add_item_to_bin_if_fits(bin_t *b, int item);
 typedef struct sol
 {
   int n;
+  int bin_size;
   bin_t *bins;
 } sol_t;
 
 void initialize_solution(sol_t *s, int b_size);
+void add_new_bin(sol_t *s);
 void free_solution(sol_t *s);
