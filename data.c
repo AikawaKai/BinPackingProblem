@@ -1,4 +1,5 @@
 #include "data.h"
+#include "linkedList.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,6 +17,7 @@ int compare_function(const void* p1, const void* p2)
 
 void load_dataset(char *filename, dataset_t *d_s)
 {
+  node_t *tmpN;
   FILE *fp;
   char buff[255];
   int num_cases;
@@ -62,7 +64,6 @@ void load_dataset(char *filename, dataset_t *d_s)
   best_solution = atoi(buff);
   printf("Best Solution: %d\n", best_solution);
 
-  // carico tutti gli oggetti
   // creo la lista di oggetti non ordinata
   d_s->items = (int *)calloc(num_items, sizeof(int));
   if(d_s->items == NULL)
@@ -79,7 +80,7 @@ void load_dataset(char *filename, dataset_t *d_s)
   d_s->bin_size = bin_size;
   d_s->best_sol = best_solution;
   d_s->n = num_items;
-
+  
   // creo la lista ordinata di oggetti
   sorteditems = (int *)calloc(num_items, sizeof(int));
   if(sorteditems == NULL)
@@ -93,6 +94,13 @@ void load_dataset(char *filename, dataset_t *d_s)
   }
   qsort(sorteditems,num_items, sizeof(int), compare_function);
   d_s->sorteditems = sorteditems;
+
+  // creo la lista linkata di oggetti
+  d_s->head = malloc(sizeof(node_t));
+  for(int i=0; i<num_items; i++)
+  {
+    printf("faccio robe");
+  }
   printf("Items Loading done.\n\n");
 }
 

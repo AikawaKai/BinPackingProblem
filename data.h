@@ -8,8 +8,8 @@ typedef struct dataset
   int bin_size;   // grandezza del bin
   int best_sol;   // miglior soluzione fino ad ora
   int *items;     // vettore degli oggetti totali
-  int *sorteditems;
-  node_t *head;
+  int *sorteditems; //vettore degli oggetti ordinati
+  node_t *head; //linked list
 } dataset_t;
 
 
