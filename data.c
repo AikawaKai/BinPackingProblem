@@ -80,7 +80,7 @@ void load_dataset(char *filename, dataset_t *d_s)
   d_s->bin_size = bin_size;
   d_s->best_sol = best_solution;
   d_s->n = num_items;
-  
+
   // creo la lista ordinata di oggetti
   sorteditems = (int *)calloc(num_items, sizeof(int));
   if(sorteditems == NULL)
@@ -96,7 +96,8 @@ void load_dataset(char *filename, dataset_t *d_s)
   d_s->sorteditems = sorteditems;
 
   // creo la lista linkata di oggetti
-  d_s->head = malloc(sizeof(node_t));
+  // int a = (int)malloc(sizeof(int));
+  d_s->head;
   for(int i=0; i<num_items; i++)
   {
     printf("faccio robe");

@@ -3,6 +3,7 @@
 
 typedef struct dataset
  {
+
   char *name; // case test name
   int n;          // numero di oggetti da inserire nei bin
   int bin_size;   // grandezza del bin
@@ -10,6 +11,7 @@ typedef struct dataset
   int *items;     // vettore degli oggetti totali
   int *sorteditems; //vettore degli oggetti ordinati
   node_t *head; //linked list
+
 } dataset_t;
 
 
