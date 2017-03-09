@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include "linkedList.h"
 
 typedef struct dataset
  {
@@ -8,6 +9,7 @@ typedef struct dataset
   int best_sol;   // miglior soluzione fino ad ora
   int *items;     // vettore degli oggetti totali
   int *sorteditems;
+  node_t *head;
 } dataset_t;
 
 
