@@ -63,16 +63,7 @@ void load_dataset(char *filename, dataset_t *d_s)
   printf("Best Solution: %d\n", best_solution);
 
   // carico tutti gli oggetti
-  int items[num_items];
-  for(int i=0; i<num_items; i++)
-  {
-    fscanf(fp, "%s", buff);
-    tmp = atoi(buff);
-    items[i] = tmp;
-  }
-  d_s->bin_size = bin_size;
-  d_s->best_sol = best_solution;
-  d_s->n = num_items;
+  // creo la lista di oggetti non ordinata
   d_s->items = (int *)calloc(num_items, sizeof(int));
   if(d_s->items == NULL)
   {
@@ -81,8 +72,15 @@ void load_dataset(char *filename, dataset_t *d_s)
   }
   for(int i=0; i<num_items; i++)
   {
-    d_s->items[i] = items[i];
+    fscanf(fp, "%s", buff);
+    tmp = atoi(buff);
+    d_s->items[i] = tmp;
   }
+  d_s->bin_size = bin_size;
+  d_s->best_sol = best_solution;
+  d_s->n = num_items;
+
+  // creo la lista ordinata di oggetti
   sorteditems = (int *)calloc(num_items, sizeof(int));
   if(sorteditems == NULL)
   {
