@@ -1,7 +1,9 @@
-#ifndef MBS
-#define MBS
+#ifndef MBS_H
+#define MBS_H
+#include "data.h"
 #include "linkedList.h"
 #include "hashset.h"
+#include "solution.h"
 
 typedef struct A_container
 {
@@ -13,5 +15,6 @@ typedef struct A_container
 } A_t;
 
 void MBSsearch(int index, int n_max, int min_value, node_t *curr_node, hashset_t curr_set, hashset_t curr_best_set);
+void MBS(dataset_t *d_s, sol_t *sol);
 
 #endif

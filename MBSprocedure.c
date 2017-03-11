@@ -32,3 +32,7 @@ void MBSsearch(int index, int n_max, int min_value, node_t *curr_node, hashset_t
     deepCopy(curr_best_set, curr_set);
   }
 }
+
+void MBS(dataset_t *d_s, sol_t *sol)
+{
+}
