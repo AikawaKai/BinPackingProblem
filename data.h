@@ -1,3 +1,5 @@
+#ifndef DATA_SET
+#define DATA_SET
 #include <stdlib.h>
 #include "linkedList.h"
 
@@ -17,3 +19,5 @@ typedef struct dataset
 
 void load_dataset(char *filename, dataset_t *d_s);
 void free_dataset(dataset_t *d_s);
+
+#endif

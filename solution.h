@@ -1,3 +1,6 @@
+#ifndef SOLUTION
+#define SOLUTION
+
 #include <stdlib.h>
 
 typedef int bool;
@@ -30,3 +33,5 @@ typedef struct sol
 void initialize_solution(sol_t *s, int b_size, int num_item, int max_num_el);
 void add_new_bin(sol_t *s);
 void free_solution(sol_t *s);
+
+#endif

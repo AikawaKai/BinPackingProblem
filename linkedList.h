@@ -1,3 +1,6 @@
+#ifndef LINKED_LIST
+#define LINKED_LIST
+
 typedef struct node {
     int val;
     struct node * next;
@@ -7,3 +10,5 @@ int pop(node_t ** head);
 int remove_by_index(node_t ** head, int n);
 void push(node_t * head, int val);
 void print_list(node_t * head);
+
+#endif
