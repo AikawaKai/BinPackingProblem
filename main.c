@@ -16,11 +16,12 @@ int main(int argc, char *argv[]){
   char *filename = argv[1];
 
   load_dataset(filename, &test1); // carica il caso di test nella struct dataset
+  printf("Min element:%d\n\n", test1.sorteditems[(test1.n-1)]);
   max_num_elem = (test1.bin_size / test1.sorteditems[(test1.n)-1])+1;
-  printf("%d\n", test1.sorteditems[(test1.n-1)]);
   initialize_solution(&s1, test1.bin_size, test1.n, max_num_elem);
   initialize_solution(&s2, test1.bin_size, test1.n, max_num_elem);
   initialize_solution(&s3, test1.bin_size, test1.n, max_num_elem);
+  //print_list(test1.head);
   firstfit(&test1, &s1);
   firstfitdecreasing(&test1, &s2);
   MBS(&test1, &s3);

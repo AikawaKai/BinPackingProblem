@@ -46,11 +46,11 @@ void MBS(dataset_t *d_s, sol_t *sol)
     MBSsearch(0, elem_to_insert, d_s->sorteditems[(d_s->n)-1], d_s->head, curr_A_set, best_A_set);
     for(int i=0; i<best_A_set->nitems; i++)
     {
-      printf("elem %d: %d |",i, ((node_t **)best_A_set->items)[i]->val);
+      //printf("elem %d: %d |",i, ((node_t **)best_A_set->items)[i]->val);
+      //printf("%d\n", ((node_t **)best_A_set->items)[i]->val);
       add_item_to_bin(&(sol->bins[(sol->n)-1]), ((node_t **)best_A_set->items)[i]->val);
       remove_by_node_value(head_pointer, ((node_t **)best_A_set->items)[i]);
     }
-    printf("\n");
     elem_to_insert = elem_to_insert-best_A_set->nitems;
     hashset_destroy(best_A_set);
     hashset_destroy(curr_A_set);
