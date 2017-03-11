@@ -17,6 +17,7 @@ int main(int argc, char *argv[]){
   firstfitdecreasing(&test1, &s2);
   printf("Solution firstfit: %d\n", s1.n);
   printf("Solution firstfitdecreasing: %d\n", s2.n);
+  print_list(test1.head);
 
   /*
   bin b;

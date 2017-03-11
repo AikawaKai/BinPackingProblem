@@ -18,6 +18,7 @@ int compare_function(const void* p1, const void* p2)
 void load_dataset(char *filename, dataset_t *d_s)
 {
   node_t *tmpN;
+  node_t *prec;
   FILE *fp;
   char buff[255];
   int num_cases;
@@ -97,10 +98,17 @@ void load_dataset(char *filename, dataset_t *d_s)
 
   // creo la lista linkata di oggetti
   // int a = (int)malloc(sizeof(int));
-  d_s->head;
-  for(int i=0; i<num_items; i++)
+  d_s->head = malloc(sizeof(node_t));
+  tmpN = malloc(sizeof(node_t));
+  d_s->head->val = sorteditems[0];
+  d_s->head->next = tmpN;
+  for(int i=1; i<num_items; i++)
   {
-    printf("faccio robe");
+    printf("%d\n", sorteditems[i]);
+    tmpN->val = sorteditems[i];
+    prec = tmpN;
+    tmpN = malloc(sizeof(node_t));
+    prec->next = tmpN;
   }
   printf("Items Loading done.\n\n");
 }
