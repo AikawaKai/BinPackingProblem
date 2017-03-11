@@ -37,6 +37,21 @@ int main(int argc, char *argv[]){
     remove_by_node_value(head_pointer, to_delete);
   }
   print_list(test1.head);
+  printf("----------------------------------\n");
+  hashset_destroy(test_best_set);
+  hashset_destroy(curre_a_set);
+  test_best_set = hashset_create(test1.bin_size);
+  curre_a_set = hashset_create(test1.bin_size);
+  MBSsearch(0, 117, 20, test1.head, curre_a_set, test_best_set);
+  node_t **newitems = (node_t **)test_best_set->items;
+  for(int i=0; i<test_best_set->nitems; i++)
+  {
+    //printf("%d\n", items[i]->val);
+    to_delete = newitems[i];
+    printf("val: %d\n", to_delete->val);
+    remove_by_node_value(head_pointer, to_delete);
+  }
+  print_list(test1.head);
   free_dataset(&test1); // libero lo spazio occupato dal dataset
   free_solution(&s1);
   free_solution(&s2);

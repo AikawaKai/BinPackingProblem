@@ -62,7 +62,7 @@ int remove_by_node_value(node_t ** head, node_t *node_ind) {
     current = current->next;
     while (current!=NULL)
     {
-      if (current == node_ind)
+      if (current->id == node_ind->id)
       {
         prec->next = current->next;
         current->val = 0;
