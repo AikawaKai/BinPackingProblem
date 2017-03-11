@@ -104,12 +104,13 @@ void load_dataset(char *filename, dataset_t *d_s)
   d_s->head->next = tmpN;
   for(int i=1; i<num_items; i++)
   {
-    printf("%d\n", sorteditems[i]);
     tmpN->val = sorteditems[i];
     prec = tmpN;
     tmpN = malloc(sizeof(node_t));
     prec->next = tmpN;
   }
+  prec->next = NULL;
+  free(tmpN);
   printf("Items Loading done.\n\n");
 }
 
