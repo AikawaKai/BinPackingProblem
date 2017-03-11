@@ -34,7 +34,7 @@ int main(int argc, char *argv[]){
     //printf("%d\n", items[i]->val);
     to_delete = items[i];
     printf("val: %d\n", to_delete->val);
-    remove_by_node_value(head_pointer, *to_delete);
+    remove_by_node_value(head_pointer, to_delete);
   }
   print_list(test1.head);
   free_dataset(&test1); // libero lo spazio occupato dal dataset

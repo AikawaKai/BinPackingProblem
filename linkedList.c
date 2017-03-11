@@ -123,6 +123,7 @@ void free_list(node_t *head){
   while (current != NULL){
     next = current->next;
     current->val = 0;
+    current->id = 0;
     current->next = NULL;
     free(current);
     current = next;

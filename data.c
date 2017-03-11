@@ -101,10 +101,12 @@ void load_dataset(char *filename, dataset_t *d_s)
   d_s->head = malloc(sizeof(node_t));
   tmpN = malloc(sizeof(node_t));
   d_s->head->val = sorteditems[0];
+  d_s->head->id = 0;
   d_s->head->next = tmpN;
   for(int i=1; i<num_items; i++)
   {
     tmpN->val = sorteditems[i];
+    tmpN->id = i;
     prec = tmpN;
     tmpN = malloc(sizeof(node_t));
     prec->next = tmpN;
