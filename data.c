@@ -124,5 +124,6 @@ void free_dataset(dataset_t *d_s)
   d_s->n = 0;
   d_s->bin_size = 0;
   d_s->best_sol = 0;
+  free_list(d_s->head);
   printf("free(dataset) ok\n");
 }

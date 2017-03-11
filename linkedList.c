@@ -68,3 +68,17 @@ void print_list(node_t * head) {
         current = current->next;
     }
 }
+
+// metodo per liberare la lista linkata
+void free_list(node_t *head){
+  node_t *current = head;
+  node_t *next;
+
+  while (current != NULL){
+    next = current->next;
+    current->val = 0;
+    current->next = NULL;
+    free(current);
+    current = next;
+  }
+}
