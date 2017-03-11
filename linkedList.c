@@ -46,6 +46,52 @@ int remove_by_index(node_t ** head, int n) {
 
 }
 
+int remove_by_node_value(node_t ** head, node_t *node_ind) {
+    int i = 0;
+    int retval = -1;
+    node_t * current = *head;
+    node_t * prec;
+    node_t * tmp_node = NULL;
+
+    if (node_ind == *head) {
+        tmp_node = (*head)->next;
+        pop(head);
+        return 1;
+    }
+    prec = current;
+    current = current->next;
+    while (current!=NULL)
+    {
+      if (current == node_ind)
+      {
+        prec->next = current->next;
+        current->val = 0;
+        current->next = NULL;
+        free(current);
+        return 1;
+      }
+      prec = current;
+      current = current->next;
+    }
+    return 0;
+
+    /*
+    for (int i = 0; i < n-1; i++) {
+        if (current->next == NULL) {
+            return -1;
+        }
+        current = current->next;
+    }
+
+    temp_node = current->next;
+    retval = temp_node->val;
+    current->next = temp_node->next;
+    free(temp_node);
+
+    return retval;*
+*/
+}
+
 // aggiunge un elemento in coda alla lista linkata
 void push(node_t * head, int val) {
     node_t * current = head;
