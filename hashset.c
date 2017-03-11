@@ -21,10 +21,10 @@
 static const unsigned int prime_1 = 73;
 static const unsigned int prime_2 = 5009;
 
-hashset_t hashset_create()
+hashset_t hashset_create(int bin_size)
 {
     hashset_t set = calloc(1, sizeof(struct hashset_st));
-
+    set->slack = bin_size;
     if (set == NULL) {
         return NULL;
     }

@@ -3,6 +3,7 @@
 #include "firstfit.h"
 
 int main(int argc, char *argv[]){
+  hashset_t test_set;
   dataset_t test1;
   node_t ** head_pointer;
   node_t * to_delete;
@@ -23,6 +24,7 @@ int main(int argc, char *argv[]){
   //print_list(test1.head);
   print_list(test1.head);
   head_pointer = &test1.head;
+  test_set = hashset_create(test1.bin_size);
   free_dataset(&test1); // libero lo spazio occupato dal dataset
   free_solution(&s1);
   free_solution(&s2);

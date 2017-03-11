@@ -1,7 +1,8 @@
 #include "linkedList.h"
+#include "hashset.h"
 #include "MBSprocedure.h"
 
-void MBSsearch(int index, int n_max, node_t *curr_node, A_t *curr_set, A_t *curr_best_set)
+void MBSsearch(int index, int n_max, node_t *curr_node, hashset_t curr_set, hashset_t curr_best_set)
 {
   for (int i=index; i<n_max; i++)
   {

@@ -32,12 +32,13 @@ extern "C" {
         size_t *items;
         size_t nitems;
         size_t n_deleted_items;
+        int slack;
     };
 
     typedef struct hashset_st *hashset_t;
 
     /* create hashset instance */
-    hashset_t hashset_create(void);
+    hashset_t hashset_create(int bin_size);
 
     /* destroy hashset instance */
     void hashset_destroy(hashset_t set);
