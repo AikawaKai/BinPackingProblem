@@ -35,4 +35,26 @@ void MBSsearch(int index, int n_max, int min_value, node_t *curr_node, hashset_t
 
 void MBS(dataset_t *d_s, sol_t *sol)
 {
+  node_t ** head_pointer;
+  head_pointer = &(d_s->head);
+  hashset_t best_A_set = hashset_create(d_s->bin_size);
+  hashset_t curr_A_set = hashset_create(d_s->bin_size);
+  int elem_to_insert = d_s->n;
+  while (elem_to_insert>0)
+  {
+    add_new_bin(sol);
+    MBSsearch(0, elem_to_insert, d_s->sorteditems[(d_s->n)-1], d_s->head, curr_A_set, best_A_set);
+    for(int i=0; i<best_A_set->nitems; i++)
+    {
+      printf("elem %d: %d |",i, ((node_t **)best_A_set->items)[i]->val);
+      add_item_to_bin(&(sol->bins[(sol->n)-1]), ((node_t **)best_A_set->items)[i]->val);
+      remove_by_node_value(head_pointer, ((node_t **)best_A_set->items)[i]);
+    }
+    printf("\n");
+    elem_to_insert = elem_to_insert-best_A_set->nitems;
+    hashset_destroy(best_A_set);
+    hashset_destroy(curr_A_set);
+    best_A_set = hashset_create(d_s->bin_size);
+    curr_A_set = hashset_create(d_s->bin_size);
+  }
 }

@@ -11,6 +11,7 @@ int main(int argc, char *argv[]){
   node_t * to_delete;
   sol_t s1;
   sol_t s2;
+  sol_t s3;
   int max_num_elem;
   char *filename = argv[1];
 
@@ -19,11 +20,14 @@ int main(int argc, char *argv[]){
   printf("%d\n", test1.sorteditems[(test1.n-1)]);
   initialize_solution(&s1, test1.bin_size, test1.n, max_num_elem);
   initialize_solution(&s2, test1.bin_size, test1.n, max_num_elem);
+  initialize_solution(&s3, test1.bin_size, test1.n, max_num_elem);
   firstfit(&test1, &s1);
   firstfitdecreasing(&test1, &s2);
+  MBS(&test1, &s3);
   printf("Solution firstfit: %d\n", s1.n);
   printf("Solution firstfitdecreasing: %d\n", s2.n);
-  print_list(test1.head);
+  printf("Solution MBS: %d\n", s3.n);
+  /*print_list(test1.head);
   head_pointer = &test1.head;
   test_best_set = hashset_create(test1.bin_size);
   curre_a_set = hashset_create(test1.bin_size);
@@ -46,6 +50,7 @@ int main(int argc, char *argv[]){
   print_list(test1.head);
   hashset_destroy(test_best_set);
   hashset_destroy(curre_a_set);
+  */
   free_dataset(&test1); // libero lo spazio occupato dal dataset
   free_solution(&s1);
   free_solution(&s2);
