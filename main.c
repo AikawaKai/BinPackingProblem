@@ -23,7 +23,7 @@ int main(int argc, char *argv[]){
   firstfitdecreasing(&test1, &s2);
   printf("Solution firstfit: %d\n", s1.n);
   printf("Solution firstfitdecreasing: %d\n", s2.n);
-  //print_list(test1.head);
+  print_list(test1.head);
   head_pointer = &test1.head;
   test_best_set = hashset_create(test1.bin_size);
   curre_a_set = hashset_create(test1.bin_size);
@@ -31,8 +31,12 @@ int main(int argc, char *argv[]){
   node_t ** items = (node_t **)test_best_set->items;
   for(int i=0; i<test_best_set->nitems; i++)
   {
-    printf("%d\n", items[i]->val);
+    //printf("%d\n", items[i]->val);
+    to_delete = items[i];
+    printf("val: %d\n", to_delete->val);
+    remove_by_node_value(head_pointer, *to_delete);
   }
+  print_list(test1.head);
   free_dataset(&test1); // libero lo spazio occupato dal dataset
   free_solution(&s1);
   free_solution(&s2);
