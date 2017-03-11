@@ -17,6 +17,7 @@
 
 #include "hashset.h"
 #include <assert.h>
+#include "linkedList.h"
 
 static const unsigned int prime_1 = 73;
 static const unsigned int prime_2 = 5009;
@@ -58,6 +59,7 @@ static int hashset_add_member(hashset_t set, void *item)
 {
     size_t value = (size_t)item;
     size_t ii;
+    node_t *node;
 
     if (value == 0 || value == 1) {
         return -1;
@@ -78,6 +80,8 @@ static int hashset_add_member(hashset_t set, void *item)
         set->n_deleted_items--;
     }
     set->items[ii] = value;
+    node = (node_t *)item;
+    set->slack = set->slack - node->val;
     return 1;
 }
 
@@ -115,12 +119,15 @@ int hashset_remove(hashset_t set, void *item)
 {
     size_t value = (size_t)item;
     size_t ii = set->mask & (prime_1 * value);
+    node_t *node;
+    node = (node_t *)item;
 
     while (set->items[ii] != 0) {
         if (set->items[ii] == value) {
             set->items[ii] = 1;
             set->nitems--;
             set->n_deleted_items++;
+            set->slack = set->slack + node->val;
             return 1;
         } else {
             ii = set->mask & (ii + prime_2);
@@ -142,4 +149,33 @@ int hashset_is_member(hashset_t set, void *item)
         }
     }
     return 0;
+}
+/*
+struct hashset_st {
+    size_t nbits;
+    size_t mask;
+
+    size_t capacity;
+    size_t *items;
+    size_t nitems;
+    size_t n_deleted_items;
+    int slack;
+};*/
+void deepCopy(hashset_t a, hashset_t b)
+{
+  a->nbits = 3;
+  a->capacity = (size_t)(1 << a->nbits);
+  a->mask = a->capacity - 1;
+  a->items = calloc(a->capacity, sizeof(size_t));
+  if (a->items == NULL) {
+      hashset_destroy(a);
+      exit(-1);
+  }
+  a->nitems = 0;
+  a->n_deleted_items = 0;
+  for(int i=0; i<b->nitems;i++)
+  {
+    hashset_add(a, (node_t *)b->items[i]);
+  }
+  a->slack = b->slack;
 }

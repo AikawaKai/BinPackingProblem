@@ -67,6 +67,8 @@ extern "C" {
      */
     int hashset_is_member(hashset_t set, void *item);
 
+    void deepCopy(hashset_t a, hashset_t b);
+
 #ifdef __cplusplus
 }
 #endif

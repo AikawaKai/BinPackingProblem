@@ -12,6 +12,6 @@ typedef struct A_container
   int slack; // si inizializza con la dimensione del bin. Si decrementa ad ogni aggiunta.
 } A_t;
 
-void MBSsearch(int index, int n_max, node_t *curr_node, hashset_t curr_set, hashset_t curr_best_set);
+void MBSsearch(int index, int n_max, int min_value, node_t *curr_node, hashset_t curr_set, hashset_t curr_best_set);
 
 #endif
