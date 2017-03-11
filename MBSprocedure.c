@@ -28,7 +28,7 @@ void MBSsearch(int index, int n_max, int min_value, node_t *curr_node, hashset_t
   }
   if(curr_set->slack < curr_best_set->slack) // if(s(A)<s(A*)) aggiorno se migliore
   {
-    printf("S(A*): %d S(A):%d\n", curr_best_set->slack, curr_set->slack);
+    // printf("S(A*): %d S(A):%d\n", curr_best_set->slack, curr_set->slack);
     deepCopy(curr_best_set, curr_set);
   }
 }

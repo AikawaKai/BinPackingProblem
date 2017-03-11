@@ -54,4 +54,5 @@ int main(int argc, char *argv[]){
   free_dataset(&test1); // libero lo spazio occupato dal dataset
   free_solution(&s1);
   free_solution(&s2);
+  free_solution(&s3);
 }
