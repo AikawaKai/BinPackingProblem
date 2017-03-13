@@ -24,7 +24,8 @@ int main(int argc, char *argv[]){
   //print_list(test1.head);
   firstfit(&test1, &s1);
   firstfitdecreasing(&test1, &s2);
-  MBS(&test1, &s3);
+  // MBS(&test1, &s3);
+  MBSmodified(&test1, &s3);
   printf("Solution firstfit: %d\n", s1.n);
   printf("Solution firstfitdecreasing: %d\n", s2.n);
   printf("Solution MBS: %d\n", s3.n);
