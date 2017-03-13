@@ -43,6 +43,12 @@ int main(int argc, char *argv[]){
     printf("Solution MBSmodified: %d\n", solutions[i].n);
   }
 
+  for(int i=0; i<num_cases; i++)
+  {
+    free_solution(&solutions[i]);
+    free_dataset(&datasets[i]);
+  }
+
 
 
 
