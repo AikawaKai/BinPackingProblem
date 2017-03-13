@@ -35,32 +35,11 @@ int main(int argc, char *argv[]){
   initialize_solution(&s4, test1.bin_size, test1.n, max_num_elem);
   MBSmodified(&test2, &s4);
   printf("Solution MBSmodified: %d\n", s4.n);
-  /*print_list(test1.head);
-  head_pointer = &test1.head;
-  test_best_set = hashset_create(test1.bin_size);
-  curre_a_set = hashset_create(test1.bin_size);
-  MBSsearch(0, 120, 20, test1.head, curre_a_set, test_best_set);
-  for(int i=0; i<test_best_set->nitems; i++)
-  {
-    remove_by_node_value(head_pointer, ((node_t **)test_best_set->items)[i]);
-  }
-  print_list(test1.head);
-  printf("----------------------------------\n");
-  hashset_destroy(test_best_set);
-  hashset_destroy(curre_a_set);
-  test_best_set = hashset_create(test1.bin_size);
-  curre_a_set = hashset_create(test1.bin_size);
-  MBSsearch(0, 117, 20, test1.head, curre_a_set, test_best_set);
-  for(int i=0; i<test_best_set->nitems; i++)
-  {
-    remove_by_node_value(head_pointer, ((node_t **)test_best_set->items)[i]);
-  }
-  print_list(test1.head);
-  hashset_destroy(test_best_set);
-  hashset_destroy(curre_a_set);
-  */
+  //print_list(test1.head);
   free_dataset(&test1); // libero lo spazio occupato dal dataset
-  free_solution(&s1);
-  free_solution(&s2);
-  free_solution(&s3);
+  free_solution(&s1); // libero spazio soluzione s1
+  free_solution(&s2); // libero spazio soluzione s2
+  free_solution(&s3); // libero spazio soluzione s3
+  free_solution(&s4); // libero spazio soluzione s4
+
 }
