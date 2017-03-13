@@ -129,3 +129,88 @@ void free_dataset(dataset_t *d_s)
   free_list(d_s->head);
   printf("free(dataset) ok\n");
 }
+
+void load_dataset_from_file_pointer(FILE *fp, dataset_t *d_s)
+{
+  char buff[255];
+  char *problem_identifier;
+  int *sorteditems;
+  int bin_size;
+  int num_items;
+  int best_solution;
+  int tmp;
+
+  node_t *tmpN;
+  node_t *prec;
+  // nome del caso di test specifico
+  fscanf(fp, "%s", buff);
+  problem_identifier = (char *)calloc(strlen(buff)+1, sizeof(char));
+  strcpy(problem_identifier, buff);
+  printf("Identifier: %s\n", problem_identifier);
+  d_s->name = problem_identifier;
+
+  // bin capacity del caso di test
+  fscanf(fp, "%s", buff);
+  bin_size = atoi(buff);
+  printf("bin_size: %d\n", bin_size);
+
+  // numero di oggetti del caso di test
+  fscanf(fp, "%s", buff);
+  num_items = atoi(buff);
+  printf("Items number: %d\n", num_items);
+
+  // miglior soluzione fino ad ora
+  fscanf(fp, "%s", buff);
+  best_solution = atoi(buff);
+  printf("Best Solution: %d\n", best_solution);
+
+  // creo la lista di oggetti non ordinata
+  d_s->items = (int *)calloc(num_items, sizeof(int));
+  if(d_s->items == NULL)
+  {
+    printf("MALLOC FAILED load_dataset\n");
+    exit(-1);
+  }
+  for(int i=0; i<num_items; i++)
+  {
+    fscanf(fp, "%s", buff);
+    tmp = atoi(buff);
+    d_s->items[i] = tmp;
+  }
+  d_s->bin_size = bin_size;
+  d_s->best_sol = best_solution;
+  d_s->n = num_items;
+
+  // creo la lista ordinata di oggetti
+  sorteditems = (int *)calloc(num_items, sizeof(int));
+  if(sorteditems == NULL)
+  {
+    printf("MALLOC FAILED load_dataset\n");
+    exit(-1);
+  }
+  for(int i=0; i<num_items; i++)
+  {
+    sorteditems[i] = d_s->items[i];
+  }
+  qsort(sorteditems,num_items, sizeof(int), compare_function);
+  d_s->sorteditems = sorteditems;
+
+  // creo la lista linkata di oggetti
+  // int a = (int)malloc(sizeof(int));
+  d_s->head = malloc(sizeof(node_t));
+  tmpN = malloc(sizeof(node_t));
+  d_s->head->val = sorteditems[0];
+  d_s->head->id = 0;
+  d_s->head->next = tmpN;
+  for(int i=1; i<num_items; i++)
+  {
+    tmpN->val = sorteditems[i];
+    tmpN->id = i;
+    prec = tmpN;
+    tmpN = malloc(sizeof(node_t));
+    prec->next = tmpN;
+  }
+  prec->next = NULL;
+  free(tmpN);
+  printf("Items Loading done.\n\n");
+}
