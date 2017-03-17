@@ -8,7 +8,7 @@ int main(int argc, char *argv[]){
   char fileoutput[] = "output.csv";
   char buff[255];
   int max_num_elem;
-  int firstfit_res, firstfistdecr_res, mbs_res, mbs_i_res;
+  int firstfit_res, firstfistdecr_res, mbs_res, mbs_i_res, mbs_sampling;
   dataset_t *datasets;
   sol_t *solutions;
   FILE *filepointer;
@@ -62,11 +62,19 @@ int main(int argc, char *argv[]){
     free_list(datasets[i].head);
     datasets[i].head = malloc(sizeof(node_t));
     datasets[i].head = new_head;
+    new_head = copy(datasets[i].head);
     free_solution(&solutions[i]);
     initialize_solution(&solutions[i], datasets[i].bin_size, datasets[i].n, max_num_elem);
     MBSmodified(&datasets[i], &solutions[i]);
     mbs_i_res = solutions[i].n;
     printf("Solution MBSmodified: %d\n", solutions[i].n);
+
+    // Minimum Bin Slacki Modified Sampling
+    free_list(datasets[i].head);
+    datasets[i].head = malloc(sizeof(node_t));
+    datasets[i].head = new_head;
+    free_solution(&solutions[i]);
+    initialize_solution(&solutions[i], datasets[i].bin_size, datasets[i].n, max_num_elem);
 
     // Write to csv
     fprintf(filepointeroutput, "%d, %d, %d, %d, %d\n", firstfit_res, firstfistdecr_res, mbs_res, mbs_i_res, datasets[i].best_sol);
