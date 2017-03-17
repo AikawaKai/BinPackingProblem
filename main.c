@@ -75,6 +75,7 @@ int main(int argc, char *argv[]){
     datasets[i].head = new_head;
     free_solution(&solutions[i]);
     initialize_solution(&solutions[i], datasets[i].bin_size, datasets[i].n, max_num_elem);
+    MBSsampling(&datasets[i], &solutions[i]);
 
     // Write to csv
     fprintf(filepointeroutput, "%d, %d, %d, %d, %d\n", firstfit_res, firstfistdecr_res, mbs_res, mbs_i_res, datasets[i].best_sol);

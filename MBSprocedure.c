@@ -87,3 +87,8 @@ void MBSmodified(dataset_t *d_s, sol_t *sol)
     curr_A_set = hashset_create(d_s->bin_size);
   }
 }
+
+void MBSsampling(dataset_t *d_s, sol_t *sol)
+{
+
+}
