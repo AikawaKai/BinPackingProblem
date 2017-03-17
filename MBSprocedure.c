@@ -70,6 +70,8 @@ void MBS(dataset_t *d_s, sol_t *sol)
     best_A_set = hashset_create(d_s->bin_size);
     curr_A_set = hashset_create(d_s->bin_size);
   }
+  hashset_destroy(best_A_set);
+  hashset_destroy(curr_A_set);
 }
 
 void MBSmodified(dataset_t *d_s, sol_t *sol)
