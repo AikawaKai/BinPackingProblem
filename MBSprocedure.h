@@ -21,6 +21,6 @@ void MBSsampling(dataset_t *d_s, sol_t *sol);
 ;
 //utility
 int bernoulli(float p);
-node_t * prob_sorting(node_t * head, int sum);
+node_t * prob_sorting(node_t ** head_pointer, node_t * head, int sum, int num_el);
 
 #endif

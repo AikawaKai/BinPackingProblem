@@ -11,25 +11,64 @@ int bernoulli(float p){
     return 0;
 }
 
-node_t * prob_sorting(node_t * head, int sum)
+node_t * prob_sorting(node_t ** head_pointer, node_t * head, int sum, int num_el)
 {
-  /*node_t * new_head = malloc(sizeof(node_t));
-  node_t * tmp = malloc(sizeof(node_t ));
-  node_t * prec = malloc(sizeof(node_t));
-  float p_0 = (head->val * head->val) / (float) sum;
   float p_i = 0.0;
-  tmp = head;
-  if (bernoulli(p_0))
+  node_t *head2=NULL,*previous=NULL;
+
+  while(head!=NULL)
   {
-    new_head->val = head->val;
-    new_head->id = head->id;
-    new_head->next = NULL;
+      node_t * temp = (node_t *) malloc (sizeof(node_t));
+      node_t * to_delete;
+      p_i = (head->val * head->val) / (float) sum;
+      temp->id=head->id;
+      temp->val=head->val;
+      temp->next=NULL;
+
+      if(head2==NULL)
+      {
+          if (bernoulli(p_i))
+          {
+            printf("%f\n",p_i);
+            head2=temp;
+            previous=temp;
+            sum -= (temp->val * temp->val);
+            to_delete = head;
+            head = head->next;
+            remove_by_node_value(head_pointer, to_delete);
+          }
+          else
+          {
+            head=head->next;
+          }
+      }
+      else
+      {
+          if (bernoulli(p_i))
+          {
+            printf("%f\n",p_i);
+            previous->next=temp;
+            previous=temp;
+            to_delete = head;
+            head = head->next;
+            remove_by_node_value(head_pointer, to_delete);
+            if (p_i ==1.0)
+            {
+              break;
+            }
+            sum -= (temp->val * temp->val);
+          }
+          else
+          {
+            head=head->next;
+          }
+      }
+      if (head == NULL && num_el >0 )
+      {
+        head = &(&head);
+      }
   }
-  while(tmp->next != NULL)
-  {
-    tmp = tmp->next;
-  }
-  */
+  return head2;
 }
 
 void MBSsearch(int index, int n_max, int min_value, node_t *curr_node, hashset_t curr_set, hashset_t curr_best_set)
@@ -124,6 +163,7 @@ void MBSmodified(dataset_t *d_s, sol_t *sol)
 void MBSsampling(dataset_t *d_s, sol_t *sol)
 {
   int sum=0;
+  int num_el = d_s->n;
   node_t *ordered_list_head = copy(d_s->head);
   node_t *next = malloc(sizeof(node_t));
   next = d_s->head;
@@ -133,8 +173,8 @@ void MBSsampling(dataset_t *d_s, sol_t *sol)
     next = next->next;
     sum+= (next->val * next->val);
   }
-  //next->next = d_s->head;
   printf("%d\n", sum);
-  prob_sorting(d_s->head, sum);
+  prob_sorting(&(d_s->head),d_s->head, sum, num_el);
+  print_list(d_s->head);
 
 }
