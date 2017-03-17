@@ -111,11 +111,11 @@ void MBSsampling(dataset_t *d_s, sol_t *sol)
   node_t *ordered_list_head = copy(d_s->head);
   node_t *next = malloc(sizeof(node_t));
   next = d_s->head;
-  sum += next->val;
+  sum += (next->val * next->val);
   for(int i=1; i<d_s->n;i++)
   {
     next = next->next;
-    sum+= next->val;
+    sum+= (next->val * next->val);
   }
   printf("%d\n", sum);
   prob_sorting(d_s->head, sum);
