@@ -17,5 +17,6 @@ typedef struct A_container
 void MBSsearch(int index, int n_max, int min_value, node_t *curr_node, hashset_t curr_set, hashset_t curr_best_set);
 void MBS(dataset_t *d_s, sol_t *sol);
 void MBSmodified(dataset_t *d_s, sol_t *sol);
+void MBSsampling(dataset_t *d_s, sol_t *sol);
 
 #endif

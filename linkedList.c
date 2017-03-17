@@ -105,6 +105,11 @@ void push(node_t * head, int val) {
     current->next->next = NULL;
 }
 
+node_t * copy(node_t * head)
+{
+  
+}
+
 // metodo per la print
 void print_list(node_t * head) {
     node_t * current = head;
