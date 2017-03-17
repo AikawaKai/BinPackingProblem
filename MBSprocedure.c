@@ -13,7 +13,23 @@ int bernoulli(float p){
 
 node_t * prob_sorting(node_t * head, int sum)
 {
-  node_t * new_head = malloc(sizeof(node_t));
+  /*node_t * new_head = malloc(sizeof(node_t));
+  node_t * tmp = malloc(sizeof(node_t ));
+  node_t * prec = malloc(sizeof(node_t));
+  float p_0 = (head->val * head->val) / (float) sum;
+  float p_i = 0.0;
+  tmp = head;
+  if (bernoulli(p_0))
+  {
+    new_head->val = head->val;
+    new_head->id = head->id;
+    new_head->next = NULL;
+  }
+  while(tmp->next != NULL)
+  {
+    tmp = tmp->next;
+  }
+  */
 }
 
 void MBSsearch(int index, int n_max, int min_value, node_t *curr_node, hashset_t curr_set, hashset_t curr_best_set)
@@ -117,6 +133,7 @@ void MBSsampling(dataset_t *d_s, sol_t *sol)
     next = next->next;
     sum+= (next->val * next->val);
   }
+  //next->next = d_s->head;
   printf("%d\n", sum);
   prob_sorting(d_s->head, sum);
 
