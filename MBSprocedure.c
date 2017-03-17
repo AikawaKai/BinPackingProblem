@@ -3,6 +3,19 @@
 #include "MBSprocedure.h"
 #include <stdio.h>
 
+
+int bernoulli(float p){
+    if(p < 0 || p > 1) return -1;
+    float x = (float)rand()/(float)(RAND_MAX/1);
+    if(p < x) return 1;
+    return 0;
+}
+
+node_t * prob_sorting(node_t * head, int sum)
+{
+  node_t * new_head = malloc(sizeof(node_t));
+}
+
 void MBSsearch(int index, int n_max, int min_value, node_t *curr_node, hashset_t curr_set, hashset_t curr_best_set)
 {
   if (curr_set->slack >= min_value)
@@ -86,9 +99,23 @@ void MBSmodified(dataset_t *d_s, sol_t *sol)
     best_A_set = hashset_create(d_s->bin_size);
     curr_A_set = hashset_create(d_s->bin_size);
   }
+  hashset_destroy(best_A_set);
+  hashset_destroy(curr_A_set);
 }
 
 void MBSsampling(dataset_t *d_s, sol_t *sol)
 {
+  int sum=0;
+  node_t *ordered_list_head = copy(d_s->head);
+  node_t *next = malloc(sizeof(node_t));
+  next = d_s->head;
+  sum += next->val;
+  for(int i=1; i<d_s->n;i++)
+  {
+    next = next->next;
+    sum+= next->val;
+  }
+  printf("%d\n", sum);
+  prob_sorting(d_s->head, sum);
 
 }

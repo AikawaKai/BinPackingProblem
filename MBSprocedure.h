@@ -18,5 +18,9 @@ void MBSsearch(int index, int n_max, int min_value, node_t *curr_node, hashset_t
 void MBS(dataset_t *d_s, sol_t *sol);
 void MBSmodified(dataset_t *d_s, sol_t *sol);
 void MBSsampling(dataset_t *d_s, sol_t *sol);
+;
+//utility
+int bernoulli(float p);
+node_t * prob_sorting(node_t * head, int sum);
 
 #endif
