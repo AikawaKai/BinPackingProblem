@@ -107,7 +107,28 @@ void push(node_t * head, int val) {
 
 node_t * copy(node_t * head)
 {
-  
+  node_t *head2=NULL,*previous=NULL;
+
+  while(head!=NULL)
+  {
+      node_t * temp = (node_t *) malloc (sizeof(node_t));
+      temp->id=head->id;
+      temp->val=head->val;
+      temp->next=NULL;
+
+      if(head2==NULL)
+      {
+          head2=temp;
+          previous=temp;
+      }
+      else
+      {
+          previous->next=temp;
+          previous=temp;
+      }
+      head=head->next;
+  }
+  return head2;
 }
 
 // metodo per la print
