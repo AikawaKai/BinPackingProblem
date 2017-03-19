@@ -174,4 +174,5 @@ void MBSsampling(dataset_t *d_s, sol_t *sol)
     sum+= (next->val * next->val);
   }
   d_s->head = prob_sorting(&(d_s->head),d_s->head, sum, num_el);
+  MBSmodified(d_s, sol);
 }
