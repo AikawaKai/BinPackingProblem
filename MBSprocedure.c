@@ -162,36 +162,51 @@ void MBSmodified(dataset_t *d_s, sol_t *sol)
   hashset_destroy(curr_A_set);
 }
 
-void MBSsampling(dataset_t *d_s, sol_t *sol)
+sol_t * MBSsampling(dataset_t *d_s)
 {
   FILE *fp;
-  int max_attempts = 1000;
+  int max_attempts = 100;
   char fileinput[] = "pseudorandseednumbers.txt";
   char buff[8];
   int seed;
+  int curr_best = d_s->n;
   int sum=0;
   int num_el = d_s->n;
   int max_num_elem = (d_s->bin_size / d_s->sorteditems[(d_s->n)-1])+1;
-  sol_t best_sol;
   node_t *ordered_list_head = copy(d_s->head);
   node_t *next = malloc(sizeof(node_t));
+  sol_t *sol = malloc(sizeof(sol_t));
+  initialize_solution(sol, d_s->bin_size, d_s->n, max_num_elem);
 
-  initialize_solution(&best_sol, d_s->bin_size, d_s->n, max_num_elem);
+  // sum for the proability sorting
+  next = d_s->head;
+  sum += (next->val * next->val);
+  for(int i=1; i<d_s->n;i++)
+  {
+    next = next->next;
+    sum+= (next->val * next->val);
+  }
+  //initialize_solution(best_sol, d_s->bin_size, d_s->n, max_num_elem);
   fp = fopen(fileinput, "r");
+
   while(max_attempts>0)
   {
+    sol_t *tmp = malloc(sizeof(sol_t));
+    initialize_solution(tmp, d_s->bin_size, d_s->n, max_num_elem);
     fscanf(fp, "%s", buff);
     seed = atoi(buff);
     srand(seed);
-    printf("%d", seed);
-    next = d_s->head;
-    sum += (next->val * next->val);
-    for(int i=1; i<d_s->n;i++)
-    {
-      next = next->next;
-      sum+= (next->val * next->val);
-    }
     d_s->head = prob_sorting(&(d_s->head),d_s->head, sum, num_el);
-    MBSmodified(d_s, sol);
+    MBSmodified(d_s, tmp);
+    if(tmp->n<curr_best)
+    {
+      free_solution(sol);
+      sol = tmp;
+      curr_best = sol->n;
+    }
+    d_s->head = copy(ordered_list_head);
+    max_attempts--;
   }
+  fclose(fp);
+  return sol;
 }

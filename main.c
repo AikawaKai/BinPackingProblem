@@ -8,9 +8,10 @@ int main(int argc, char *argv[]){
   char fileoutput[] = "output.csv";
   char buff[255];
   int max_num_elem;
-  int firstfit_res, firstfistdecr_res, mbs_res, mbs_i_res, mbs_sampling;
+  int firstfit_res, firstfistdecr_res, mbs_res, mbs_i_res, mbs_sampling = 0;
   dataset_t *datasets;
   sol_t *solutions;
+  sol_t *sampling_sol;
   FILE *filepointer;
   FILE *filepointeroutput;
   filepointer = fopen(filename, "r");
@@ -75,13 +76,13 @@ int main(int argc, char *argv[]){
     datasets[i].head = malloc(sizeof(node_t));
     datasets[i].head = new_head;
     free_solution(&solutions[i]);
-    initialize_solution(&solutions[i], datasets[i].bin_size, datasets[i].n, max_num_elem);
-    MBSsampling(&datasets[i], &solutions[i]);
-    mbs_sampling = solutions[i].n;
+    //initialize_solution(&solutions[i], datasets[i].bin_size, datasets[i].n, max_num_elem);
+    sampling_sol = MBSsampling(&datasets[i]);
+    mbs_sampling = sampling_sol->n;
     printf("Solution MBSsampling: %d\n", mbs_sampling);
     // Write to csv
     fprintf(filepointeroutput, "%d, %d, %d, %d, %d, %d\n", firstfit_res, firstfistdecr_res, mbs_res, mbs_i_res, mbs_sampling, datasets[i].best_sol);
-    free_solution(&solutions[i]);
+    //free_solution(&solutions[i]);
     free_dataset(&datasets[i]);
   }
   fclose(filepointeroutput);

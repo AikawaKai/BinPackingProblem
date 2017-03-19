@@ -82,5 +82,5 @@ void free_solution(sol_t *s)
   free(s->bins);
   s->bins = NULL;
   s->n = 0;
-  printf("free(solution) ok\n");
+  //printf("free(solution) ok\n");
 }
