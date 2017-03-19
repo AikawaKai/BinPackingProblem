@@ -62,6 +62,7 @@ node_t * prob_sorting(node_t ** head_pointer, node_t * head, int sum, int num_el
           }
           else
           {
+            free(temp);
             head=head->next;
           }
       }
