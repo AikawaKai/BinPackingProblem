@@ -34,6 +34,7 @@ int main(int argc, char *argv[]){
   fclose(filepointer);
   //print_list(copy(datasets[0].head));
   filepointeroutput = fopen(strcat(filename, ".csv"), "w");
+  fprintf(filepointeroutput, "%s, %s, %s, %s, %s, %s, %s\n","dataset", "firstfit", "firstfitdecreasing", "MBS", "MBS'", "MBS'sampling", "best known solution");
   for(int i=0; i<num_cases; i++)
   {
     node_t *new_head = malloc(sizeof(node_t));
