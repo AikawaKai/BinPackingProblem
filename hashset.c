@@ -49,9 +49,7 @@ size_t hashset_num_items(hashset_t set)
 
 void hashset_destroy(hashset_t set)
 {
-    if (set) {
-        free(set->items);
-    }
+    free(set->items);
     free(set);
 }
 
