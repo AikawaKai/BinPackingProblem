@@ -167,7 +167,7 @@ void MBSmodified(dataset_t *d_s, sol_t *sol)
 sol_t * MBSsampling(dataset_t *d_s)
 {
   FILE *fp;
-  int max_attempts = 100;
+  int max_attempts = 500;
   char fileinput[] = "pseudorandseednumbers.txt";
   char buff[8];
   int seed;
