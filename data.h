@@ -9,10 +9,10 @@ typedef struct dataset
 
   char *name; // case test name
   int n;          // numero di oggetti da inserire nei bin
-  int bin_size;   // grandezza del bin
+  float bin_size;   // grandezza del bin
   int best_sol;   // miglior soluzione fino ad ora
-  int *items;     // vettore degli oggetti totali
-  int *sorteditems; //vettore degli oggetti ordinati
+  float *items;     // vettore degli oggetti totali
+  float *sorteditems; //vettore degli oggetti ordinati
   node_t *head; //linked list
 
 } dataset_t;

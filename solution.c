@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void initialize_bin(bin_t *b, int size, int num_items)
+void initialize_bin(bin_t *b, float size, int num_items)
 {
-  b->items = (int *) calloc(num_items, sizeof (int));
+  b->items = (float *) calloc(num_items, sizeof (float));
   b->n = 0;
   b->sum = 0;
   b->size = size;
@@ -22,7 +22,7 @@ void free_bin(bin_t *b)
   b->slack = 0;
 }
 
-void add_item_to_bin(bin_t *b, int item)
+void add_item_to_bin(bin_t *b, float item)
 {
   b->n = b->n + 1;
   b->sum = b->sum + item;
@@ -35,9 +35,9 @@ int get_bin_slack(bin_t *b)
   return b->slack;
 }
 
-bool add_item_to_bin_if_fits(bin_t *b, int item)
+bool add_item_to_bin_if_fits(bin_t *b, float item)
 {
-  int partial = get_bin_slack(b) - item;
+  float partial = get_bin_slack(b) - item;
   if (partial >= 0)
   {
     add_item_to_bin(b, item);
@@ -49,7 +49,7 @@ bool add_item_to_bin_if_fits(bin_t *b, int item)
   }
 }
 
-void initialize_solution(sol_t *s, int b_size, int num_items, int max_num_el)
+void initialize_solution(sol_t *s, float b_size, int num_items, int max_num_el)
 {
   s->n = 1;
   s->bin_size = b_size;
@@ -91,9 +91,9 @@ void print_bin(bin_t *bin)
   for(int i=0;i<bin->n;i++)
   {
     //printf("%d\n",bin->items[i]);
-    fprintf(fp, " %d ",bin->items[i] );
+    fprintf(fp, " %f ",bin->items[i] );
   }
-  fprintf(fp, " %d \n",bin->slack);
+  fprintf(fp, " %f \n",bin->slack);
   fclose(fp);
   //printf("slack: %d\n", bin->slack);
 }

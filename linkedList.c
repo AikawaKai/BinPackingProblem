@@ -93,7 +93,7 @@ int remove_by_node_value(node_t ** head, node_t *node_ind) {
 }
 
 // aggiunge un elemento in coda alla lista linkata
-void push(node_t * head, int val) {
+void push(node_t * head, float val) {
     node_t * current = head;
     while (current->next != NULL) {
         current = current->next;
@@ -136,7 +136,7 @@ void print_list(node_t * head) {
     node_t * current = head;
 
     while (current != NULL) {
-        printf("%d\n", current->val);
+        printf("%f\n", current->val);
         current = current->next;
     }
 }

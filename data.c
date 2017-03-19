@@ -6,8 +6,8 @@
 
 int compare_function(const void* p1, const void* p2)
 {
-   int i1 = *(int*) p1;
-   int i2 = *(int*) p2;
+   float i1 = *(float*) p1;
+   float i2 = *(float*) p2;
    if (i1 > i2) return -1;
    else if (i1 == i2) return 0;
    else return 1;
@@ -23,11 +23,11 @@ void load_dataset(char *filename, dataset_t *d_s)
   char buff[255];
   int num_cases;
   char *problem_identifier;
-  int *sorteditems;
-  int bin_size;
+  float *sorteditems;
+  float bin_size;
   int num_items;
   int best_solution;
-  int tmp;
+  float tmp;
 
   // apertura del file
   printf("\nOpening File: %s\n", filename);
@@ -52,8 +52,8 @@ void load_dataset(char *filename, dataset_t *d_s)
 
   // bin capacity del caso di test
   fscanf(fp, "%s", buff);
-  bin_size = atoi(buff);
-  printf("bin_size: %d\n", bin_size);
+  bin_size = atof(buff);
+  printf("bin_size: %f\n", bin_size);
 
   // numero di oggetti del caso di test
   fscanf(fp, "%s", buff);
@@ -66,7 +66,7 @@ void load_dataset(char *filename, dataset_t *d_s)
   printf("Best Solution: %d\n", best_solution);
 
   // creo la lista di oggetti non ordinata
-  d_s->items = (int *)calloc(num_items, sizeof(int));
+  d_s->items = (float *)calloc(num_items, sizeof(float));
   if(d_s->items == NULL)
   {
     printf("MALLOC FAILED load_dataset\n");
@@ -75,7 +75,7 @@ void load_dataset(char *filename, dataset_t *d_s)
   for(int i=0; i<num_items; i++)
   {
     fscanf(fp, "%s", buff);
-    tmp = atoi(buff);
+    tmp = atof(buff);
     d_s->items[i] = tmp;
   }
   d_s->bin_size = bin_size;
@@ -83,7 +83,7 @@ void load_dataset(char *filename, dataset_t *d_s)
   d_s->n = num_items;
 
   // creo la lista ordinata di oggetti
-  sorteditems = (int *)calloc(num_items, sizeof(int));
+  sorteditems = (float *)calloc(num_items, sizeof(float));
   if(sorteditems == NULL)
   {
     printf("MALLOC FAILED load_dataset\n");
@@ -93,7 +93,7 @@ void load_dataset(char *filename, dataset_t *d_s)
   {
     sorteditems[i] = d_s->items[i];
   }
-  qsort(sorteditems,num_items, sizeof(int), compare_function);
+  qsort(sorteditems,num_items, sizeof(float), compare_function);
   d_s->sorteditems = sorteditems;
 
   // creo la lista linkata di oggetti
@@ -134,11 +134,11 @@ void load_dataset_from_file_pointer(FILE *fp, dataset_t *d_s)
 {
   char buff[255];
   char *problem_identifier;
-  int *sorteditems;
-  int bin_size;
+  float *sorteditems;
+  float bin_size;
   int num_items;
   int best_solution;
-  int tmp;
+  float tmp;
 
   node_t *tmpN;
   node_t *prec;
@@ -151,8 +151,8 @@ void load_dataset_from_file_pointer(FILE *fp, dataset_t *d_s)
 
   // bin capacity del caso di test
   fscanf(fp, "%s", buff);
-  bin_size = atoi(buff);
-  printf("bin_size: %d\n", bin_size);
+  bin_size = atof(buff);
+  printf("bin_size: %f\n", bin_size);
 
   // numero di oggetti del caso di test
   fscanf(fp, "%s", buff);
@@ -165,7 +165,7 @@ void load_dataset_from_file_pointer(FILE *fp, dataset_t *d_s)
   printf("Best Solution: %d\n", best_solution);
 
   // creo la lista di oggetti non ordinata
-  d_s->items = (int *)calloc(num_items, sizeof(int));
+  d_s->items = (float *)calloc(num_items, sizeof(float));
   if(d_s->items == NULL)
   {
     printf("MALLOC FAILED load_dataset\n");
@@ -174,7 +174,7 @@ void load_dataset_from_file_pointer(FILE *fp, dataset_t *d_s)
   for(int i=0; i<num_items; i++)
   {
     fscanf(fp, "%s", buff);
-    tmp = atoi(buff);
+    tmp = atof(buff);
     d_s->items[i] = tmp;
   }
   d_s->bin_size = bin_size;
@@ -182,7 +182,7 @@ void load_dataset_from_file_pointer(FILE *fp, dataset_t *d_s)
   d_s->n = num_items;
 
   // creo la lista ordinata di oggetti
-  sorteditems = (int *)calloc(num_items, sizeof(int));
+  sorteditems = (float *)calloc(num_items, sizeof(float));
   if(sorteditems == NULL)
   {
     printf("MALLOC FAILED load_dataset\n");
@@ -192,7 +192,7 @@ void load_dataset_from_file_pointer(FILE *fp, dataset_t *d_s)
   {
     sorteditems[i] = d_s->items[i];
   }
-  qsort(sorteditems,num_items, sizeof(int), compare_function);
+  qsort(sorteditems,num_items, sizeof(float), compare_function);
   d_s->sorteditems = sorteditems;
 
   // creo la lista linkata di oggetti

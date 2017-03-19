@@ -14,13 +14,13 @@ typedef struct A_container
   int slack; // si inizializza con la dimensione del bin. Si decrementa ad ogni aggiunta.
 } A_t;
 
-void MBSsearch(int index, int n_max, int min_value, node_t *curr_node, hashset_t curr_set, hashset_t curr_best_set);
+void MBSsearch(int index, int n_max, float min_value, node_t *curr_node, hashset_t curr_set, hashset_t curr_best_set);
 void MBS(dataset_t *d_s, sol_t *sol);
 void MBSmodified(dataset_t *d_s, sol_t *sol);
 sol_t * MBSsampling(dataset_t *d_s);
 ;
 //utility
 int bernoulli(float p);
-node_t * prob_sorting(node_t ** head_pointer, node_t * head, int sum, int num_el);
+node_t * prob_sorting(node_t ** head_pointer, node_t * head, float sum, int num_el);
 
 #endif

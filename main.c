@@ -8,7 +8,7 @@ int main(int argc, char *argv[]){
   char *filename = argv[1];
   char buff[255];
   int max_num_elem;
-  int firstfit_res, firstfistdecr_res, mbs_res, mbs_i_res, mbs_sampling = 0;
+  int firstfit_res, firstfistdecr_res, mbs_res, mbs_i_res, mbs_sampling;
   dataset_t *datasets;
   sol_t *solutions;
   sol_t *sampling_sol;
@@ -75,7 +75,7 @@ int main(int argc, char *argv[]){
     free_list(datasets[i].head);
     datasets[i].head = malloc(sizeof(node_t));
     datasets[i].head = new_head;
-    print_list(datasets[i].head);
+    //print_list(datasets[i].head);
     free_solution(&solutions[i]);
     sampling_sol = MBSsampling(&datasets[i]);
     mbs_sampling = sampling_sol->n;

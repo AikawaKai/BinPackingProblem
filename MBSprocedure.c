@@ -13,7 +13,7 @@ int bernoulli(float p){
     return 1;
 }
 
-node_t * prob_sorting(node_t ** head_pointer, node_t * head, int sum, int num_el)
+node_t * prob_sorting(node_t ** head_pointer, node_t * head, float sum, int num_el)
 {
   float p_i = 0.0;
   node_t *head2=NULL,*previous=NULL;
@@ -75,7 +75,7 @@ node_t * prob_sorting(node_t ** head_pointer, node_t * head, int sum, int num_el
   return head2;
 }
 
-void MBSsearch(int index, int n_max, int min_value, node_t *curr_node, hashset_t curr_set, hashset_t curr_best_set)
+void MBSsearch(int index, int n_max, float min_value, node_t *curr_node, hashset_t curr_set, hashset_t curr_best_set)
 {
   if (curr_set->slack >= min_value)
   {
@@ -172,7 +172,7 @@ sol_t * MBSsampling(dataset_t *d_s)
   char buff[8];
   int seed;
   int curr_best = d_s->n;
-  int sum=0;
+  float sum=0;
   int num_el = d_s->n;
   int max_num_elem = (d_s->bin_size / d_s->sorteditems[(d_s->n)-1])+1;
   node_t *ordered_list_head = copy(d_s->head);
