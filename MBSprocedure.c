@@ -208,7 +208,7 @@ sol_t * MBSsampling(dataset_t *d_s)
     }
     else
     {
-      free(tmp);
+      free_solution(tmp);
     }
     d_s->head = copy(ordered_list_head);
     max_attempts--;
