@@ -69,16 +69,17 @@ int main(int argc, char *argv[]){
     mbs_i_res = solutions[i].n;
     printf("Solution MBSmodified: %d\n", solutions[i].n);
 
-    // Minimum Bin Slacki Modified Sampling
+    // Minimum Bin Slack Modified Sampling
     free_list(datasets[i].head);
     datasets[i].head = malloc(sizeof(node_t));
     datasets[i].head = new_head;
     free_solution(&solutions[i]);
     initialize_solution(&solutions[i], datasets[i].bin_size, datasets[i].n, max_num_elem);
     MBSsampling(&datasets[i], &solutions[i]);
-
+    mbs_sampling = solutions[i].n;
+    printf("Solution MBSsampling: %d\n", mbs_sampling);
     // Write to csv
-    fprintf(filepointeroutput, "%d, %d, %d, %d, %d\n", firstfit_res, firstfistdecr_res, mbs_res, mbs_i_res, datasets[i].best_sol);
+    fprintf(filepointeroutput, "%d, %d, %d, %d, %d, %d\n", firstfit_res, firstfistdecr_res, mbs_res, mbs_i_res, mbs_sampling, datasets[i].best_sol);
     free_solution(&solutions[i]);
     free_dataset(&datasets[i]);
   }

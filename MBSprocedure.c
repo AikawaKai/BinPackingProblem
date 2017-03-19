@@ -1,7 +1,9 @@
 #include "linkedList.h"
 #include "hashset.h"
 #include "MBSprocedure.h"
+#include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 
 
 int bernoulli(float p){
@@ -162,6 +164,16 @@ void MBSmodified(dataset_t *d_s, sol_t *sol)
 
 void MBSsampling(dataset_t *d_s, sol_t *sol)
 {
+  FILE *fp;
+  int max_attempts = 1000;
+  char fileinput[] = "pseudorandseednumbers.txt";
+  char buff[8];
+  int seed;
+  fp = fopen(fileinput, "r");
+  fscanf(fp, "%s", buff);
+  seed = atoi(buff);
+  srand(seed);
+  printf("%d", seed);
   int sum=0;
   int num_el = d_s->n;
   node_t *ordered_list_head = copy(d_s->head);
