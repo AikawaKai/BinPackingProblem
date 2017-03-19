@@ -27,7 +27,7 @@ void add_item_to_bin(bin_t *b, int item)
   b->n = b->n + 1;
   b->sum = b->sum + item;
   b->slack = b->slack - item;
-  // b->items[b->n-1] = item;
+  b->items[b->n-1] = item;
 }
 
 int get_bin_slack(bin_t *b)
@@ -83,4 +83,24 @@ void free_solution(sol_t *s)
   s->bins = NULL;
   s->n = 0;
   //printf("free(solution) ok\n");
+}
+
+void print_bin(bin_t *bin)
+{
+  for(int i=0;i<bin->n;i++)
+  {
+    printf("%d\n",bin->items[i]);
+  }
+  printf("slack: %d\n", bin->slack);
+}
+
+void print_solution(sol_t *s)
+{
+  printf("BIN SIZE: %d\n",s->bin_size);
+  for(int i=0; i<s->n;i++)
+  {
+    printf("-------\n");
+    print_bin(&(s->bins[i]));
+    printf("-------\n");
+  }
 }

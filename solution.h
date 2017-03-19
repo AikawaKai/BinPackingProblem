@@ -21,6 +21,7 @@ void free_bin(bin_t *b);
 void add_item_to_bin(bin_t *b, int item);
 int get_bin_slack(bin_t *b);
 bool add_item_to_bin_if_fits(bin_t *b, int item);
+void print_bin(bin_t *bin);
 
 typedef struct sol
 {
@@ -33,5 +34,6 @@ typedef struct sol
 void initialize_solution(sol_t *s, int b_size, int num_item, int max_num_el);
 void add_new_bin(sol_t *s);
 void free_solution(sol_t *s);
+void print_solution(sol_t *s);
 
 #endif
