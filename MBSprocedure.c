@@ -204,6 +204,10 @@ sol_t * MBSsampling(dataset_t *d_s)
       sol = tmp;
       curr_best = sol->n;
     }
+    else
+    {
+      free(tmp);
+    }
     d_s->head = copy(ordered_list_head);
     max_attempts--;
   }
