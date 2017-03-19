@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include "hashset.h"
 #include "firstfit.h"
+#include "string.h"
 #include "MBSprocedure.h"
 
 int main(int argc, char *argv[]){
   char *filename = argv[1];
-  char fileoutput[] = "output.csv";
   char buff[255];
   int max_num_elem;
   int firstfit_res, firstfistdecr_res, mbs_res, mbs_i_res, mbs_sampling = 0;
@@ -33,7 +33,7 @@ int main(int argc, char *argv[]){
   }
   fclose(filepointer);
   //print_list(copy(datasets[0].head));
-  filepointeroutput = fopen(fileoutput, "w");
+  filepointeroutput = fopen(strcat(filename, ".csv"), "w");
   for(int i=0; i<num_cases; i++)
   {
     node_t *new_head = malloc(sizeof(node_t));
@@ -80,7 +80,7 @@ int main(int argc, char *argv[]){
     mbs_sampling = sampling_sol->n;
     printf("Solution MBSsampling: %d\n", mbs_sampling);
     // Write to csv
-    fprintf(filepointeroutput, "%d, %d, %d, %d, %d, %d\n", firstfit_res, firstfistdecr_res, mbs_res, mbs_i_res, mbs_sampling, datasets[i].best_sol);
+    fprintf(filepointeroutput, "%s, %d, %d, %d, %d, %d, %d\n",datasets[i].name, firstfit_res, firstfistdecr_res, mbs_res, mbs_i_res, mbs_sampling, datasets[i].best_sol);
     free_solution(sampling_sol);
     free_dataset(&datasets[i]);
   }
