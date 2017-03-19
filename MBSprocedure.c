@@ -169,22 +169,29 @@ void MBSsampling(dataset_t *d_s, sol_t *sol)
   char fileinput[] = "pseudorandseednumbers.txt";
   char buff[8];
   int seed;
-  fp = fopen(fileinput, "r");
-  fscanf(fp, "%s", buff);
-  seed = atoi(buff);
-  srand(seed);
-  printf("%d", seed);
   int sum=0;
   int num_el = d_s->n;
+  int max_num_elem = (d_s->bin_size / d_s->sorteditems[(d_s->n)-1])+1;
+  sol_t best_sol;
   node_t *ordered_list_head = copy(d_s->head);
   node_t *next = malloc(sizeof(node_t));
-  next = d_s->head;
-  sum += (next->val * next->val);
-  for(int i=1; i<d_s->n;i++)
+
+  initialize_solution(&best_sol, d_s->bin_size, d_s->n, max_num_elem);
+  fp = fopen(fileinput, "r");
+  while(max_attempts>0)
   {
-    next = next->next;
-    sum+= (next->val * next->val);
+    fscanf(fp, "%s", buff);
+    seed = atoi(buff);
+    srand(seed);
+    printf("%d", seed);
+    next = d_s->head;
+    sum += (next->val * next->val);
+    for(int i=1; i<d_s->n;i++)
+    {
+      next = next->next;
+      sum+= (next->val * next->val);
+    }
+    d_s->head = prob_sorting(&(d_s->head),d_s->head, sum, num_el);
+    MBSmodified(d_s, sol);
   }
-  d_s->head = prob_sorting(&(d_s->head),d_s->head, sum, num_el);
-  MBSmodified(d_s, sol);
 }

@@ -45,6 +45,7 @@ int main(int argc, char *argv[]){
 
     // First Fit decreasing
     free_solution(&solutions[i]);
+    max_num_elem = (datasets[i].bin_size / datasets[i].sorteditems[(datasets[i].n)-1])+1;
     initialize_solution(&solutions[i], datasets[i].bin_size, datasets[i].n, max_num_elem);
     firstfitdecreasing(&datasets[i], &solutions[i]);
     firstfistdecr_res = solutions[i].n;
