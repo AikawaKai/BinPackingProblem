@@ -75,13 +75,14 @@ int main(int argc, char *argv[]){
     free_list(datasets[i].head);
     datasets[i].head = malloc(sizeof(node_t));
     datasets[i].head = new_head;
+    print_list(datasets[i].head);
     free_solution(&solutions[i]);
     sampling_sol = MBSsampling(&datasets[i]);
     mbs_sampling = sampling_sol->n;
     printf("Solution MBSsampling: %d\n", mbs_sampling);
     // Write to csv
     fprintf(filepointeroutput, "%s, %d, %d, %d, %d, %d, %d\n",datasets[i].name, firstfit_res, firstfistdecr_res, mbs_res, mbs_i_res, mbs_sampling, datasets[i].best_sol);
-    print_solution(sampling_sol);
+    //print_solution(sampling_sol);
     free_solution(sampling_sol);
     free_dataset(&datasets[i]);
   }
