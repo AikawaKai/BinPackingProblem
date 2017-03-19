@@ -7,8 +7,8 @@
 int bernoulli(float p){
     if(p < 0 || p > 1) return -1;
     float x = (float)rand()/(float)(RAND_MAX/1);
-    if(p < x) return 1;
-    return 0;
+    if(p < x) return 0;
+    return 1;
 }
 
 node_t * prob_sorting(node_t ** head_pointer, node_t * head, int sum, int num_el)
@@ -29,7 +29,7 @@ node_t * prob_sorting(node_t ** head_pointer, node_t * head, int sum, int num_el
       {
           if (bernoulli(p_i))
           {
-            printf("%f\n",p_i);
+            //printf("%f\n",p_i);
             head2=temp;
             previous=temp;
             sum -= (temp->val * temp->val);
@@ -46,7 +46,7 @@ node_t * prob_sorting(node_t ** head_pointer, node_t * head, int sum, int num_el
       {
           if (bernoulli(p_i))
           {
-            printf("%f\n",p_i);
+            //printf("%f\n",p_i);
             previous->next=temp;
             previous=temp;
             to_delete = head;
@@ -65,7 +65,7 @@ node_t * prob_sorting(node_t ** head_pointer, node_t * head, int sum, int num_el
       }
       if (head == NULL && num_el >0 )
       {
-        head = &(&head);
+        head = *head_pointer;
       }
   }
   return head2;
@@ -173,8 +173,5 @@ void MBSsampling(dataset_t *d_s, sol_t *sol)
     next = next->next;
     sum+= (next->val * next->val);
   }
-  printf("%d\n", sum);
-  prob_sorting(&(d_s->head),d_s->head, sum, num_el);
-  print_list(d_s->head);
-
+  d_s->head = prob_sorting(&(d_s->head),d_s->head, sum, num_el);
 }
