@@ -85,5 +85,7 @@ int main(int argc, char *argv[]){
     //free_solution(&solutions[i]);
     free_dataset(&datasets[i]);
   }
+  free(solutions);
+  free(datasets);
   fclose(filepointeroutput);
 }
