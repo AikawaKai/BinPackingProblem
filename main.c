@@ -3,6 +3,7 @@
 #include "firstfit.h"
 #include "string.h"
 #include "MBSprocedure.h"
+#include "VNS.h"
 
 int main(int argc, char *argv[]){
   char *filename = argv[1];
@@ -75,7 +76,12 @@ int main(int argc, char *argv[]){
     free_list(datasets[i].head);
     datasets[i].head = malloc(sizeof(node_t));
     datasets[i].head = new_head;
-    //print_list(datasets[i].head);
+
+    // VNS METHOD
+    print_list(datasets[i].head);
+    VNSmethod(&datasets[i], &solutions[i]);
+    //VNS METHOD
+
     free_solution(&solutions[i]);
     sampling_sol = MBSsampling(&datasets[i]);
     mbs_sampling = sampling_sol->n;
