@@ -2,6 +2,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int compareUser(const void *v1, const void *v2)
+{
+    const node_t *u1 = v1;
+    const node_t *u2 = v2;
+    if (u1->val > u2->val) return -1;
+    else if (u1->val == u2->val) return 0;
+    else return 1;
+}
+
 // rimuove la testa della lista linkata
 int pop(node_t ** head) {
     int retval = -1;
@@ -154,4 +163,9 @@ void free_list(node_t *head){
     free(current);
     current = next;
   }
+}
+
+void sort_not_linked_list(node_t * list)
+{
+
 }

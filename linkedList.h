@@ -2,8 +2,9 @@
 #define LINKED_LIST
 
 typedef struct node {
-    int id;
-    float val;
+    int id; // bin index
+    float val; // item value
+    int item_index_bin; // item index in bin
     struct node * next;
 } node_t;
 
@@ -14,5 +15,6 @@ void push(node_t * head, float val);
 node_t * copy(node_t * head);
 void print_list(node_t * head);
 void free_list(node_t * head);
+void sort_not_linked_list(node_t * list);
 
 #endif
