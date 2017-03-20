@@ -6,7 +6,7 @@
 void VNSmethod(dataset_t *d_s, sol_t *starting_sol)
 {
   int num_items = d_s->n;
-  node_t **items = (node_t **)calloc(num_items, sizeof(node_t*));
+  node_t *items = (node_t *)calloc(num_items, sizeof(node_t));
   bin_t *bins = starting_sol->bins;
   node_t *temp = calloc(1, sizeof(node_t));
   int m_bins = starting_sol->n;
@@ -18,7 +18,7 @@ void VNSmethod(dataset_t *d_s, sol_t *starting_sol)
       temp->id = i;
       temp->val = bins[i].items[j];
       temp->item_index_bin = j;
-      items[j+bin_n] = temp;
+      items[j+bin_n] = *temp;
       temp = calloc(1, sizeof(node_t));
     }
     bin_n = bins[i].n;
@@ -27,6 +27,6 @@ void VNSmethod(dataset_t *d_s, sol_t *starting_sol)
   printf("###########\n");
   for(int i=0; i<num_items;i++)
   {
-    printf("%f\n", items[i]->val);
+    printf("%f\n", items[i].val);
   }
 }
