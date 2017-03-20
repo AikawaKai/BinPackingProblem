@@ -10,18 +10,20 @@ void VNSmethod(dataset_t *d_s, sol_t *starting_sol)
   bin_t *bins = starting_sol->bins;
   node_t *temp = calloc(1, sizeof(node_t));
   int m_bins = starting_sol->n;
-  int bin_n = 0;
+  int size_bin = 0;
+  int bin_n;
   for(int i = 0; i<m_bins; i++)
   {
+    bin_n = bins[i].n;
     for(int j=0; j<bin_n;j++)
     {
       temp->id = i;
       temp->val = bins[i].items[j];
       temp->item_index_bin = j;
-      items[j+bin_n] = *temp;
+      items[j+size_bin] = *temp;
       temp = calloc(1, sizeof(node_t));
     }
-    bin_n = bins[i].n;
+    size_bin= bins[i].n;
   }
   //sort_not_linked_list(items, num_items);
   printf("###########\n");
