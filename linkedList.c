@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int compareUser(const void *v1, const void *v2)
+int compareNode(const void *v1, const void *v2)
 {
     const node_t *u1 = v1;
     const node_t *u2 = v2;
@@ -165,7 +165,7 @@ void free_list(node_t *head){
   }
 }
 
-void sort_not_linked_list(node_t * list)
+void sort_not_linked_list(node_t * list, int size)
 {
-
+  qsort(list, size, sizeof(node_t), compareNode);
 }
