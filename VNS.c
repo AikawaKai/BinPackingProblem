@@ -25,17 +25,12 @@ void VNSmethod(dataset_t *d_s, sol_t *starting_sol)
       temp->val = bins[i].items[k];
       temp->item_index_bin = k;
       items[j] = *temp;
-      //printf("%d\n", j);
       temp = calloc(1, sizeof(node_t));
       k++;
     }
     prec = threshold;
     bin_n = bins[i].n;
   }
-  sort_not_linked_list(items, num_items);
-  /*printf("###########\n");
-  for(int i=0; i<num_items;i++)
-  {
-    printf("%f\n", items[i].val);
-  }*/
+  sort_and_link_list(items, num_items);
+  print_list(&items[0]);
 }
