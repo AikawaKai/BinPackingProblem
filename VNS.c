@@ -23,7 +23,7 @@ void VNSmethod(dataset_t *d_s, sol_t *starting_sol)
     {
       temp->id = i;
       temp->val = bins[i].items[k];
-      temp->item_index_bin = j;
+      temp->item_index_bin = k;
       items[j] = *temp;
       //printf("%d\n", j);
       temp = calloc(1, sizeof(node_t));
