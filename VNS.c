@@ -3,7 +3,7 @@
 #include "linkedList.h"
 #include "VNS.h"
 
-void VNSmethod(dataset_t *d_s, sol_t *starting_sol)
+node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
 {
   int num_items = d_s->n;
   node_t *items = (node_t *)calloc(num_items, sizeof(node_t));
@@ -32,5 +32,11 @@ void VNSmethod(dataset_t *d_s, sol_t *starting_sol)
     bin_n = bins[i].n;
   }
   sort_and_link_list(items, num_items);
-  print_list(&items[0]);
+  return &items[0];
+}
+
+void VNSmethod(dataset_t *d_s, sol_t *starting_sol)
+{
+  node_t *Z_head = getZFromSolution(d_s, starting_sol);
+  print_list(Z_head);
 }
