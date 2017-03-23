@@ -3,6 +3,11 @@
 #include "linkedList.h"
 #include "VNS.h"
 
+sol_t * shakingSolution(sol_t *starting_sol, node_t *Z, int k_curr)
+{
+
+}
+
 node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
 {
   int num_items = d_s->n;
@@ -35,8 +40,14 @@ node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
   return &items[0];
 }
 
-void VNSmethod(dataset_t *d_s, sol_t *starting_sol)
+void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
 {
   node_t *Z_head = getZFromSolution(d_s, starting_sol);
   print_list(Z_head);
+  sol_t *curr_sol;
+  int k=1;
+  while(k<k_max)
+  {
+    curr_sol = shakingSolution(starting_sol, Z_head, k);
+  }
 }

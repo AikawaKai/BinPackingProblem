@@ -79,7 +79,7 @@ int main(int argc, char *argv[]){
 
     // VNS METHOD
     //print_list(datasets[i].head);
-    VNSmethod(&datasets[i], &solutions[i]);
+    VNSmethod(&datasets[i], &solutions[i], 7);
     //VNS METHOD
 
     free_solution(&solutions[i]);
