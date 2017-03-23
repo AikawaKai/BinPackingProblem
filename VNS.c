@@ -5,6 +5,11 @@
 #include "VNS.h"
 #include "hashset.h"
 
+int operationPermitted(node_t *curr_node, node_t *z_val)
+{
+
+}
+
 long random_at_most(long max)
 {
   unsigned long
@@ -28,6 +33,7 @@ long random_at_most(long max)
 sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
 {
   int size_dataset = d_s->n;
+  int switch_val;
   int rand_index = random_at_most(size_dataset-1);
   int num_swap, num_transf;
   num_swap = 0;
@@ -37,15 +43,17 @@ sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_cu
   hashset_t items_set = hashset_create(d_s->bin_size);
   node_t curr_node = Z[i];
   hashset_add(items_set, &curr_node);
-  printf("is member?%d\n", hashset_is_member(items_set, &curr_node));
-  printf("is member?%d\n", hashset_is_member(items_set, &Z[0]));
   swap_t *list_swaps = calloc(1, sizeof(swap_t));
   transfer_t *list_transfers = calloc(1, sizeof(swap_t));
   while(k_curr>0)
    {
      for(int j=0; j<size_dataset;j++)
      {
-
+       if (!hashset_is_member(items_set, &Z[j]))
+       {
+         switch_val = operationPermitted(&curr_node, &Z[j]);
+         printf("operation permitted%d\n", switch_val);
+       }
      }
    }
 }
