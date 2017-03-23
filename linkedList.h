@@ -15,6 +15,6 @@ void push(node_t * head, float val);
 node_t * copy(node_t * head);
 void print_list(node_t * head);
 void free_list(node_t * head);
-void sort_and_link_list(node_t * list, int size);
+void sort_list(node_t * list, int size);
 
 #endif

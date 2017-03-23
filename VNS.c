@@ -24,29 +24,22 @@ long random_at_most(long max)
   return x/bin_size;
 }
 
-sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t **Z, int k_curr)
+sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
 {
   int size_dataset = d_s->n;
   int rand_index = random_at_most(size_dataset-1);
-  printf("%d\n", rand_index);
   int num_swap, num_transf;
   num_swap = 0;
   num_transf = 0;
-  node_t *curr_head = *Z;
-  node_t *curr_node = *Z;
-  int i =0;
-  while(i!= rand_index)
-  {
-    curr_node = curr_node->next;
-    i++;
-  }
-  printf("val: %f\n", curr_node->val);
+  int i = rand_index;
+  node_t curr_node = Z[i];
+  printf("val: %f\n", curr_node.val);
   //print_list(curr_head);
   swap_t *list_swaps = calloc(1, sizeof(swap_t));
   transfer_t *list_transfers = calloc(1, sizeof(swap_t));
-  while(curr_node != NULL)
+  while(k_curr>0)
    {
-     curr_node = curr_node->next;
+
    }
 }
 
@@ -78,19 +71,19 @@ node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
     prec = threshold;
     bin_n = bins[i].n;
   }
-  sort_and_link_list(items, num_items);
-  return &items[0];
+  sort_list(items, num_items);
+  return items;
 }
 
 void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
 {
-  node_t *Z_head = getZFromSolution(d_s, starting_sol);
+  node_t *Z = getZFromSolution(d_s, starting_sol);
   // print_list(Z_head);
   sol_t *curr_sol;
   sol_t *best_sol;
   int k=1;
   while(k<k_max)
   {
-    curr_sol = shakingSolution(d_s, starting_sol, &Z_head, k);
+    curr_sol = shakingSolution(d_s, starting_sol, Z, k);
   }
 }

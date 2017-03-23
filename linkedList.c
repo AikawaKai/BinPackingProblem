@@ -165,7 +165,7 @@ void free_list(node_t *head){
   }
 }
 
-void sort_and_link_list(node_t * list, int size)
+void sort_list(node_t * list, int size)
 {
   qsort(list, size, sizeof(node_t), compareNode);
   node_t *prec;
