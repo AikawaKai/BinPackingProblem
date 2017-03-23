@@ -32,14 +32,17 @@ sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_cu
   num_swap = 0;
   num_transf = 0;
   int i = rand_index;
+  int j = 0;
+
   node_t curr_node = Z[i];
-  printf("val: %f\n", curr_node.val);
-  //print_list(curr_head);
   swap_t *list_swaps = calloc(1, sizeof(swap_t));
   transfer_t *list_transfers = calloc(1, sizeof(swap_t));
   while(k_curr>0)
    {
+     for(int j=0; j<size_dataset;j++)
+     {
 
+     }
    }
 }
 
@@ -53,7 +56,6 @@ node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
   int bin_n = 0;
   int prec = 0;
   int threshold = 0;
-  printf("--------\n");
   for(int i = 0; i<m_bins; i++)
   {
     prec = threshold;
