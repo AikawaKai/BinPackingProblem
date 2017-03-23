@@ -1,11 +1,24 @@
 #include "data.h"
 #include "solution.h"
 #include "linkedList.h"
+#include "move.h"
 #include "VNS.h"
 
-sol_t * shakingSolution(sol_t *starting_sol, node_t *Z, int k_curr)
+sol_t * shakingSolution(sol_t *starting_sol, node_t **Z, int k_curr)
 {
 
+  int num_swap, num_transf;
+  num_swap = 0;
+  num_transf = 0;
+  node_t *curr_head = *Z;
+  node_t *curr_node = *Z;
+  print_list(curr_head);
+  swap_t *list_swaps = calloc(1, sizeof(swap_t));
+  transfer_t *list_transfers = calloc(1, sizeof(swap_t));
+  while(curr_node != NULL)
+   {
+     curr_node = curr_node->next;
+   }
 }
 
 node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
@@ -43,11 +56,12 @@ node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
 void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
 {
   node_t *Z_head = getZFromSolution(d_s, starting_sol);
-  print_list(Z_head);
+  // print_list(Z_head);
   sol_t *curr_sol;
+  sol_t *best_sol;
   int k=1;
   while(k<k_max)
   {
-    curr_sol = shakingSolution(starting_sol, Z_head, k);
+    curr_sol = shakingSolution(starting_sol, &Z_head, k);
   }
 }
