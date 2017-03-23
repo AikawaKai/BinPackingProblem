@@ -3,6 +3,7 @@
 #include "linkedList.h"
 #include "move.h"
 #include "VNS.h"
+#include "hashset.h"
 
 long random_at_most(long max)
 {
@@ -33,8 +34,11 @@ sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_cu
   num_transf = 0;
   int i = rand_index;
   int j = 0;
-
+  hashset_t items_set = hashset_create(d_s->bin_size);
   node_t curr_node = Z[i];
+  hashset_add(items_set, &curr_node);
+  printf("is member?%d\n", hashset_is_member(items_set, &curr_node));
+  printf("is member?%d\n", hashset_is_member(items_set, &Z[0]));
   swap_t *list_swaps = calloc(1, sizeof(swap_t));
   transfer_t *list_transfers = calloc(1, sizeof(swap_t));
   while(k_curr>0)
