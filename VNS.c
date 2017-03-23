@@ -4,15 +4,44 @@
 #include "move.h"
 #include "VNS.h"
 
-sol_t * shakingSolution(sol_t *starting_sol, node_t **Z, int k_curr)
+long random_at_most(long max)
 {
+  unsigned long
+    // max <= RAND_MAX < ULONG_MAX, so this is okay.
+    num_bins = (unsigned long) max + 1,
+    num_rand = (unsigned long) RAND_MAX + 1,
+    bin_size = num_rand / num_bins,
+    defect   = num_rand % num_bins;
 
+  long x;
+  do {
+   x = random();
+  }
+  // This is carefully written not to overflow
+  while (num_rand - defect <= (unsigned long)x);
+
+  // Truncated division is intentional
+  return x/bin_size;
+}
+
+sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t **Z, int k_curr)
+{
+  int size_dataset = d_s->n;
+  int rand_index = random_at_most(size_dataset-1);
+  printf("%d\n", rand_index);
   int num_swap, num_transf;
   num_swap = 0;
   num_transf = 0;
   node_t *curr_head = *Z;
   node_t *curr_node = *Z;
-  print_list(curr_head);
+  int i =0;
+  while(i!= rand_index)
+  {
+    curr_node = curr_node->next;
+    i++;
+  }
+  printf("val: %f\n", curr_node->val);
+  //print_list(curr_head);
   swap_t *list_swaps = calloc(1, sizeof(swap_t));
   transfer_t *list_transfers = calloc(1, sizeof(swap_t));
   while(curr_node != NULL)
@@ -62,6 +91,6 @@ void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
   int k=1;
   while(k<k_max)
   {
-    curr_sol = shakingSolution(starting_sol, &Z_head, k);
+    curr_sol = shakingSolution(d_s, starting_sol, &Z_head, k);
   }
 }
