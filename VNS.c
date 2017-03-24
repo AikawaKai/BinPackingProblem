@@ -5,9 +5,48 @@
 #include "VNS.h"
 #include "hashset.h"
 
-int operationPermitted(node_t *curr_node, node_t *z_val)
+int operationPermitted(node_t *curr_node, node_t *z_val, bin_t *bins)
 {
-
+  //swap
+  int swap = 0;
+  int transf = 0;
+  float val1 = curr_node->val;
+  float val2 = z_val->val;
+  int bin_index_1 = curr_node->id;
+  int bin_index_2 = z_val->id;
+  bin_t bin1 = bins[bin_index_1];
+  bin_t bin2 = bins[bin_index_2];
+  printf("\nItem_i: %f, Itemd Z[j]: %f\n",val1, val2);
+  print_bin(&bin1);
+  print_bin(&bin2);
+  float slack1 = bin1.slack;
+  float slack2 = bin2.slack;
+  float diff1 = slack1+val1-val2;
+  float diff2 = slack2+val2-val1;
+  if(diff1>=0)
+  {
+    if(diff2>=0)
+    {
+      swap++;
+    }
+  }
+  if(slack2>=val1)
+  {
+    return transf++;
+  }
+  if(swap && transf)
+  {
+    return 2;
+  }
+  if(swap && !transf)
+  {
+    return 1;
+  }
+  if(!swap && transf)
+  {
+    return 0;
+  }
+  return -1;
 }
 
 long random_at_most(long max)
@@ -39,23 +78,21 @@ sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_cu
   num_swap = 0;
   num_transf = 0;
   int i = rand_index;
-  int j = 0;
   hashset_t items_set = hashset_create(d_s->bin_size);
+  bin_t *bins = starting_sol->bins;
   node_t curr_node = Z[i];
   hashset_add(items_set, &curr_node);
   swap_t *list_swaps = calloc(1, sizeof(swap_t));
   transfer_t *list_transfers = calloc(1, sizeof(swap_t));
-  while(k_curr>0)
-   {
-     for(int j=0; j<size_dataset;j++)
-     {
-       if (!hashset_is_member(items_set, &Z[j]))
-       {
-         switch_val = operationPermitted(&curr_node, &Z[j]);
-         printf("operation permitted%d\n", switch_val);
-       }
-     }
-   }
+  for(int j=0; j<size_dataset;j++)
+  {
+    if (!hashset_is_member(items_set, &Z[j]))
+    {
+      printf("##########");
+      switch_val = operationPermitted(&curr_node, &Z[j], bins);
+      printf("operation permitted%d\n", switch_val);
+    }
+  }
 }
 
 node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)

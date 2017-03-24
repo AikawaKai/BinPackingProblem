@@ -87,15 +87,16 @@ void free_solution(sol_t *s)
 
 void print_bin(bin_t *bin)
 {
-  FILE *fp = fopen("check.txt", "a");
+  //FILE *fp = fopen("check.txt", "a");
+  printf("------\nItems:\n");
   for(int i=0;i<bin->n;i++)
   {
-    //printf("%d\n",bin->items[i]);
-    fprintf(fp, " %f ",bin->items[i] );
+    printf("%f\n",bin->items[i]);
+    //fprintf(fp, " %f ",bin->items[i] );
   }
-  fprintf(fp, " %f \n",bin->slack);
-  fclose(fp);
-  //printf("slack: %d\n", bin->slack);
+  //fprintf(fp, " %f \n",bin->slack);
+  //fclose(fp);
+  printf("slack: %f\n", bin->slack);
 }
 
 void print_solution(sol_t *s)
