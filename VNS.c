@@ -5,6 +5,42 @@
 #include "VNS.h"
 #include "hashset.h"
 
+void fillArrayWithMoves(int *num_swap, int *num_transf, node_t *curr_node, node_t *Z_j, swap_t *list_swap, transfer_t *list_transfers, int switch_val)
+{
+  transfer_t *move_tr;
+  swap_t *move_swap;
+  switch (switch_val) {
+    case 0: //transfer
+      move_tr = calloc(1, sizeof(transfer_t));
+      move_tr->index_bin = Z_j->id;
+      move_tr->item1 = curr_node;
+      list_transfers[*num_transf] = *move_tr;
+      *num_transf++;
+      break;
+    case 1: //swap
+      move_swap = calloc(1, sizeof(swap_t));
+      move_swap->item1 = curr_node;
+      move_swap->item2 = Z_j;
+      list_swap[*num_swap] = *move_swap;
+      *num_swap++;
+      break;
+    case 2: //transfer and swap
+      move_tr = calloc(1, sizeof(transfer_t));
+      move_tr->index_bin = Z_j->id;
+      move_tr->item1 = curr_node;
+      list_transfers[*num_transf] = *move_tr;
+      *num_transf++;
+      move_swap = calloc(1, sizeof(swap_t));
+      move_swap->item1 = curr_node;
+      move_swap->item2 = Z_j;
+      list_swap[*num_swap] = *move_swap;
+      *num_swap = *num_swap + 1;
+      break;
+    default:
+      printf("move not ammitted: %d \n", switch_val);
+  }
+}
+
 int operationPermitted(node_t *curr_node, node_t *z_val, bin_t *bins)
 {
   //swap
@@ -16,9 +52,9 @@ int operationPermitted(node_t *curr_node, node_t *z_val, bin_t *bins)
   int bin_index_2 = z_val->id;
   bin_t bin1 = bins[bin_index_1];
   bin_t bin2 = bins[bin_index_2];
-  printf("\nItem_i: %f, Itemd Z[j]: %f\n",val1, val2);
-  print_bin(&bin1);
-  print_bin(&bin2);
+  //printf("\nItem_i: %f, Itemd Z[j]: %f\n",val1, val2);
+  //print_bin(&bin1);
+  //print_bin(&bin2);
   float slack1 = bin1.slack;
   float slack2 = bin2.slack;
   float diff1 = slack1+val1-val2;
@@ -82,15 +118,17 @@ sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_cu
   bin_t *bins = starting_sol->bins;
   node_t curr_node = Z[i];
   hashset_add(items_set, &curr_node);
-  swap_t *list_swaps = calloc(1, sizeof(swap_t));
-  transfer_t *list_transfers = calloc(1, sizeof(swap_t));
+  swap_t *list_swaps = calloc(d_s->n, sizeof(swap_t));
+  transfer_t *list_transfers = calloc(d_s->n, sizeof(swap_t));
   for(int j=0; j<size_dataset;j++)
   {
     if (!hashset_is_member(items_set, &Z[j]))
     {
-      printf("##########");
+      printf("##########\n");
       switch_val = operationPermitted(&curr_node, &Z[j], bins);
-      printf("operation permitted%d\n", switch_val);
+      fillArrayWithMoves(&num_swap, &num_transf, &curr_node, &Z[j], list_swaps, list_transfers, switch_val);
+      printf("num_swap:%d num_transf:%d \n", num_swap, num_transf);
+      //printf("operation permitted: %d\n", switch_val);
     }
   }
 }
