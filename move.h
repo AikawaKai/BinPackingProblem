@@ -11,4 +11,6 @@ typedef struct move_m {
   int index_bin;
 } transfer_t;
 
+void print_transfer_move(transfer_t *move);
+
 #endif
