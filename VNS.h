@@ -1,5 +1,6 @@
 #ifndef VNS
 #define VNS
+#include "move.h"
 
 void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max);
 node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol);
