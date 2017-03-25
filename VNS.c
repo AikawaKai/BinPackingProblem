@@ -134,6 +134,10 @@ sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_cu
   {
     print_transfer_move(&list_transfers[j]);
   }
+  for(int j=0; j<num_swap;j++)
+  {
+    print_swap_move(&list_swaps[j]);
+  }
 }
 
 node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
