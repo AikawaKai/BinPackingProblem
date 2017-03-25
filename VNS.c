@@ -5,84 +5,21 @@
 #include "VNS.h"
 #include "hashset.h"
 
-void fillArrayWithMoves(int *num_swap, int *num_transf, node_t *curr_node, node_t *Z_j, swap_t *list_swap, transfer_t *list_transfers, int switch_val)
+int fillArrayTransferWithMoves(int *num_transf, node_t *curr_node, transfer_t *list_transfers, bin_t *bin, int j)
 {
   transfer_t *move_tr;
-  swap_t *move_swap;
-  switch (switch_val) {
-    case 0: //transfer
-      move_tr = calloc(1, sizeof(transfer_t));
-      move_tr->index_bin = Z_j->id;
-      move_tr->item1 = curr_node;
-      list_transfers[*num_transf] = *move_tr;
-      *num_transf = *num_transf + 1;
-      break;
-    case 1: //swap
-      move_swap = calloc(1, sizeof(swap_t));
-      move_swap->item1 = curr_node;
-      move_swap->item2 = Z_j;
-      list_swap[*num_swap] = *move_swap;
-      *num_swap = *num_swap + 1;
-      break;
-    case 2: //transfer and swap
-      move_tr = calloc(1, sizeof(transfer_t));
-      move_tr->index_bin = Z_j->id;
-      move_tr->item1 = curr_node;
-      list_transfers[*num_transf] = *move_tr;
-      *num_transf++;
-      move_swap = calloc(1, sizeof(swap_t));
-      move_swap->item1 = curr_node;
-      move_swap->item2 = Z_j;
-      list_swap[*num_swap] = *move_swap;
-      *num_swap = *num_swap + 1;
-      break;
-    default:
-      return;
-  }
-}
-
-int operationPermitted(node_t *curr_node, node_t *z_val, bin_t *bins)
-{
-  //swap
-  int swap = 0;
-  int transf = 0;
-  float val1 = curr_node->val;
-  float val2 = z_val->val;
-  int bin_index_1 = curr_node->id;
-  int bin_index_2 = z_val->id;
-  bin_t bin1 = bins[bin_index_1];
-  bin_t bin2 = bins[bin_index_2];
-  //printf("\nItem_i: %f, Itemd Z[j]: %f\n",val1, val2);
-  //print_bin(&bin1);
-  //print_bin(&bin2);
-  float slack1 = bin1.slack;
-  float slack2 = bin2.slack;
-  float diff1 = slack1+val1-val2;
-  float diff2 = slack2+val2-val1;
-  if(diff1>=0)
+  float val = curr_node->val;
+  float slack = bin->slack;
+  if ((bin->slack - val)>=0)
   {
-    if(diff2>=0)
-    {
-      swap++;
-    }
-  }
-  if(slack2>=val1)
-  {
-    return transf++;
-  }
-  if(swap && transf)
-  {
-    return 2;
-  }
-  if(swap && !transf)
-  {
+    move_tr = calloc(1, sizeof(transfer_t));
+    move_tr->item1 = curr_node;
+    move_tr->index_bin = j;
+    list_transfers[*num_transf] = *move_tr;
+    *num_transf = *num_transf + 1;
     return 1;
   }
-  if(!swap && transf)
-  {
-    return 0;
-  }
-  return -1;
+  return 0;
 }
 
 long random_at_most(long max)
@@ -114,12 +51,22 @@ sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_cu
   num_swap = 0;
   num_transf = 0;
   int i = rand_index;
+  int num_bin = starting_sol->n;
   hashset_t items_set = hashset_create(d_s->bin_size);
   bin_t *bins = starting_sol->bins;
   node_t curr_node = Z[i];
   hashset_add(items_set, &curr_node);
-  swap_t *list_swaps = calloc(d_s->n, sizeof(swap_t));
-  transfer_t *list_transfers = calloc(d_s->n, sizeof(swap_t));
+  swap_t *list_swaps = calloc(size_dataset, sizeof(swap_t));
+  transfer_t *list_transfers = calloc(size_dataset, sizeof(swap_t));
+  for(int j=0; j<i; j++)
+  {
+    fillArrayTransferWithMoves(&num_transf, &curr_node, list_transfers, &bins[j], j);
+  }
+  for(int j=i+1; j<num_bin; j++)
+  {
+    fillArrayTransferWithMoves(&num_transf, &curr_node, list_transfers, &bins[j], j);
+  }
+  /*
   for(int j=0; j<size_dataset;j++)
   {
     if (!hashset_is_member(items_set, &Z[j]))
@@ -129,15 +76,16 @@ sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_cu
       fillArrayWithMoves(&num_swap, &num_transf, &curr_node, &Z[j], list_swaps, list_transfers, switch_val);
       //printf("operation permitted: %d\n", switch_val);
     }
-  }
+  }*/
   for(int j=0; j<num_transf;j++)
   {
     print_transfer_move(&list_transfers[j]);
   }
+  /*
   for(int j=0; j<num_swap;j++)
   {
     print_swap_move(&list_swaps[j]);
-  }
+  }*/
 }
 
 node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
