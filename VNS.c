@@ -15,14 +15,14 @@ void fillArrayWithMoves(int *num_swap, int *num_transf, node_t *curr_node, node_
       move_tr->index_bin = Z_j->id;
       move_tr->item1 = curr_node;
       list_transfers[*num_transf] = *move_tr;
-      *num_transf++;
+      *num_transf = *num_transf + 1;
       break;
     case 1: //swap
       move_swap = calloc(1, sizeof(swap_t));
       move_swap->item1 = curr_node;
       move_swap->item2 = Z_j;
       list_swap[*num_swap] = *move_swap;
-      *num_swap++;
+      *num_swap = *num_swap + 1;
       break;
     case 2: //transfer and swap
       move_tr = calloc(1, sizeof(transfer_t));
@@ -37,7 +37,8 @@ void fillArrayWithMoves(int *num_swap, int *num_transf, node_t *curr_node, node_
       *num_swap = *num_swap + 1;
       break;
     default:
-      printf("move not ammitted: %d \n", switch_val);
+      //printf("move not ammitted: %d \n", switch_val);
+      return;
   }
 }
 
@@ -124,10 +125,13 @@ sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_cu
   {
     if (!hashset_is_member(items_set, &Z[j]))
     {
-      printf("##########\n");
+      //printf("##########\n");
       switch_val = operationPermitted(&curr_node, &Z[j], bins);
       fillArrayWithMoves(&num_swap, &num_transf, &curr_node, &Z[j], list_swaps, list_transfers, switch_val);
-      printf("num_swap:%d num_transf:%d \n", num_swap, num_transf);
+      if(num_swap>0 || num_transf>0)
+      {
+        printf("num_swap:%d num_transf:%d \n", num_swap, num_transf);
+      }
       //printf("operation permitted: %d\n", switch_val);
     }
   }
