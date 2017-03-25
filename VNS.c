@@ -12,6 +12,7 @@ int fillArrayTransferWithMoves(int *num_transf, node_t *curr_node, transfer_t *l
   float slack = bin->slack;
   if ((bin->slack - val)>=0)
   {
+    print_bin(bin);
     move_tr = calloc(1, sizeof(transfer_t));
     move_tr->item1 = curr_node;
     move_tr->index_bin = j;
@@ -58,11 +59,11 @@ sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_cu
   hashset_add(items_set, &curr_node);
   swap_t *list_swaps = calloc(size_dataset, sizeof(swap_t));
   transfer_t *list_transfers = calloc(size_dataset, sizeof(swap_t));
-  for(int j=0; j<i; j++)
+  for(int j=0; j<curr_node.id; j++)
   {
     fillArrayTransferWithMoves(&num_transf, &curr_node, list_transfers, &bins[j], j);
   }
-  for(int j=i+1; j<num_bin; j++)
+  for(int j=curr_node.id+1; j<num_bin; j++)
   {
     fillArrayTransferWithMoves(&num_transf, &curr_node, list_transfers, &bins[j], j);
   }
@@ -126,6 +127,11 @@ void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
   sol_t *curr_sol;
   sol_t *best_sol;
   int k=1;
+  for(int i=0; i<starting_sol->n;i++)
+  {
+    print_bin(&(starting_sol->bins[i]));
+  }
+  exit(-1);
   while(k<k_max)
   {
     curr_sol = shakingSolution(d_s, starting_sol, Z, k);

@@ -51,7 +51,7 @@ bool add_item_to_bin_if_fits(bin_t *b, float item)
 
 void initialize_solution(sol_t *s, float b_size, int num_items, int max_num_el)
 {
-  s->n = 1;
+  s->n = 0;
   s->bin_size = b_size;
   s->max_num_el = max_num_el;
   s->bins = (bin_t *)calloc(num_items, sizeof(bin_t));
