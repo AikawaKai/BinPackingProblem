@@ -123,7 +123,6 @@ node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
 void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
 {
   node_t *Z = getZFromSolution(d_s, starting_sol);
-  // print_list(Z_head);
   sol_t *curr_sol;
   sol_t *best_sol;
   int k=1;
@@ -131,9 +130,10 @@ void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
   {
     print_bin(&(starting_sol->bins[i]));
   }
-  exit(-1);
+  /*
   while(k<k_max)
   {
     curr_sol = shakingSolution(d_s, starting_sol, Z, k);
-  }
+    exit(-1);
+  }*/
 }
