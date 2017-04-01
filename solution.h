@@ -17,6 +17,7 @@ typedef struct sol_bin
 } bin_t;
 
 void initialize_bin(bin_t *b, float b_size, int num_items);
+void copy_bin(bin_t *source, bin_t *dest);
 void free_bin(bin_t *b);
 void add_item_to_bin(bin_t *b, float item);
 void removeItemFromBin(bin_t *bin, int index);
@@ -34,6 +35,7 @@ typedef struct sol
 
 void initialize_solution(sol_t *s, float b_size, int num_item, int max_num_el);
 void add_new_bin(sol_t *s);
+void copy_solution(sol_t *sol, sol_t *result);
 void free_solution(sol_t *s);
 void print_solution(sol_t *s);
 

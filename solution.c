@@ -4,11 +4,19 @@
 
 void initialize_bin(bin_t *b, float size, int num_items)
 {
-  b->items = (float *) calloc(num_items, sizeof (float));
+  b->items = (float *) calloc(num_items, sizeof(float));
   b->n = 0;
   b->sum = 0;
   b->size = size;
   b->slack = size;
+}
+
+void copy_bin(bin_t *source, bin_t *dest)
+{
+  for(int i=0; i<source->n; i++)
+  {
+    add_item_to_bin(dest, source->items[i]);
+  }
 }
 
 void free_bin(bin_t *b)
@@ -79,6 +87,18 @@ void initialize_solution(sol_t *s, float b_size, int num_items, int max_num_el)
   bin_t b1;
   initialize_bin(&b1, b_size, s->max_num_el);
   s->bins[0] = b1;
+}
+
+void copy_solution(sol_t *sol, sol_t *result)
+{
+  result->n = sol->n;
+  result->bin_size = sol->bin_size;
+  result->max_num_el = sol->max_num_el;
+  for(int i=0; i<sol->n;i++)
+  {
+    initialize_bin(&(result->bins[i]), sol->bin_size, sol->max_num_el);
+    copy_bin(&(sol->bins[i]), &(result->bins[i]));
+  }
 }
 
 void add_new_bin(sol_t *s)
