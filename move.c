@@ -9,11 +9,10 @@ void performTransfMove(transfer_t *transf, bin_t *bins)
   int bin_from = item1->id;
   int bin_dest = transf->index_bin;
   int index_in_bin_1 = item1->item_index_bin;
-  printf("Element to trasnfer: %f\n", item1->val);
-  print_bin(&bins[bin_from]);
   removeItemFromBin(&bins[bin_from], index_in_bin_1);
-  print_bin(&bins[bin_from]);
-  //printf("bin from:%d bin dest:%d\n", bin_from, bin_dest);
+  add_item_to_bin(&bins[bin_dest], item1->val);
+  item1->id = bin_dest;
+  item1->item_index_bin = bins[bin_dest].n - 1;
 }
 void performSwapMove(swap_t *transf, bin_t *bins)
 {
