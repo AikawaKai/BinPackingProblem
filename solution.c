@@ -40,7 +40,7 @@ void removeItemFromBin(bin_t *bin, int index)
       bin->items[j]=bin->items[j+1];
     }
   }
-  bin->items[index] = 0.0;
+  bin->items[bin->n-1] = 0.0;
   bin->n = bin->n-1;
   bin->slack = bin->slack + value;
   bin->sum = bin->sum - value;

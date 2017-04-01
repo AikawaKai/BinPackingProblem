@@ -119,7 +119,7 @@ sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_cu
       else
       {
         printf("swap move%d\n",index_move);
-        performSwapMove(&list_swaps[index_move], bins);
+        performSwapMove(&list_swaps[index_move-num_transf], bins);
         // perform rand swap move
       }
       k_curr--;

@@ -6,7 +6,7 @@
 #include "VNS.h"
 
 int main(int argc, char *argv[]){
-  srand(1);
+  srand(8);
   char *filename = argv[1];
   char buff[255];
   int max_num_elem;
