@@ -12,8 +12,8 @@ typedef struct move_m {
 } transfer_t;
 
 
-void performTransfMove(transfer_t *transf);
-void performSwapMove(swap_t *transf);
+void performTransfMove(transfer_t *transf, bin_t *bins);
+void performSwapMove(swap_t *transf, bin_t *bins);
 void print_transfer_move(transfer_t *move);
 void print_swap_move(swap_t *move);
 
