@@ -4,11 +4,12 @@
 
 void performTransfMove(transfer_t *transf)
 {
-
+  node_t *item1 = transf->item1;
 }
 void performSwapMove(swap_t *transf)
 {
-
+  node_t *item1 = transf->item1;
+  node_t *item2 = transf->item2;
 }
 
 void print_transfer_move(transfer_t *move)
