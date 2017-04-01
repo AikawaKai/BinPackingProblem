@@ -166,7 +166,6 @@ void MBSmodified(dataset_t *d_s, sol_t *sol)
 
 sol_t * MBSsampling(dataset_t *d_s)
 {
-  srand(1);
   int max_attempts = 500;
   int curr_best = d_s->n;
   float sum=0;

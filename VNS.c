@@ -72,7 +72,6 @@ long random_at_most(long max)
 
 sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
 {
-  srand(3);
   int size_dataset = d_s->n;
   int switch_val;
   int rand_index = random_at_most(size_dataset-1);
