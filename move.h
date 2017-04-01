@@ -2,13 +2,13 @@
 #define MOVE
 
 typedef struct move_s {
-  node_t * item1;
-  node_t * item2;
+  node_t * item1; // item 1 to swap
+  node_t * item2; // item 2 to swap
 } swap_t;
 
 typedef struct move_m {
-  node_t *item1;
-  int index_bin;
+  node_t *item1; // item to transfer in bin destination
+  int index_bin; // bin destination
 } transfer_t;
 
 void print_transfer_move(transfer_t *move);

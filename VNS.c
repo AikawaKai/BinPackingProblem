@@ -23,6 +23,33 @@ int fillArrayTransferWithMoves(int *num_transf, node_t *curr_node, transfer_t *l
   return 0;
 }
 
+int fillArraySwapWithMoves(int *num_swap, node_t *curr_node, node_t *curr_node_j, swap_t *list_swaps, bin_t *bins)
+{
+  swap_t *move_swap;
+  int bin_index_i = curr_node->id;
+  int bin_index_j = curr_node_j->id;
+  float slack_i = bins[bin_index_i].slack;
+  float slack_j = bins[bin_index_j].slack;
+  float value_i = curr_node->val;
+  float value_j = curr_node_j->val;
+
+  if(slack_i+value_i-value_j>=0 && slack_j+value_j-value_i>=0)
+  {
+    printf("[---ok swap---]\n");
+    print_bin(&bins[bin_index_i]);
+    print_list(curr_node);
+    print_bin(&bins[bin_index_j]);
+    print_list(curr_node_j);
+    move_swap = calloc(1, sizeof(swap_t));
+    move_swap->item1 = curr_node;
+    move_swap->item2 = curr_node_j;
+    list_swaps[*num_swap] = *move_swap;
+    *num_swap = *num_swap + 1;
+    return 1;
+  }
+  return 0;
+}
+
 long random_at_most(long max)
 {
   unsigned long
@@ -45,6 +72,7 @@ long random_at_most(long max)
 
 sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
 {
+  srand(3);
   int size_dataset = d_s->n;
   int switch_val;
   int rand_index = random_at_most(size_dataset-1);
@@ -59,6 +87,8 @@ sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_cu
   hashset_add(items_set, &curr_node);
   swap_t *list_swaps = calloc(size_dataset, sizeof(swap_t));
   transfer_t *list_transfers = calloc(size_dataset, sizeof(swap_t));
+
+  // fill transfer moves array
   for(int j=0; j<curr_node.id; j++)
   {
     fillArrayTransferWithMoves(&num_transf, &curr_node, list_transfers, &bins[j], j);
@@ -67,11 +97,16 @@ sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_cu
   {
     fillArrayTransferWithMoves(&num_transf, &curr_node, list_transfers, &bins[j], j);
   }
-  /*
-  for(int j=0; j<num_transf;j++)
+
+  // fill swap moves array
+  for(int j=size_dataset-1; j>i; j--)
   {
-    print_transfer_move(&list_transfers[j]);
-  }*/
+    if (curr_node.val != Z[j].val)
+    {
+      fillArraySwapWithMoves(&num_swap, &curr_node, &Z[j], list_swaps, bins);
+    }
+  }
+
 }
 
 node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)

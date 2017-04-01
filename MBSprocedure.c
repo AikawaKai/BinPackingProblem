@@ -166,11 +166,8 @@ void MBSmodified(dataset_t *d_s, sol_t *sol)
 
 sol_t * MBSsampling(dataset_t *d_s)
 {
-  FILE *fp;
+  srand(1);
   int max_attempts = 500;
-  char fileinput[] = "pseudorandseednumbers.txt";
-  char buff[8];
-  int seed;
   int curr_best = d_s->n;
   float sum=0;
   int num_el = d_s->n;
@@ -188,16 +185,12 @@ sol_t * MBSsampling(dataset_t *d_s)
     next = next->next;
     sum+= (next->val * next->val);
   }
-  //initialize_solution(best_sol, d_s->bin_size, d_s->n, max_num_elem);
-  fp = fopen(fileinput, "r");
 
   while(max_attempts>0)
   {
     sol_t *tmp = malloc(sizeof(sol_t));
     initialize_solution(tmp, d_s->bin_size, d_s->n, max_num_elem);
-    fscanf(fp, "%s", buff);
-    seed = atoi(buff);
-    srand(seed);
+
     d_s->head = prob_sorting(&(d_s->head),d_s->head, sum, num_el);
     MBSmodified(d_s, tmp);
     if(tmp->n<curr_best)
@@ -213,6 +206,5 @@ sol_t * MBSsampling(dataset_t *d_s)
     d_s->head = copy(ordered_list_head);
     max_attempts--;
   }
-  fclose(fp);
   return sol;
 }
