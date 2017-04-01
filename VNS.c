@@ -106,8 +106,13 @@ sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_cu
         fillArraySwapWithMoves(&num_swap, &curr_node, &Z[j], list_swaps, bins);
       }
     }
-    printf("num swap: %d, num transf: %d\n", num_swap, num_transf);
-    exit(-1);
+    if(num_transf+num_swap>0)
+    {
+      int index_move = random_at_most(num_transf+num_swap-1);
+      k_curr--;
+      printf("%d\n",index_move);
+      // perform rand move
+    }
   }
 }
 
