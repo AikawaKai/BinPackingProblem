@@ -81,7 +81,6 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
   int i = random_at_most(size_dataset-1);
   while(k<=k_curr && (int)hashset_num_items(items_set)<d_s->n)
   {
-    //printf("size: %d\n", (int)hashset_num_items(items_set));
     int num_swap, num_transf;
     num_swap = 0;
     num_transf = 0;
@@ -110,16 +109,13 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
     if(num_transf+num_swap>0)
     {
       int index_move = random_at_most(num_transf+num_swap-1);
-      //printf("transf: %d, swap:%d", num_transf, num_swap);
       if(index_move<num_transf)
       {
-        //printf("transf move%d\n",index_move);
         performTransfMove(&list_transfers[index_move], bins);
         // perform rand transf move
       }
       else
       {
-        //printf("swap move%d\n",index_move);
         performSwapMove(&list_swaps[index_move-num_transf], bins);
         // perform rand swap move
       }
@@ -133,13 +129,15 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
       i = random_at_most(size_dataset-1);
       curr_node = &Z[i];
     }
-    //printf("curr i: %d\n", i);
-    //print_list(curr_node);
     free(list_transfers);
     free(list_swaps);
-    //printf("k:%d \n", k);
   }
   hashset_destroy(items_set);
+}
+
+void localSearch(dataset_t *d_s, sol_t *curr_sol)
+{
+
 }
 
 node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
@@ -176,27 +174,19 @@ node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
 void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
 {
   sol_t *curr_sol = calloc(1, sizeof(sol_t));
-  sol_t *best_sol = calloc(1, sizeof(sol_t));
+  sol_t *best_sol;
   initialize_solution(curr_sol, d_s->bin_size, d_s->n, starting_sol->max_num_el);
-  initialize_solution(best_sol, d_s->bin_size, d_s->n, starting_sol->max_num_el);
   copy_solution(starting_sol, curr_sol);
-  copy_solution(starting_sol, best_sol);
   node_t *Z = getZFromSolution(d_s, curr_sol);
   int k=1;
-  print_solution(curr_sol);
-  /*
-  for(int i=0; i<starting_sol->n;i++)
-  {
-    print_bin(&(starting_sol->bins[i]));
-  }*/
   while(k<k_max)
   {
     shakingSolution(d_s, curr_sol, Z, k);
-    /*
+    localSearch(d_s, curr_sol);
     if(curr_sol->n > best_sol->n)
     {
       best_sol = curr_sol;
-    }*/
+    }
     k++;
   }
 }
