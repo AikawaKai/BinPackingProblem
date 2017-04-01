@@ -72,40 +72,43 @@ long random_at_most(long max)
 
 sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
 {
-  int size_dataset = d_s->n;
-  int switch_val;
-  int rand_index = random_at_most(size_dataset-1);
-  int num_swap, num_transf;
-  num_swap = 0;
-  num_transf = 0;
-  int i = rand_index;
-  int num_bin = starting_sol->n;
   hashset_t items_set = hashset_create(d_s->bin_size);
+  int size_dataset = d_s->n;
+  int num_bin = starting_sol->n;
   bin_t *bins = starting_sol->bins;
-  node_t curr_node = Z[i];
-  hashset_add(items_set, &curr_node);
-  swap_t *list_swaps = calloc(size_dataset, sizeof(swap_t));
-  transfer_t *list_transfers = calloc(size_dataset, sizeof(swap_t));
+  while(k_curr>0)
+  {
+    int i = random_at_most(size_dataset-1);
+    int num_swap, num_transf;
+    num_swap = 0;
+    num_transf = 0;
 
-  // fill transfer moves array
-  for(int j=0; j<curr_node.id; j++)
-  {
-    fillArrayTransferWithMoves(&num_transf, &curr_node, list_transfers, &bins[j], j);
-  }
-  for(int j=curr_node.id+1; j<num_bin; j++)
-  {
-    fillArrayTransferWithMoves(&num_transf, &curr_node, list_transfers, &bins[j], j);
-  }
+    node_t curr_node = Z[i];
+    hashset_add(items_set, &curr_node);
+    swap_t *list_swaps = calloc(size_dataset, sizeof(swap_t));
+    transfer_t *list_transfers = calloc(size_dataset, sizeof(swap_t));
 
-  // fill swap moves array
-  for(int j=size_dataset-1; j>i; j--)
-  {
-    if (curr_node.val != Z[j].val)
+    // fill transfer moves array
+    for(int j=0; j<curr_node.id; j++)
     {
-      fillArraySwapWithMoves(&num_swap, &curr_node, &Z[j], list_swaps, bins);
+      fillArrayTransferWithMoves(&num_transf, &curr_node, list_transfers, &bins[j], j);
     }
-  }
+    for(int j=curr_node.id+1; j<num_bin; j++)
+    {
+      fillArrayTransferWithMoves(&num_transf, &curr_node, list_transfers, &bins[j], j);
+    }
 
+    // fill swap moves array
+    for(int j=size_dataset-1; j>i; j--)
+    {
+      if (curr_node.val != Z[j].val)
+      {
+        fillArraySwapWithMoves(&num_swap, &curr_node, &Z[j], list_swaps, bins);
+      }
+    }
+    printf("num swap: %d, num transf: %d\n", num_swap, num_transf);
+    exit(-1);
+  }
 }
 
 node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
@@ -150,10 +153,9 @@ void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
   {
     print_bin(&(starting_sol->bins[i]));
   }*/
-  /*
   while(k<k_max)
   {
     curr_sol = shakingSolution(d_s, starting_sol, Z, k);
     exit(-1);
-  }*/
+  }
 }
