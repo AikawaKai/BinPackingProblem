@@ -68,24 +68,9 @@ sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_cu
     fillArrayTransferWithMoves(&num_transf, &curr_node, list_transfers, &bins[j], j);
   }
   /*
-  for(int j=0; j<size_dataset;j++)
-  {
-    if (!hashset_is_member(items_set, &Z[j]))
-    {
-      //printf("##########\n");
-      switch_val = operationPermitted(&curr_node, &Z[j], bins);
-      fillArrayWithMoves(&num_swap, &num_transf, &curr_node, &Z[j], list_swaps, list_transfers, switch_val);
-      //printf("operation permitted: %d\n", switch_val);
-    }
-  }*/
   for(int j=0; j<num_transf;j++)
   {
     print_transfer_move(&list_transfers[j]);
-  }
-  /*
-  for(int j=0; j<num_swap;j++)
-  {
-    print_swap_move(&list_swaps[j]);
   }*/
 }
 
@@ -126,10 +111,11 @@ void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
   sol_t *curr_sol;
   sol_t *best_sol;
   int k=1;
+  /*
   for(int i=0; i<starting_sol->n;i++)
   {
     print_bin(&(starting_sol->bins[i]));
-  }
+  }*/
   /*
   while(k<k_max)
   {

@@ -78,9 +78,6 @@ int main(int argc, char *argv[]){
     datasets[i].head = new_head;
 
     // VNS METHOD
-    //print_list(datasets[i].head);
-    print_list(datasets[i].head);
-    printf("##############\n");
     VNSmethod(&datasets[i], &solutions[i], 7);
     //VNS METHOD
 
