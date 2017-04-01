@@ -109,9 +109,18 @@ sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_cu
     if(num_transf+num_swap>0)
     {
       int index_move = random_at_most(num_transf+num_swap-1);
+      printf("transf: %d, swap:%d", num_transf, num_swap);
+      if(index_move<num_transf)
+      {
+        printf("transf move%d\n",index_move);
+        // perform rand transf move
+      }
+      else
+      {
+        printf("swap move%d\n",index_move);
+        // perform rand swap move
+      }
       k_curr--;
-      printf("%d\n",index_move);
-      // perform rand move
     }
   }
 }
