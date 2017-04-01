@@ -30,6 +30,22 @@ void add_item_to_bin(bin_t *b, float item)
   b->items[b->n-1] = item;
 }
 
+void removeItemFromBin(bin_t *bin, int index)
+{
+  float value = bin->items[index];
+  if(((bin->n)-1)>index)
+  {
+    for(int j=index;j<bin->n-1;j++)
+    {
+      bin->items[j]=bin->items[j+1];
+    }
+  }
+  bin->items[index] = 0.0;
+  bin->n = bin->n-1;
+  bin->slack = bin->slack + value;
+  bin->sum = bin->sum - value;
+}
+
 int get_bin_slack(bin_t *b)
 {
   return b->slack;
