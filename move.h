@@ -11,6 +11,9 @@ typedef struct move_m {
   int index_bin; // bin destination
 } transfer_t;
 
+
+void performTransfMove(transfer_t *transf);
+void performSwapMove(swap_t *transf);
 void print_transfer_move(transfer_t *move);
 void print_swap_move(swap_t *move);
 

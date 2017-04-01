@@ -113,11 +113,13 @@ sol_t * shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_cu
       if(index_move<num_transf)
       {
         printf("transf move%d\n",index_move);
+        performTransfMove(&list_transfers[index_move]);
         // perform rand transf move
       }
       else
       {
         printf("swap move%d\n",index_move);
+        performSwapMove(&list_swaps[index_move]);
         // perform rand swap move
       }
       k_curr--;

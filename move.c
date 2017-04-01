@@ -2,6 +2,15 @@
 #include "linkedList.h"
 #include "move.h"
 
+void performTransfMove(transfer_t *transf)
+{
+
+}
+void performSwapMove(swap_t *transf)
+{
+
+}
+
 void print_transfer_move(transfer_t *move)
 {
   printf("------------\n");
