@@ -1,0 +1,18 @@
+
+k_curr: 1
+
+k_curr: 3
+
+k_curr: 5
+
+k_curr: 1
+
+k_curr: 3
+
+k_curr: 5
+
+k_curr: 1
+
+k_curr: 3
+
+k_curr: 5

@@ -1,3 +1,4 @@
+#include <string.h>
 #include "data.h"
 #include "solution.h"
 #include "linkedList.h"
@@ -73,13 +74,19 @@ long random_at_most(long max)
 
 void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
 {
+  char moves[50] = "tests/";
+  strcat(moves, d_s->name);
+  strcat(moves, "moves.txt");
+  FILE *filepointer;
+  filepointer = fopen(moves, "a");
   hashset_t items_set = hashset_create(d_s->bin_size);
   int k=0;
   int size_dataset = d_s->n;
   int num_bin = starting_sol->n;
   bin_t *bins = starting_sol->bins;
   int i = random_at_most(size_dataset-1);
-  while(k<=k_curr && (int)hashset_num_items(items_set)<d_s->n)
+  fprintf(filepointer, "\nk_curr: %d\n", k_curr);
+  while(k<k_curr && (int)hashset_num_items(items_set)<d_s->n)
   {
     int num_swap, num_transf;
     num_swap = 0;
@@ -87,7 +94,6 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
     node_t *curr_node = &Z[i];
     swap_t *list_swaps = calloc(size_dataset, sizeof(swap_t));
     transfer_t *list_transfers = calloc(size_dataset, sizeof(swap_t));
-
     // fill transfer moves array
     for(int j=0; j<curr_node->id; j++)
     {
@@ -97,11 +103,10 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
     {
       fillArrayTransferWithMoves(&num_transf, curr_node, list_transfers, &bins[j], j);
     }
-
     // fill swap moves array
     for(int j=size_dataset-1; j>i; j--)
     {
-      if (curr_node->val != Z[j].val && !hashset_is_member(items_set, &Z[j]))
+      if (curr_node->val != Z[j].val && curr_node->id != Z[j].id && !hashset_is_member(items_set, &Z[j]))
       {
         fillArraySwapWithMoves(&num_swap, curr_node, &Z[j], list_swaps, bins);
       }
@@ -111,11 +116,17 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
       int index_move = random_at_most(num_transf+num_swap-1);
       if(index_move<num_transf)
       {
+        //fprintf(filepointer, "\n\n[move performed]\n");
+        //print_to_file_transfer_move(&list_transfers[index_move], filepointer);
+        //fprintf(filepointer, "[+-+-+-+-+-+-+-+]\n\n");
         performTransfMove(&list_transfers[index_move], bins);
         // perform rand transf move
       }
       else
       {
+        //fprintf(filepointer, "\n\n[move performed]\n");
+        //print_to_file_swap_move(&list_swaps[index_move-num_transf], filepointer);
+        //fprintf(filepointer, "[+-+-+-+-+-+-+-+] \n");
         performSwapMove(&list_swaps[index_move-num_transf], bins);
         // perform rand swap move
       }
@@ -133,6 +144,7 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
     free(list_swaps);
   }
   hashset_destroy(items_set);
+  fclose(filepointer);
 }
 
 void localSearch(dataset_t *d_s, sol_t *curr_sol)

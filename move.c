@@ -45,6 +45,16 @@ void print_transfer_move(transfer_t *move)
   printf("Bin: %d\n", move->index_bin);
 }
 
+void print_to_file_transfer_move(transfer_t *move, FILE *filepointer)
+{
+  node_t *item1 = move->item1;
+  fprintf(filepointer, "++++TRANSFER++++\n");
+  fprintf(filepointer, "Item1: %f\n", item1->val);
+  fprintf(filepointer, "bin: %d\n",item1->id);
+  fprintf(filepointer, "bin_dest: %d\n", move->index_bin);
+}
+
+
 void print_swap_move(swap_t *move)
 {
   printf("------------\n");
@@ -54,4 +64,15 @@ void print_swap_move(swap_t *move)
   printf("\nItem2: ");
   print_list(move->item2);
   printf("\n");
+}
+
+void print_to_file_swap_move(swap_t *move, FILE *filepointer)
+{
+  node_t *item1 = move->item1;
+  node_t *item2 = move->item2;
+  fprintf(filepointer, "++++SWAP++++\n");
+  fprintf(filepointer, "Item1: %f\n", item1->val);
+  fprintf(filepointer, "bin: %d\n",item1->id);
+  fprintf(filepointer, "Item2: %f\n", item2->val);
+  fprintf(filepointer, "bin: %d\n",item2->id);
 }

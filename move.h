@@ -16,5 +16,7 @@ void performTransfMove(transfer_t *transf, bin_t *bins);
 void performSwapMove(swap_t *transf, bin_t *bins);
 void print_transfer_move(transfer_t *move);
 void print_swap_move(swap_t *move);
+void print_to_file_swap_move(swap_t *move, FILE *pointer);
+void print_to_file_transfer_move(transfer_t *move, FILE *pointer);
 
 #endif

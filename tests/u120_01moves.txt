@@ -1,0 +1,147 @@
+
+k_curr: 1
+
+
+[move performed]
+++++TRANSFER++++
+Item1: 95.000000
+bin: 12
+bin_dest: 48
+[+-+-+-+-+-+-+-+]
+
+
+k_curr: 3
+
+
+[move performed]
+++++TRANSFER++++
+Item1: 33.000000
+bin: 15
+bin_dest: 48
+[+-+-+-+-+-+-+-+]
+
+
+
+[move performed]
+++++SWAP++++
+Item1: 38.000000
+bin: 38
+Item2: 23.000000
+bin: 15
+[+-+-+-+-+-+-+-+] 
+
+
+[move performed]
+++++SWAP++++
+Item1: 98.000000
+bin: 7
+Item2: 95.000000
+bin: 48
+[+-+-+-+-+-+-+-+] 
+
+k_curr: 5
+
+
+[move performed]
+++++SWAP++++
+Item1: 61.000000
+bin: 42
+Item2: 60.000000
+bin: 43
+[+-+-+-+-+-+-+-+] 
+
+
+[move performed]
+++++TRANSFER++++
+Item1: 29.000000
+bin: 3
+bin_dest: 48
+[+-+-+-+-+-+-+-+]
+
+
+
+[move performed]
+++++TRANSFER++++
+Item1: 61.000000
+bin: 42
+bin_dest: 48
+[+-+-+-+-+-+-+-+]
+
+
+
+[move performed]
+++++SWAP++++
+Item1: 45.000000
+bin: 23
+Item2: 43.000000
+bin: 44
+[+-+-+-+-+-+-+-+] 
+
+
+[move performed]
+++++SWAP++++
+Item1: 29.000000
+bin: 2
+Item2: 22.000000
+bin: 3
+[+-+-+-+-+-+-+-+] 
+
+k_curr: 1
+
+k_curr: 3
+
+k_curr: 5
+
+k_curr: 1
+
+k_curr: 3
+
+k_curr: 5
+
+k_curr: 1
+
+k_curr: 3
+
+k_curr: 5
+
+k_curr: 1
+
+k_curr: 3
+
+k_curr: 5
+
+k_curr: 1
+
+k_curr: 3
+
+k_curr: 5
+
+k_curr: 1
+
+k_curr: 3
+
+k_curr: 5
+
+k_curr: 1
+
+k_curr: 3
+
+k_curr: 5
+
+k_curr: 1
+
+k_curr: 3
+
+k_curr: 5
+
+k_curr: 1
+
+k_curr: 3
+
+k_curr: 5
+
+k_curr: 1
+
+k_curr: 3
+
+k_curr: 5
