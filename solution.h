@@ -6,6 +6,7 @@
 typedef int bool;
 #define TRUE  1
 #define FALSE 0
+#include "data.h"
 
 typedef struct sol_bin
 {
@@ -38,5 +39,6 @@ void add_new_bin(sol_t *s);
 void copy_solution(sol_t *sol, sol_t *result);
 void free_solution(sol_t *s);
 void print_solution(sol_t *s);
+void check_solution(dataset_t *d_s, sol_t *s);
 
 #endif

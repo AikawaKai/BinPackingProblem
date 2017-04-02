@@ -46,7 +46,7 @@ int main(int argc, char *argv[]){
     firstfit(&datasets[i], &solutions[i]);
     printf("Solution firstfit: %d\n", solutions[i].n);
     firstfit_res = solutions[i].n;
-
+    check_solution(&datasets[i], &solutions[i]);
     // First Fit decreasing
     free_solution(&solutions[i]);
     max_num_elem = (datasets[i].bin_size / datasets[i].sorteditems[(datasets[i].n)-1])+1;
@@ -54,7 +54,7 @@ int main(int argc, char *argv[]){
     firstfitdecreasing(&datasets[i], &solutions[i]);
     firstfistdecr_res = solutions[i].n;
     printf("Solution firstfitdecreasing: %d\n", solutions[i].n);
-
+    check_solution(&datasets[i], &solutions[i]);
     // Minimum Bin Slack
     free_solution(&solutions[i]);
     initialize_solution(&solutions[i], datasets[i].bin_size, datasets[i].n, max_num_elem);
@@ -68,6 +68,7 @@ int main(int argc, char *argv[]){
     datasets[i].head = malloc(sizeof(node_t));
     datasets[i].head = new_head;
     new_head = copy(datasets[i].head);
+    check_solution(&datasets[i], &solutions[i]);
     free_solution(&solutions[i]);
     initialize_solution(&solutions[i], datasets[i].bin_size, datasets[i].n, max_num_elem);
     MBSmodified(&datasets[i], &solutions[i]);
@@ -77,13 +78,13 @@ int main(int argc, char *argv[]){
     free_list(datasets[i].head);
     datasets[i].head = malloc(sizeof(node_t));
     datasets[i].head = new_head;
-
+    check_solution(&datasets[i], &solutions[i]);
     // VNS METHOD
     VNSmethod(&datasets[i], &solutions[i], 7);
     //VNS METHOD
-
     free_solution(&solutions[i]);
     sampling_sol = MBSsampling(&datasets[i]);
+    check_solution(&datasets[i], sampling_sol);
     mbs_sampling = sampling_sol->n;
     printf("Solution MBSsampling: %d\n", mbs_sampling);
     // Write to csv

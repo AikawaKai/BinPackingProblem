@@ -17,7 +17,7 @@ typedef struct dataset
 
 } dataset_t;
 
-
+int compare_function(const void* p1, const void* p2);
 void load_dataset(char *filename, dataset_t *d_s);
 void free_dataset(dataset_t *d_s);
 void load_dataset_from_file_pointer(FILE *filepointer, dataset_t *d_s);

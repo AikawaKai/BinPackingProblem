@@ -147,3 +147,37 @@ void print_solution(sol_t *s)
     //printf("-------\n");
   }
 }
+
+void check_solution(dataset_t *d_s, sol_t *s)
+{
+  bin_t *bins = s->bins;
+  float *items_sol = calloc(d_s->n*2, sizeof(float));
+  int pos = 0;
+  for(int i=0; i<s->n;i++)
+  {
+    for(int j=0;j<bins[i].n;j++)
+    {
+      items_sol[pos] = bins[i].items[j];
+      pos = pos + 1;
+    }
+  }
+  qsort(items_sol, pos, sizeof(float), compare_function);
+  if(pos!=d_s->n)
+  {
+    printf("Incoherent Solution\n");
+    printf("size 1 %d size 2 %d\n", d_s->n, pos);
+    exit(-1);
+  }
+  float *items = d_s->items;
+  qsort(items, pos, sizeof(float), compare_function);
+  for(int i=0; i<pos; i++)
+  {
+    if(items[i]!=items_sol[i])
+    {
+      printf("Incoherent Solution\n");
+      printf("first: %f second: %f -----------\n",items[i], items_sol[i]);
+      exit(-1);
+    }
+  }
+  free(items_sol);
+}
