@@ -153,13 +153,21 @@ void check_solution(dataset_t *d_s, sol_t *s)
   bin_t *bins = s->bins;
   float *items_sol = calloc(d_s->n*2, sizeof(float));
   int pos = 0;
+  float curr_size = 0.0;
   for(int i=0; i<s->n;i++)
   {
     for(int j=0;j<bins[i].n;j++)
     {
       items_sol[pos] = bins[i].items[j];
       pos = pos + 1;
+      curr_size = curr_size+bins[i].items[j];
     }
+    if (curr_size>d_s->bin_size)
+    {
+      printf("Incoherent Solution\n");
+      printf("Bin size: %f Filled: %f\n", d_s->bin_size, curr_size);
+    }
+    curr_size = 0.0;
   }
   qsort(items_sol, pos, sizeof(float), compare_function);
   if(pos!=d_s->n)
