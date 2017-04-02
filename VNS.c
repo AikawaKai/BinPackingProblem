@@ -13,7 +13,6 @@ int fillArrayTransferWithMoves(int *num_transf, node_t *curr_node, transfer_t *l
   float slack = bin->slack;
   if ((bin->slack - val)>=0)
   {
-    //print_bin(bin);
     move_tr = calloc(1, sizeof(transfer_t));
     move_tr->item1 = curr_node;
     move_tr->index_bin = j;
@@ -36,12 +35,6 @@ int fillArraySwapWithMoves(int *num_swap, node_t *curr_node, node_t *curr_node_j
 
   if(slack_i+value_i-value_j>=0 && slack_j+value_j-value_i>=0)
   {
-    /*
-    printf("[---ok swap---]\n");
-    print_bin(&bins[bin_index_i]);
-    print_list(curr_node);
-    print_bin(&bins[bin_index_j]);
-    print_list(curr_node_j); */
     move_swap = calloc(1, sizeof(swap_t));
     move_swap->item1 = curr_node;
     move_swap->item2 = curr_node_j;
@@ -85,7 +78,7 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
   int num_bin = starting_sol->n;
   bin_t *bins = starting_sol->bins;
   int i = random_at_most(size_dataset-1);
-  fprintf(filepointer, "\nk_curr: %d\n", k_curr);
+  //fprintf(filepointer, "\nk_curr: %d\n", k_curr);
   while(k<k_curr && (int)hashset_num_items(items_set)<d_s->n)
   {
     int num_swap, num_transf;
@@ -147,9 +140,87 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
   fclose(filepointer);
 }
 
+int getZbinNotFullFromSolution(node_t *items,  sol_t *starting_sol, int *bins_not_full, int *num_bin)
+{
+  bin_t *bins = starting_sol->bins;
+  int num_el=0;
+  for(int i=0;i<starting_sol->n;i++)
+  {
+    if(bins[i].slack!=0)
+    {
+      bins_not_full[*num_bin] = i;
+      *num_bin = *num_bin + 1;
+      for(int j=0;j<bins[i].n;j++)
+      {
+        items[num_el].id = i;
+        items[num_el].val = bins[i].items[j];
+        items[num_el].item_index_bin = j;
+        num_el++;
+      }
+    }
+  }
+  sort_list(items, num_el);
+  return num_el;
+}
+
 void localSearch(dataset_t *d_s, sol_t *curr_sol)
 {
-
+  float objectiveF = 0.0;
+  int *bins_not_full = calloc(d_s->n, sizeof(int));
+  int num_bin_not_full = 0;
+  float best_transf = 0.0;
+  float best_swap = 0.0;
+  transfer_t *best_tr = NULL;
+  bin_t *bins = curr_sol->bins;
+  for(int i=0; i<curr_sol->n;i++)
+  {
+    objectiveF = objectiveF + (bins[i].sum * bins[i].sum);
+  }
+  node_t *Z = (node_t *)calloc(d_s->n, sizeof(node_t));
+  printf("\n\n\n");
+  printf("Before objectiveF: %f\n", objectiveF);
+  int num_el = getZbinNotFullFromSolution(Z, curr_sol, bins_not_full, &num_bin_not_full);
+  for(int i=0;i<num_bin_not_full;i++)
+  {
+    bin_t curr_bin = bins[bins_not_full[i]];
+    for(int j=num_el-1;j>=0;j--)
+    {
+      node_t curr_node = Z[j];
+      if(curr_node.val<= curr_bin.slack && curr_node.id!=bins_not_full[i])
+      {
+        float sum_bin = bins[Z[j].id].sum;
+        float temp_val = ((curr_bin.sum+Z[j].val)*(curr_bin.sum+Z[j].val)) + ((sum_bin-Z[j].val)*(sum_bin-Z[j].val)) - (sum_bin*sum_bin) - (curr_bin.sum*curr_bin.sum);
+        //printf("Delta move transfer :%f\n", temp_val);
+        if(temp_val>best_transf && temp_val>0)
+        {
+          transfer_t transf;
+          transf.item1 = &curr_node;
+          transf.index_bin = bins_not_full[i];
+          best_tr = &transf;
+          best_transf = temp_val;
+        }
+      }
+    }
+    //print_bin(&bins[bins_not_full[i]]);
+  }
+  objectiveF = 0.0;
+  for(int i=0; i<curr_sol->n;i++)
+  {
+    objectiveF = objectiveF + (bins[i].sum * bins[i].sum);
+  }
+  printf("Before executing transf move: %f\n", objectiveF);
+  if(best_tr!=NULL)
+  {
+    print_transfer_move(best_tr);
+    performTransfMove(best_tr, bins);
+  }
+  objectiveF = 0.0;
+  for(int i=0; i<curr_sol->n;i++)
+  {
+    objectiveF = objectiveF + (bins[i].sum * bins[i].sum);
+  }
+  printf("After transf move: %f\n", objectiveF);
+  printf("Gain %f\n", best_transf);
 }
 
 node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
@@ -209,6 +280,7 @@ void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
       best_sol = calloc(1, sizeof(sol_t));
       initialize_solution(best_sol, d_s->bin_size, d_s->n, starting_sol->max_num_el);
       copy_solution(best_sol, curr_sol);
+      Z = getZFromSolution(d_s, curr_sol);
       k=1;
       free_solution(temp_sol);
     }
