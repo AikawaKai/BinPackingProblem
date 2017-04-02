@@ -198,6 +198,7 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
           transf.index_bin = bins_not_full[i];
           best_tr = &transf;
           best_transf = temp_val;
+          printf("id1: %d id2: %d\n",transf.item1->id, transf.index_bin);
         }
       }
     }
@@ -212,6 +213,7 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
   if(best_tr!=NULL)
   {
     print_transfer_move(best_tr);
+    printf("bin from: %d\n", best_tr->item1->id);
     performTransfMove(best_tr, bins);
   }
   objectiveF = 0.0;
