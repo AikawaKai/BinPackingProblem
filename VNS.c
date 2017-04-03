@@ -9,7 +9,6 @@
 
 int fillArrayTransferWithMoves(int *num_transf, node_t *curr_node, transfer_t *list_transfers, bin_t *bin, int j)
 {
-  transfer_t *move_tr;
   float val = curr_node->val;
   float slack = bin->slack;
   if ((bin->slack - val)>=0)
@@ -114,12 +113,8 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
       else
       {
         //fprintf(filepointer, "\n\n[move performed]\n");
-        print_to_file_swap_move(&list_swaps[index_move-num_transf], filepointer);
+        //print_to_file_swap_move(&list_swaps[index_move-num_transf], filepointer);
         //fprintf(filepointer, "[+-+-+-+-+-+-+-+] \n");
-        node_t *item1 = list_swaps[index_move-num_transf].item1;
-        node_t *item2 = list_swaps[index_move-num_transf].item2;
-        print_bin(&bins[item1->id]);
-        print_bin(&bins[item2->id]);
         performSwapMove(&list_swaps[index_move-num_transf], bins);
         for(int g=0; g<starting_sol->n;g++)
         {
