@@ -42,7 +42,8 @@ void print_transfer_move(transfer_t *move)
   printf("++TRANSFER++\n");
   printf("Item1: ");
   print_list(move->item1);
-  printf("Bin: %d\n", move->index_bin);
+  printf("Bin from: %d\n", move->item1->id);
+  printf("Bin dest: %d\n", move->index_bin);
 }
 
 void print_to_file_transfer_move(transfer_t *move, FILE *filepointer)

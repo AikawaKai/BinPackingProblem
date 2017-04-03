@@ -1,4 +1,5 @@
 #include <string.h>
+#include <math.h>
 #include "data.h"
 #include "solution.h"
 #include "linkedList.h"
@@ -163,6 +164,40 @@ int getZbinNotFullFromSolution(node_t *items,  sol_t *starting_sol, int *bins_no
   return num_el;
 }
 
+float getAndPerformBestTransferMove(bin_t *bins, node_t *Z, int num_el, int *bins_not_full, int num_bin_not_full)
+{
+  transfer_t *transf = calloc(1, sizeof(transfer_t));
+  transfer_t *best_tr = NULL;
+  float best_transf = 0.0;
+  for(int i=0;i<num_bin_not_full;i++)
+  {
+    bin_t *curr_bin = &bins[bins_not_full[i]];
+    float sum_bin_dest = curr_bin->sum;
+    for(int j=num_el-1;j>=0;j--)
+    {
+      node_t *curr_node = &Z[j];
+      if(curr_node->val<= curr_bin->slack && curr_node->id!=bins_not_full[i])
+      {
+        float sum_bin_source = bins[Z[j].id].sum;
+        float temp_val = pow((sum_bin_dest + Z[j].val), 2) + pow((sum_bin_source - Z[j].val), 2) - pow(sum_bin_source, 2) - pow(sum_bin_dest, 2);
+        if(temp_val>best_transf && temp_val>0)
+        {
+          transf->item1 = curr_node;
+          transf->index_bin = bins_not_full[i];
+          best_tr = transf;
+          best_transf = temp_val;
+        }
+      }
+    }
+  }
+  if(best_tr!=NULL)
+  {
+    //print_transfer_move(best_tr);
+    performTransfMove(best_tr, bins);
+  }
+  return best_transf;
+}
+
 void localSearch(dataset_t *d_s, sol_t *curr_sol)
 {
   float objectiveF = 0.0;
@@ -170,59 +205,23 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
   int num_bin_not_full = 0;
   float best_transf = 0.0;
   float best_swap = 0.0;
-  transfer_t *best_tr = NULL;
   bin_t *bins = curr_sol->bins;
   for(int i=0; i<curr_sol->n;i++)
   {
-    objectiveF = objectiveF + (bins[i].sum * bins[i].sum);
+    objectiveF = objectiveF + pow(bins[i].sum, 2);
   }
   node_t *Z = (node_t *)calloc(d_s->n, sizeof(node_t));
-  printf("\n\n\n");
   printf("Before objectiveF: %f\n", objectiveF);
   int num_el = getZbinNotFullFromSolution(Z, curr_sol, bins_not_full, &num_bin_not_full);
-  for(int i=0;i<num_bin_not_full;i++)
-  {
-    bin_t curr_bin = bins[bins_not_full[i]];
-    for(int j=num_el-1;j>=0;j--)
-    {
-      node_t curr_node = Z[j];
-      if(curr_node.val<= curr_bin.slack && curr_node.id!=bins_not_full[i])
-      {
-        float sum_bin = bins[Z[j].id].sum;
-        float temp_val = ((curr_bin.sum+Z[j].val)*(curr_bin.sum+Z[j].val)) + ((sum_bin-Z[j].val)*(sum_bin-Z[j].val)) - (sum_bin*sum_bin) - (curr_bin.sum*curr_bin.sum);
-        //printf("Delta move transfer :%f\n", temp_val);
-        if(temp_val>best_transf && temp_val>0)
-        {
-          transfer_t transf;
-          transf.item1 = &curr_node;
-          transf.index_bin = bins_not_full[i];
-          best_tr = &transf;
-          best_transf = temp_val;
-          printf("id1: %d id2: %d\n",transf.item1->id, transf.index_bin);
-        }
-      }
-    }
-    //print_bin(&bins[bins_not_full[i]]);
-  }
-  objectiveF = 0.0;
+  best_transf = getAndPerformBestTransferMove(bins, Z, num_el, bins_not_full, num_bin_not_full);
+  float newObjectiveF = 0.0;
   for(int i=0; i<curr_sol->n;i++)
   {
-    objectiveF = objectiveF + (bins[i].sum * bins[i].sum);
+    newObjectiveF = newObjectiveF + (bins[i].sum * bins[i].sum);
   }
-  printf("Before executing transf move: %f\n", objectiveF);
-  if(best_tr!=NULL)
-  {
-    print_transfer_move(best_tr);
-    printf("bin from: %d\n", best_tr->item1->id);
-    performTransfMove(best_tr, bins);
-  }
-  objectiveF = 0.0;
-  for(int i=0; i<curr_sol->n;i++)
-  {
-    objectiveF = objectiveF + (bins[i].sum * bins[i].sum);
-  }
-  printf("After transf move: %f\n", objectiveF);
+  printf("After transf move: %f\n", newObjectiveF);
   printf("Gain %f\n", best_transf);
+  printf("Coherent value: %f == %f -> %d \n", newObjectiveF, objectiveF, (newObjectiveF - best_transf)==objectiveF);
 }
 
 node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
