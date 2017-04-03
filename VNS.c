@@ -194,10 +194,57 @@ float getAndPerformBestMove(bin_t *bins, node_t *Z, int num_el, int *bins_not_fu
       }
     }
   }
-  if(best_tr!=NULL)
+
+  // best swap search
+  swap_t *swap = calloc(1, sizeof(swap_t));
+  swap_t *best_s = NULL;
+  float best_swap = 0.0;
+  for(int q=num_el; q>=0;q--)
+  {
+    node_t *curr_node = &Z[q];
+    bin_t *curr_bin = &bins[curr_node->id];
+    float curr_sum = curr_bin->sum;
+    float curr_slack = curr_bin->slack;
+    int r = q;
+    while(Z[r].val == Z[q].val && r>0)
+    {
+      r--;
+    }
+    for(int new_r = r; new_r>=0; new_r--)
+    {
+      node_t *curr_node_r = &Z[new_r];
+      bin_t *curr_bin_r = &bins[curr_node_r->id];
+      float curr_sum_r = curr_bin_r->sum;
+      if(curr_node_r->val>(curr_node->val + curr_slack))
+      {
+        break;
+      }
+      if(curr_node->id != curr_node_r->id)
+      {
+        float curr_sum_r_update = curr_sum_r - curr_node_r->val + curr_node->val;
+        float curr_sum_update = curr_sum - curr_node->val + curr_node_r->val;
+        float temp = pow(curr_sum_update, 2) + pow(curr_sum_r_update, 2) - pow(curr_sum_r, 2) - pow(curr_sum, 2);
+        if(temp>best_swap)
+        {
+          swap->item1 = curr_node;
+          swap->item2 = curr_node_r;
+          best_s = swap;
+          best_swap = temp;
+        }
+      }
+    }
+  }
+  if(best_swap>best_transf)
   {
     //print_transfer_move(best_tr);
+    performSwapMove(best_s, bins);
+    printf("swap move: %f\n",best_swap);
+    return best_swap;
+  }
+  else if(best_tr != NULL)
+  {
     performTransfMove(best_tr, bins);
+    printf("transf move: %f\n",best_transf);
   }
   return best_transf;
 }
@@ -207,8 +254,7 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
   float objectiveF = 0.0;
   int *bins_not_full = calloc(d_s->n, sizeof(int));
   int num_bin_not_full = 0;
-  float best_transf = 0.0;
-  float best_swap = 0.0;
+  float best_move = 0.0;
   bin_t *bins = curr_sol->bins;
   for(int i=0; i<curr_sol->n;i++)
   {
@@ -216,16 +262,22 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
   }
   node_t *Z = (node_t *)calloc(d_s->n, sizeof(node_t));
   //printf("Before objectiveF: %f\n", objectiveF);
-  int num_el = getZbinNotFullFromSolution(Z, curr_sol, bins_not_full, &num_bin_not_full);
-  best_transf = getAndPerformBestMove(bins, Z, num_el, bins_not_full, num_bin_not_full);
-  float newObjectiveF = 0.0;
-  for(int i=0; i<curr_sol->n;i++)
+  do
   {
-    newObjectiveF = newObjectiveF + (bins[i].sum * bins[i].sum);
-  }
-  //printf("After transf move: %f\n", newObjectiveF);
-  //printf("Gain %f\n", best_transf);
-  printf("Coherent value: %f == %f -> %d \n", newObjectiveF - best_transf, objectiveF, (newObjectiveF - best_transf)==objectiveF);
+    int num_el = getZbinNotFullFromSolution(Z, curr_sol, bins_not_full, &num_bin_not_full);
+    best_move = getAndPerformBestMove(bins, Z, num_el, bins_not_full, num_bin_not_full);
+    //printf("best move %f\n", best_move);
+    float newObjectiveF = 0.0;
+    for(int i=0; i<curr_sol->n;i++)
+    {
+      newObjectiveF = newObjectiveF + (bins[i].sum * bins[i].sum);
+    }
+    //printf("After transf move: %f\n", newObjectiveF);
+    printf("Coherent value: %f == %f -> %d \n", newObjectiveF - best_move, objectiveF, (newObjectiveF - best_move)==objectiveF);
+    objectiveF = newObjectiveF;
+    num_bin_not_full = 0;
+    num_el = 0;
+  }while(best_move>0.0);
 }
 
 node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)

@@ -62,8 +62,10 @@ void print_swap_move(swap_t *move)
   printf("++++SWAP++++\n");
   printf("Item1: ");
   print_list(move->item1);
+  printf("bin_1: %d\n",move->item1->id);
   printf("\nItem2: ");
   print_list(move->item2);
+  printf("bin_2: %d\n",move->item2->id);
   printf("\n");
 }
 
