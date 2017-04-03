@@ -176,7 +176,11 @@ float getAndPerformBestTransferMove(bin_t *bins, node_t *Z, int num_el, int *bin
     for(int j=num_el-1;j>=0;j--)
     {
       node_t *curr_node = &Z[j];
-      if(curr_node->val<= curr_bin->slack && curr_node->id!=bins_not_full[i])
+      if(curr_node->val> curr_bin->slack)
+      {
+        break;
+      }
+      if(curr_node->id!=bins_not_full[i])
       {
         float sum_bin_source = bins[Z[j].id].sum;
         float temp_val = pow((sum_bin_dest + Z[j].val), 2) + pow((sum_bin_source - Z[j].val), 2) - pow(sum_bin_source, 2) - pow(sum_bin_dest, 2);
