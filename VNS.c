@@ -14,10 +14,8 @@ int fillArrayTransferWithMoves(int *num_transf, node_t *curr_node, transfer_t *l
   float slack = bin->slack;
   if ((bin->slack - val)>=0)
   {
-    move_tr = calloc(1, sizeof(transfer_t));
-    move_tr->item1 = curr_node;
-    move_tr->index_bin = j;
-    list_transfers[*num_transf] = *move_tr;
+    list_transfers[*num_transf].item1 = curr_node;
+    list_transfers[*num_transf].index_bin = j;
     *num_transf = *num_transf + 1;
     return 1;
   }
@@ -26,20 +24,17 @@ int fillArrayTransferWithMoves(int *num_transf, node_t *curr_node, transfer_t *l
 
 int fillArraySwapWithMoves(int *num_swap, node_t *curr_node, node_t *curr_node_j, swap_t *list_swaps, bin_t *bins)
 {
-  swap_t *move_swap;
+  //swap_t *move_swap;
   int bin_index_i = curr_node->id;
   int bin_index_j = curr_node_j->id;
   float slack_i = bins[bin_index_i].slack;
   float slack_j = bins[bin_index_j].slack;
   float value_i = curr_node->val;
   float value_j = curr_node_j->val;
-
   if((slack_i+value_i-value_j)>=0 && (slack_j+value_j-value_i)>=0)
   {
-    move_swap = calloc(1, sizeof(swap_t));
-    move_swap->item1 = curr_node;
-    move_swap->item2 = curr_node_j;
-    list_swaps[*num_swap] = *move_swap;
+    list_swaps[*num_swap].item1 = curr_node;
+    list_swaps[*num_swap].item2 = curr_node_j;
     *num_swap = *num_swap + 1;
     return 1;
   }
@@ -119,8 +114,12 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
       else
       {
         //fprintf(filepointer, "\n\n[move performed]\n");
-        //print_to_file_swap_move(&list_swaps[index_move-num_transf], filepointer);
+        print_to_file_swap_move(&list_swaps[index_move-num_transf], filepointer);
         //fprintf(filepointer, "[+-+-+-+-+-+-+-+] \n");
+        node_t *item1 = list_swaps[index_move-num_transf].item1;
+        node_t *item2 = list_swaps[index_move-num_transf].item2;
+        print_bin(&bins[item1->id]);
+        print_bin(&bins[item2->id]);
         performSwapMove(&list_swaps[index_move-num_transf], bins);
         for(int g=0; g<starting_sol->n;g++)
         {
