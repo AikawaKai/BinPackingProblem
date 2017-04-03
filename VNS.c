@@ -34,7 +34,7 @@ int fillArraySwapWithMoves(int *num_swap, node_t *curr_node, node_t *curr_node_j
   float value_i = curr_node->val;
   float value_j = curr_node_j->val;
 
-  if(slack_i+value_i-value_j>=0 && slack_j+value_j-value_i>=0)
+  if((slack_i+value_i-value_j)>=0 && (slack_j+value_j-value_i)>=0)
   {
     move_swap = calloc(1, sizeof(swap_t));
     move_swap->item1 = curr_node;
@@ -122,6 +122,15 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
         //print_to_file_swap_move(&list_swaps[index_move-num_transf], filepointer);
         //fprintf(filepointer, "[+-+-+-+-+-+-+-+] \n");
         performSwapMove(&list_swaps[index_move-num_transf], bins);
+        for(int g=0; g<starting_sol->n;g++)
+        {
+          bin_t bin = starting_sol->bins[g];
+          if(bin.slack<0)
+          {
+            print_bin(&bin);
+            exit(-1);
+          }
+        }
         // perform rand swap move
       }
       hashset_add(items_set, curr_node);
@@ -180,7 +189,7 @@ float getAndPerformBestMove(bin_t *bins, node_t *Z, int num_el, int *bins_not_fu
       {
         break;
       }
-      if(curr_node->id!=bins_not_full[i])
+      if(curr_node->id!=bins_not_full[i] && curr_node->val<=curr_bin->slack)
       {
         float sum_bin_source = bins[Z[j].id].sum;
         float temp_val = pow((sum_bin_dest + Z[j].val), 2) + pow((sum_bin_source - Z[j].val), 2) - pow(sum_bin_source, 2) - pow(sum_bin_dest, 2);
@@ -236,15 +245,14 @@ float getAndPerformBestMove(bin_t *bins, node_t *Z, int num_el, int *bins_not_fu
   }
   if(best_swap>best_transf)
   {
-    //print_transfer_move(best_tr);
     performSwapMove(best_s, bins);
-    printf("swap move: %f\n",best_swap);
+    //printf("swap move: %f\n",best_swap);
     return best_swap;
   }
   else if(best_tr != NULL)
   {
     performTransfMove(best_tr, bins);
-    printf("transf move: %f\n",best_transf);
+    //printf("transf move: %f\n",best_transf);
   }
   return best_transf;
 }
@@ -262,6 +270,7 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
   }
   node_t *Z = (node_t *)calloc(d_s->n, sizeof(node_t));
   //printf("Before objectiveF: %f\n", objectiveF);
+  /*
   do
   {
     int num_el = getZbinNotFullFromSolution(Z, curr_sol, bins_not_full, &num_bin_not_full);
@@ -278,6 +287,7 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
     num_bin_not_full = 0;
     num_el = 0;
   }while(best_move>0.0);
+  */
 }
 
 node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)

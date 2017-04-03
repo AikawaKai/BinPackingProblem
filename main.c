@@ -74,6 +74,7 @@ int main(int argc, char *argv[]){
     MBSmodified(&datasets[i], &solutions[i]);
     mbs_i_res = solutions[i].n;
     printf("Solution MBSmodified: %d\n", solutions[i].n);
+
     // Minimum Bin Slack Modified Sampling
     free_list(datasets[i].head);
     datasets[i].head = malloc(sizeof(node_t));
