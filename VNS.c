@@ -211,7 +211,7 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
     objectiveF = objectiveF + pow(bins[i].sum, 2);
   }
   node_t *Z = (node_t *)calloc(d_s->n, sizeof(node_t));
-  printf("Before objectiveF: %f\n", objectiveF);
+  //printf("Before objectiveF: %f\n", objectiveF);
   int num_el = getZbinNotFullFromSolution(Z, curr_sol, bins_not_full, &num_bin_not_full);
   best_transf = getAndPerformBestTransferMove(bins, Z, num_el, bins_not_full, num_bin_not_full);
   float newObjectiveF = 0.0;
@@ -219,9 +219,9 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
   {
     newObjectiveF = newObjectiveF + (bins[i].sum * bins[i].sum);
   }
-  printf("After transf move: %f\n", newObjectiveF);
-  printf("Gain %f\n", best_transf);
-  printf("Coherent value: %f == %f -> %d \n", newObjectiveF, objectiveF, (newObjectiveF - best_transf)==objectiveF);
+  //printf("After transf move: %f\n", newObjectiveF);
+  //printf("Gain %f\n", best_transf);
+  printf("Coherent value: %f == %f -> %d \n", newObjectiveF - best_transf, objectiveF, (newObjectiveF - best_transf)==objectiveF);
 }
 
 node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
