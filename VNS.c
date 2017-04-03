@@ -164,7 +164,7 @@ int getZbinNotFullFromSolution(node_t *items,  sol_t *starting_sol, int *bins_no
   return num_el;
 }
 
-float getAndPerformBestTransferMove(bin_t *bins, node_t *Z, int num_el, int *bins_not_full, int num_bin_not_full)
+float getAndPerformBestMove(bin_t *bins, node_t *Z, int num_el, int *bins_not_full, int num_bin_not_full)
 {
   transfer_t *transf = calloc(1, sizeof(transfer_t));
   transfer_t *best_tr = NULL;
@@ -217,7 +217,7 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
   node_t *Z = (node_t *)calloc(d_s->n, sizeof(node_t));
   //printf("Before objectiveF: %f\n", objectiveF);
   int num_el = getZbinNotFullFromSolution(Z, curr_sol, bins_not_full, &num_bin_not_full);
-  best_transf = getAndPerformBestTransferMove(bins, Z, num_el, bins_not_full, num_bin_not_full);
+  best_transf = getAndPerformBestMove(bins, Z, num_el, bins_not_full, num_bin_not_full);
   float newObjectiveF = 0.0;
   for(int i=0; i<curr_sol->n;i++)
   {
