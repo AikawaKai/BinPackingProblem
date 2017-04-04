@@ -38,8 +38,25 @@ void add_item_to_bin(bin_t *b, float item)
   b->items[b->n-1] = item;
 }
 
-void removeItemFromBin(bin_t *bin, int index)
+void removeItemFromBin(bin_t *bin, float value_to_remove)
 {
+  int index;
+  int bool_val = 0;
+  for(int i=0; i<bin->n;i++)
+  {
+    if(bin->items[i]==value_to_remove)
+    {
+      bool_val = 1;
+      index = i;
+      break;
+    }
+  }
+  if(bool_val == 0)
+  {
+    printf("float to remove: %f\n", value_to_remove);
+    print_bin(bin);
+    exit(-1);
+  }
   float value = bin->items[index];
   if(((bin->n)-1)>index)
   {

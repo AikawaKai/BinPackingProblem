@@ -35,19 +35,6 @@ int fillArraySwapWithMoves(int *num_swap, node_t *curr_node, node_t *curr_node_j
     list_swaps[*num_swap].item1 = curr_node;
     list_swaps[*num_swap].item2 = curr_node_j;
     *num_swap = *num_swap + 1;
-    printf("\n");
-    printf("value_i %f\n", value_i);
-    printf("value_j %f\n", value_j);
-    printf("index item1 %d\n", curr_node->item_index_bin);
-    printf("index item2 %d\n", curr_node_j->item_index_bin);
-    printf("item 1 value %f\n", bins[bin_index_i].items[curr_node->item_index_bin]);
-    printf("item 2 value %f\n", bins[bin_index_j].items[curr_node_j->item_index_bin]);
-    printf("item 1 value in node %f\n", curr_node->val);
-    printf("item 2 value in node %f\n", curr_node_j->val);
-    printf("slack(1) %f\n", slack_i);
-    printf("slack(2) %f\n", slack_j);
-    printf("recalc slack(1) %f\n", slack_i+value_i-value_j);
-    printf("recalc slack(2) %f\n", slack_j+value_j-value_i);
     return 1;
   }
   return 0;
@@ -112,21 +99,6 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
         fillArraySwapWithMoves(&num_swap, curr_node, &Z[j], list_swaps, bins);
       }
     }
-    if(num_swap>2)
-    {
-      printf("\n\n-----------------\n[Before perform]\n");
-      for(int p=0; p<num_swap;p++)
-      {
-        print_to_file_swap_move(&list_swaps[p], filepointer);
-        print_bin(&bins[list_swaps[p].item1->id]);
-        printf("index bin(1): %d\n",list_swaps[p].item1->item_index_bin);
-        print_bin(&bins[list_swaps[p].item2->id]);
-        printf("index bin(2): %d\n",list_swaps[p].item2->item_index_bin);
-        printf("+-+-+\n");
-      }
-      printf("[print end]\n");
-      exit(-1);
-    }
     if(num_transf+num_swap>0)
     {
       int index_move = random_at_most(num_transf+num_swap-1);
@@ -186,7 +158,6 @@ int getZbinNotFullFromSolution(node_t *items,  sol_t *starting_sol, int *bins_no
       {
         items[num_el].id = i;
         items[num_el].val = bins[i].items[j];
-        items[num_el].item_index_bin = j;
         num_el++;
       }
     }
@@ -331,7 +302,6 @@ node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
     {
       temp->id = i;
       temp->val = bins[i].items[k];
-      temp->item_index_bin = k;
       items[j] = *temp;
       temp = calloc(1, sizeof(node_t));
       k++;

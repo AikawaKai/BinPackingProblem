@@ -4,7 +4,6 @@
 typedef struct node {
     int id; // bin index
     float val; // item value
-    int item_index_bin; // item index in bin
     struct node * next;
 } node_t;
 
