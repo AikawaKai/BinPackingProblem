@@ -14,9 +14,6 @@ void performTransfMove(transfer_t *transf, bin_t *bins)
 }
 void performSwapMove(swap_t *transf, bin_t *bins)
 {
-  print_swap_move(transf);
-  print_bin(&bins[transf->item1->id]);
-  print_bin(&bins[transf->item2->id]);
   node_t *item1 = transf->item1;
   node_t *item2 = transf->item2;
   int bin_from = item1->id;

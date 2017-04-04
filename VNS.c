@@ -107,7 +107,18 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
         //fprintf(filepointer, "\n\n[move performed]\n");
         //print_to_file_transfer_move(&list_transfers[index_move], filepointer);
         //fprintf(filepointer, "[+-+-+-+-+-+-+-+]\n\n");
+        printf("##################\n");
+        printf("\n[---Before Transfer---]\n");
+        print_bin(&bins[list_transfers[index_move].item1->id]);
+        printf("Val bin: %f\n", list_transfers[index_move].item1->val);
+        printf("\nBin dest\n");
+        print_bin(&bins[list_transfers[index_move].index_bin]);
         performTransfMove(&list_transfers[index_move], bins);
+        printf("\n[---After transfer---]\n");
+        printf("\nNeeds to be the same as bin dest\n");
+        print_bin(&bins[list_transfers[index_move].item1->id]);
+        printf("Bin dest\n");
+        print_bin(&bins[list_transfers[index_move].index_bin]);
         // perform rand transf move
       }
       else
@@ -115,7 +126,18 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
         //fprintf(filepointer, "\n\n[move performed]\n");
         //print_to_file_swap_move(&list_swaps[index_move-num_transf], filepointer);
         //fprintf(filepointer, "[+-+-+-+-+-+-+-+] \n");
+        printf("##################\n");
+        printf("\n[---Before swap---]\n");
+        printf("\n| Bins swap |\n");
+        print_bin(&bins[list_swaps[index_move-num_transf].item1->id]);
+        printf("Val bin1: %f\n", list_swaps[index_move-num_transf].item1->val);
+        print_bin(&bins[list_swaps[index_move-num_transf].item2->id]);
+        printf("Val bin2: %f\n", list_swaps[index_move-num_transf].item2->val);
         performSwapMove(&list_swaps[index_move-num_transf], bins);
+        printf("\n[---After swap---]\n");
+        print_bin(&bins[list_swaps[index_move-num_transf].item2->id]);
+        print_bin(&bins[list_swaps[index_move-num_transf].item1->id]);
+        /*
         for(int g=0; g<starting_sol->n;g++)
         {
           bin_t bin = starting_sol->bins[g];
@@ -124,7 +146,7 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
             print_bin(&bin);
             exit(-1);
           }
-        }
+        }*/
         // perform rand swap move
       }
       hashset_add(items_set, curr_node);
