@@ -160,6 +160,7 @@ void print_solution(sol_t *s)
   for(int i=0; i<s->n;i++)
   {
     //printf("-------\n");
+    printf("\nCURRENT BIN:%d\n", i);
     print_bin(&(s->bins[i]));
     //printf("-------\n");
   }
