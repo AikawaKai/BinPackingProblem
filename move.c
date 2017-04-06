@@ -26,8 +26,6 @@ void performSwapMove(swap_t *transf, bin_t *bins)
   add_item_to_bin(&bins[bin_dest], val1);
   item1->id = bin_dest;
   item2->id = bin_from;
-  item1->val = val2;
-  item2->val = val1;
 }
 
 void print_transfer_move(transfer_t *move)

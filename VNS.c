@@ -76,6 +76,12 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
   //fprintf(filepointer, "\nk_curr: %d\n", k_curr);
   while(k<k_curr && (int)hashset_num_items(items_set)<d_s->n)
   {
+    for(int j=0; j<d_s->n;j++)
+    {
+      printf("\nCOEHERENT CHECK:\n");
+      print_bin(&bins[Z[j].id]);
+      print_list(&Z[j]);
+    }
     int num_swap, num_transf;
     num_swap = 0;
     num_transf = 0;
@@ -99,55 +105,18 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
         fillArraySwapWithMoves(&num_swap, curr_node, &Z[j], list_swaps, bins);
       }
     }
-    printf("\n\n\n-----------MOVES MEMORIZED-------------");
-    for(int j=0;j<num_transf;j++)
-    {
-      printf("\nTRANSFER MOVE: %d", j);
-      print_transfer_move(&list_transfers[j]);
-    }
-    for(int j=0;j<num_swap;j++)
-    {
-      printf("\nSWAP MOVE: %d", j);
-      print_swap_move(&list_swaps[j]);
-    }
-    printf("\n--SOLUTION BEFORE MOVE--\n");
-    print_solution(starting_sol);
     if(num_transf+num_swap>0)
     {
       int index_move = random_at_most(num_transf+num_swap-1);
       if(index_move<num_transf)
       {
-        //fprintf(filepointer, "\n\n[move performed]\n");
-        //print_to_file_transfer_move(&list_transfers[index_move], filepointer);
-        //fprintf(filepointer, "[+-+-+-+-+-+-+-+]\n\n");
-        printf("\n\nTRANSFER MOVE SELECTED : %d\n", index_move);
-        print_transfer_move(&list_transfers[index_move]);
-        performTransfMove(&list_transfers[index_move], bins);
-        printf("\n--SOLUTION AFTER MOVE--\n");
-        print_solution(starting_sol);
         // perform rand transf move
+        performTransfMove(&list_transfers[index_move], bins);
       }
       else
       {
-        //fprintf(filepointer, "\n\n[move performed]\n");
-        //print_to_file_swap_move(&list_swaps[index_move-num_transf], filepointer);
-        //fprintf(filepointer, "[+-+-+-+-+-+-+-+] \n");
-        printf("\n\nSWAP MOVE SELECTED : %d\n", index_move-num_transf);
-        print_swap_move(&list_swaps[index_move-num_transf]);
-        performSwapMove(&list_swaps[index_move-num_transf], bins);
-        printf("\n--SOLUTION AFTER MOVE--\n");
-        print_solution(starting_sol);
-        /*
-        for(int g=0; g<starting_sol->n;g++)
-        {
-          bin_t bin = starting_sol->bins[g];
-          if(bin.slack<0)
-          {
-            print_bin(&bin);
-            exit(-1);
-          }
-        }*/
         // perform rand swap move
+        performSwapMove(&list_swaps[index_move-num_transf], bins);
       }
       hashset_add(items_set, curr_node);
       k++;
@@ -158,6 +127,7 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
     {
       i = random_at_most(size_dataset-1);
       curr_node = &Z[i];
+      printf("\nSELECTED ITEM: %f\n",Z[i].val);
     }
     free(list_transfers);
     free(list_swaps);
