@@ -185,7 +185,6 @@ float getAndPerformBestMove(bin_t *bins, node_t *Z, int num_el, int *bins_not_fu
 
   // best swap search
   float best_swap = 0.0;
-  /*
   swap_t *swap = calloc(1, sizeof(swap_t));
   swap_t *best_s = NULL;
   for(int q=num_el; q>=0;q--)
@@ -204,7 +203,8 @@ float getAndPerformBestMove(bin_t *bins, node_t *Z, int num_el, int *bins_not_fu
       node_t *curr_node_r = &Z[new_r];
       bin_t *curr_bin_r = &bins[curr_node_r->id];
       float curr_sum_r = curr_bin_r->sum;
-      if(curr_node_r->val>(curr_node->val + curr_slack))
+      float curr_slack_r = curr_bin_r->slack;
+      if(curr_node_r->val>(curr_node->val + curr_slack) || curr_node->val>(curr_node_r->val + curr_slack_r))
       {
         break;
       }
@@ -222,10 +222,10 @@ float getAndPerformBestMove(bin_t *bins, node_t *Z, int num_el, int *bins_not_fu
         }
       }
     }
-  }*/
+  }
   if(best_swap>best_transf)
   {
-    //performSwapMove(best_s, bins);
+    performSwapMove(best_s, bins);
     //printf("swap move: %f\n",best_swap);
     return best_swap;
   }
