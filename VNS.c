@@ -184,9 +184,10 @@ float getAndPerformBestMove(bin_t *bins, node_t *Z, int num_el, int *bins_not_fu
   }
 
   // best swap search
+  float best_swap = 0.0;
+  /*
   swap_t *swap = calloc(1, sizeof(swap_t));
   swap_t *best_s = NULL;
-  float best_swap = 0.0;
   for(int q=num_el; q>=0;q--)
   {
     node_t *curr_node = &Z[q];
@@ -221,10 +222,10 @@ float getAndPerformBestMove(bin_t *bins, node_t *Z, int num_el, int *bins_not_fu
         }
       }
     }
-  }
+  }*/
   if(best_swap>best_transf)
   {
-    performSwapMove(best_s, bins);
+    //performSwapMove(best_s, bins);
     //printf("swap move: %f\n",best_swap);
     return best_swap;
   }
@@ -249,11 +250,22 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
   }
   node_t *Z = (node_t *)calloc(d_s->n, sizeof(node_t));
   //printf("Before objectiveF: %f\n", objectiveF);
-  /*
   do
   {
     int num_el = getZbinNotFullFromSolution(Z, curr_sol, bins_not_full, &num_bin_not_full);
+    for(int j=num_el-1;j>=0;j--)
+    {
+      if(!check_if_item_in_bin(&bins[Z[j].id], Z[j].val))
+      {
+        printf("COHERENT CHECK BEFORE\n");
+        printf("Bin: %d\n",Z[j].id);
+        print_bin(&bins[Z[j].id]);
+        print_list(&Z[j]);
+        exit(-1);
+      }
+    }
     best_move = getAndPerformBestMove(bins, Z, num_el, bins_not_full, num_bin_not_full);
+
     //printf("best move %f\n", best_move);
     float newObjectiveF = 0.0;
     for(int i=0; i<curr_sol->n;i++)
@@ -266,7 +278,6 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
     num_bin_not_full = 0;
     num_el = 0;
   }while(best_move>0.0);
-  */
 }
 
 node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
@@ -317,27 +328,27 @@ void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
     temp_sol = calloc(1, sizeof(sol_t));
     initialize_solution(temp_sol, d_s->bin_size, d_s->n, starting_sol->max_num_el);
     copy_solution(curr_sol, temp_sol);
+    shakingSolution(d_s, curr_sol, Z, k);
     for(int j=0; j<d_s->n;j++)
     {
       if(!check_if_item_in_bin(&curr_sol->bins[Z[j].id], Z[j].val))
       {
         printf("Current k: %d\n", k);
-        printf("COHERENT CHECK BEFORE\n");
+        printf("COHERENT CHECK 1\n");
         printf("Bin: %d\n",Z[j].id);
         print_bin(&curr_sol->bins[Z[j].id]);
         print_list(&Z[j]);
         exit(-1);
       }
     }
-    shakingSolution(d_s, curr_sol, Z, k);
     localSearch(d_s, curr_sol);
     if(curr_sol->n > best_sol->n)
     {
-      printf("Non dovrei entrare qui in teoria");
       free_solution(best_sol);
       best_sol = calloc(1, sizeof(sol_t));
       initialize_solution(best_sol, d_s->bin_size, d_s->n, starting_sol->max_num_el);
       copy_solution(curr_sol, best_sol);
+      Z = getZFromSolution(d_s, curr_sol);
       k=1;
       free_solution(temp_sol);
     }
