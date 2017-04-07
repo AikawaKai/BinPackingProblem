@@ -38,6 +38,7 @@ typedef struct sol
 void initialize_solution(sol_t *s, float b_size, int num_item, int max_num_el);
 void add_new_bin(sol_t *s);
 void copy_solution(sol_t *sol, sol_t *result);
+void delete_bin_from_solution(sol_t *solution, int index_bin);
 void free_solution(sol_t *s);
 void print_solution(sol_t *s);
 void check_solution(dataset_t *d_s, sol_t *s);

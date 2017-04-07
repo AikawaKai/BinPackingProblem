@@ -11,6 +11,10 @@ void performTransfMove(transfer_t *transf, sol_t *solution , bin_t *bins)
   removeItemFromBin(&bins[bin_from], item1->val);
   add_item_to_bin(&bins[bin_dest], item1->val);
   item1->id = bin_dest;
+  if(bins[bin_from].n==0)
+  {
+    delete_bin_from_solution(solution, bin_from);
+  }
 }
 void performSwapMove(swap_t *transf, bin_t *bins)
 {

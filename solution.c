@@ -138,6 +138,15 @@ void add_new_bin(sol_t *s)
   s->bins[s->n-1]=n_b;
 }
 
+void delete_bin_from_solution(sol_t *solution, int index_bin)
+{
+  for(int i=index_bin; i<solution->n-1; i++)
+  {
+    solution->bins[i] = solution->bins[i+1];
+  }
+  solution->n = solution->n-1;
+}
+
 void free_solution(sol_t *s)
 {
   for(int i=0; i<s->n; i++)
