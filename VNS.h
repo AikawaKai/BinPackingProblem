@@ -2,7 +2,7 @@
 #define VNS
 #include "move.h"
 
-void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max);
+sol_t* VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max);
 node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol);
 int getZbinNotFullFromSolution(node_t *items, sol_t *starting_sol, int *bins_not_full, int *num_bin);
 void shakingSolution(dataset_t *d_s, sol_t *starting_sol,  node_t *Z, int k_curr);

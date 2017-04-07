@@ -10,10 +10,11 @@ int main(int argc, char *argv[]){
   char *filename = argv[1];
   char buff[255];
   int max_num_elem;
-  int firstfit_res, firstfistdecr_res, mbs_res, mbs_i_res, mbs_sampling;
+  int firstfit_res, firstfistdecr_res, mbs_res, mbs_i_res, mbs_sampling, vns;
   dataset_t *datasets;
   sol_t *solutions;
   sol_t *sampling_sol;
+  sol_t *vns_sol;
   FILE *filepointer;
   FILE *filepointeroutput;
   filepointer = fopen(filename, "r");
@@ -36,7 +37,7 @@ int main(int argc, char *argv[]){
   fclose(filepointer);
   //print_list(copy(datasets[0].head));
   filepointeroutput = fopen(strcat(filename, ".csv"), "w");
-  fprintf(filepointeroutput, "%s, %s, %s, %s, %s, %s, %s\n","dataset", "firstfit", "firstfitdecreasing", "MBS", "MBS'", "MBS'sampling", "best known solution");
+  fprintf(filepointeroutput, "%s, %s, %s, %s, %s, %s, %s, %s\n","dataset", "firstfit", "firstfitdecreasing", "MBS", "MBS'", "MBS'sampling", "VNS", "best known solution");
   for(int i=0; i<num_cases; i++)
   {
     node_t *new_head = malloc(sizeof(node_t));
@@ -81,7 +82,10 @@ int main(int argc, char *argv[]){
     datasets[i].head = new_head;
     check_solution(&datasets[i], &solutions[i]);
     // VNS METHOD
-    VNSmethod(&datasets[i], &solutions[i], 7);
+    vns_sol = VNSmethod(&datasets[i], &solutions[i], 7);
+    check_solution(&datasets[i], vns_sol);
+    vns = vns_sol->n;
+    printf("Solution VNS: %d\n", vns_sol->n);
     //VNS METHOD
     free_solution(&solutions[i]);
     sampling_sol = MBSsampling(&datasets[i]);
@@ -89,7 +93,7 @@ int main(int argc, char *argv[]){
     mbs_sampling = sampling_sol->n;
     printf("Solution MBSsampling: %d\n", mbs_sampling);
     // Write to csv
-    fprintf(filepointeroutput, "%s, %d, %d, %d, %d, %d, %d\n",datasets[i].name, firstfit_res, firstfistdecr_res, mbs_res, mbs_i_res, mbs_sampling, datasets[i].best_sol);
+    fprintf(filepointeroutput, "%s, %d, %d, %d, %d, %d, %d, %d\n",datasets[i].name, firstfit_res, firstfistdecr_res, mbs_res, mbs_i_res, mbs_sampling, vns, datasets[i].best_sol);
     //print_solution(sampling_sol);
     free_solution(sampling_sol);
     free_dataset(&datasets[i]);

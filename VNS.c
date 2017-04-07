@@ -313,7 +313,7 @@ node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
   return items;
 }
 
-void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
+sol_t* VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
 {
   sol_t *curr_sol = calloc(1, sizeof(sol_t));
   sol_t *best_sol = calloc(1, sizeof(sol_t));
@@ -323,7 +323,6 @@ void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
   copy_solution(starting_sol, curr_sol);
   initialize_solution(best_sol, d_s->bin_size, d_s->n, starting_sol->max_num_el);
   copy_solution(starting_sol, best_sol);
-  node_t *Z = getZFromSolution(d_s, curr_sol);
   int k=1;
   sol_t *step;
   while(k<k_max)
@@ -331,6 +330,7 @@ void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
     temp_sol = calloc(1, sizeof(sol_t));
     initialize_solution(temp_sol, d_s->bin_size, d_s->n, starting_sol->max_num_el);
     copy_solution(curr_sol, temp_sol);
+    node_t *Z = getZFromSolution(d_s, curr_sol);
     shakingSolution(d_s, curr_sol, Z, k);
     for(int j=0; j<d_s->n;j++)
     {
@@ -345,13 +345,12 @@ void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
       }
     }
     localSearch(d_s, curr_sol);
-    if(curr_sol->n > best_sol->n)
+    if(curr_sol->n < best_sol->n)
     {
       free_solution(best_sol);
       best_sol = calloc(1, sizeof(sol_t));
       initialize_solution(best_sol, d_s->bin_size, d_s->n, starting_sol->max_num_el);
       copy_solution(curr_sol, best_sol);
-      Z = getZFromSolution(d_s, curr_sol);
       k=1;
       free_solution(temp_sol);
     }
@@ -367,4 +366,5 @@ void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
     }
     //k++; // momentaneamente
   }
+  return best_sol;
 }
