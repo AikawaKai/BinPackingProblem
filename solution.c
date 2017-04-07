@@ -71,6 +71,18 @@ void removeItemFromBin(bin_t *bin, float value_to_remove)
   bin->sum = bin->sum - value;
 }
 
+int check_if_item_in_bin(bin_t *b, float item)
+{
+  for(int i = 0; i<b->n;i++)
+  {
+    if(item==b->items[i])
+    {
+      return 1;
+    }
+  }
+  return 0;
+}
+
 int get_bin_slack(bin_t *b)
 {
   return b->slack;

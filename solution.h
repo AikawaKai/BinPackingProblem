@@ -22,6 +22,7 @@ void copy_bin(bin_t *source, bin_t *dest);
 void free_bin(bin_t *b);
 void add_item_to_bin(bin_t *b, float item);
 void removeItemFromBin(bin_t *bin, float value_to_remove);
+int check_if_item_in_bin(bin_t *b, float item);
 int get_bin_slack(bin_t *b);
 bool add_item_to_bin_if_fits(bin_t *b, float item);
 void print_bin(bin_t *bin);

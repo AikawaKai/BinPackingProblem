@@ -14,8 +14,15 @@ void performTransfMove(transfer_t *transf, bin_t *bins)
 }
 void performSwapMove(swap_t *transf, bin_t *bins)
 {
+
   node_t *item1 = transf->item1;
   node_t *item2 = transf->item2;
+  printf("------------\n");
+  printf("BEFORE SWAP\n");
+  printf("value1: %f\n",item1->val);
+  print_bin(&bins[item1->id]);
+  printf("value2: %f\n",item2->val);
+  print_bin(&bins[item2->id]);
   int bin_from = item1->id;
   int bin_dest = item2->id;
   float val1 = item1->val;
@@ -26,6 +33,9 @@ void performSwapMove(swap_t *transf, bin_t *bins)
   add_item_to_bin(&bins[bin_dest], val1);
   item1->id = bin_dest;
   item2->id = bin_from;
+  printf("AFTER SWAP\n");
+  print_bin(&bins[item1->id]);
+  print_bin(&bins[item2->id]);
 }
 
 void print_transfer_move(transfer_t *move)
