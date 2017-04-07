@@ -3,7 +3,7 @@
 #include "linkedList.h"
 #include "move.h"
 
-void performTransfMove(transfer_t *transf, bin_t *bins)
+void performTransfMove(transfer_t *transf, sol_t *solution , bin_t *bins)
 {
   node_t *item1 = transf->item1;
   int bin_from = item1->id;

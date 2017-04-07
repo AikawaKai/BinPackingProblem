@@ -105,7 +105,7 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
       if(index_move<num_transf)
       {
         // perform rand transf move
-        performTransfMove(&list_transfers[index_move], bins);
+        performTransfMove(&list_transfers[index_move], starting_sol, bins);
       }
       else
       {
@@ -151,7 +151,7 @@ int getZbinNotFullFromSolution(node_t *items,  sol_t *starting_sol, int *bins_no
   return num_el;
 }
 
-float getAndPerformBestMove(bin_t *bins, node_t *Z, int num_el, int *bins_not_full, int num_bin_not_full)
+float getAndPerformBestMove(bin_t *bins, node_t *Z, sol_t *solution, int num_el, int *bins_not_full, int num_bin_not_full)
 {
   transfer_t *transf = calloc(1, sizeof(transfer_t));
   transfer_t *best_tr = NULL;
@@ -224,13 +224,13 @@ float getAndPerformBestMove(bin_t *bins, node_t *Z, int num_el, int *bins_not_fu
   }
   if(best_swap>best_transf)
   {
-    performSwapMove(best_s, bins);
+    performSwapMove(best_s,  bins);
     //printf("swap move: %f\n",best_swap);
     return best_swap;
   }
   else if(best_tr != NULL)
   {
-    performTransfMove(best_tr, bins);
+    performTransfMove(best_tr, solution,  bins);
     //printf("transf move: %f\n",best_transf);
   }
   return best_transf;
@@ -263,7 +263,7 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
         exit(-1);
       }
     }
-    best_move = getAndPerformBestMove(bins, Z, num_el, bins_not_full, num_bin_not_full);
+    best_move = getAndPerformBestMove(bins, Z, curr_sol, num_el, bins_not_full, num_bin_not_full);
 
     //printf("best move %f\n", best_move);
     float newObjectiveF = 0.0;
