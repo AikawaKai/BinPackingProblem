@@ -8,35 +8,15 @@ void performTransfMove(transfer_t *transf, bin_t *bins)
   node_t *item1 = transf->item1;
   int bin_from = item1->id;
   int bin_dest = transf->index_bin;
-  printf("+++++++++++\n");
-  printf("BEFORE TRANSFER\n");
-  printf("Value to transfer: %f\n", item1->val);
-  printf("Bin from%d\n", bin_from);
-  print_bin(&bins[bin_from]);
-  printf("Bin dest %d\n", bin_dest);
-  print_bin(&bins[bin_dest]);
   removeItemFromBin(&bins[bin_from], item1->val);
   add_item_to_bin(&bins[bin_dest], item1->val);
   item1->id = bin_dest;
-  printf("AFTER TRANSFER\n");
-  printf("Bin from%d\n", bin_from);
-  print_bin(&bins[bin_from]);
-  printf("Bin dest %d\n", bin_dest);
-  print_bin(&bins[bin_dest]);
 }
 void performSwapMove(swap_t *transf, bin_t *bins)
 {
 
   node_t *item1 = transf->item1;
   node_t *item2 = transf->item2;
-  printf("++++++++++++\n");
-  printf("BEFORE SWAP\n");
-  printf("value1: %f\n",item1->val);
-  printf("Bin from%d\n", item1->id);
-  print_bin(&bins[item1->id]);
-  printf("value2: %f\n",item2->val);
-  printf("Bin dest%d\n", item2->id);
-  print_bin(&bins[item2->id]);
   int bin_from = item1->id;
   int bin_dest = item2->id;
   float val1 = item1->val;
@@ -47,11 +27,6 @@ void performSwapMove(swap_t *transf, bin_t *bins)
   add_item_to_bin(&bins[bin_dest], val1);
   item1->id = bin_dest;
   item2->id = bin_from;
-  printf("AFTER SWAP\n");
-  printf("Bin from%d\n", item2->id);
-  print_bin(&bins[item2->id]);
-  printf("Bin dest%d\n", item1->id);
-  print_bin(&bins[item1->id]);
 }
 
 void print_transfer_move(transfer_t *move)
