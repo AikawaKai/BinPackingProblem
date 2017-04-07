@@ -76,7 +76,6 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
   //fprintf(filepointer, "\nk_curr: %d\n", k_curr);
   while(k<k_curr && (int)hashset_num_items(items_set)<d_s->n)
   {
-    printf("k:%d\n", k);
     int num_swap, num_transf;
     num_swap = 0;
     num_transf = 0;
@@ -107,7 +106,6 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
       {
         // perform rand transf move
         performTransfMove(&list_transfers[index_move], bins);
-
       }
       else
       {
@@ -335,6 +333,7 @@ void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
     localSearch(d_s, curr_sol);
     if(curr_sol->n > best_sol->n)
     {
+      printf("Non dovrei entrare qui in teoria");
       free_solution(best_sol);
       best_sol = calloc(1, sizeof(sol_t));
       initialize_solution(best_sol, d_s->bin_size, d_s->n, starting_sol->max_num_el);
@@ -352,6 +351,6 @@ void VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
       free_solution(temp_sol);
       k++;
     }
-    k++; // momentaneamente
+    //k++; // momentaneamente
   }
 }
