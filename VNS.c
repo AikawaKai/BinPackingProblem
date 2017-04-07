@@ -81,8 +81,10 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
       if(!check_if_item_in_bin(&bins[Z[j].id], Z[j].val))
       {
         printf("COHERENT CHECK\n");
+        printf("Bin: %d\n",Z[j].id);
         print_bin(&bins[Z[j].id]);
         print_list(&Z[j]);
+        exit(-1);
       }
     }
     int num_swap, num_transf;
