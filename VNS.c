@@ -121,7 +121,6 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
     {
       i = random_at_most(size_dataset-1);
       curr_node = &Z[i];
-      printf("\nSELECTED ITEM: %f\n",Z[i].val);
     }
     free(list_transfers);
     free(list_swaps);
@@ -273,7 +272,11 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
       newObjectiveF = newObjectiveF + (bins[i].sum * bins[i].sum);
     }
     //printf("After transf move: %f\n", newObjectiveF);
-    printf("Coherent value: %f == %f -> %d \n", newObjectiveF - best_move, objectiveF, (newObjectiveF - best_move)==objectiveF);
+    if((newObjectiveF - best_move)!=objectiveF)
+    {
+      printf("Non coherent new objectiveF\n");
+      exit(-1);
+    }
     objectiveF = newObjectiveF;
     num_bin_not_full = 0;
     num_el = 0;
