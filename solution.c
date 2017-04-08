@@ -1,4 +1,5 @@
 #include "solution.h"
+#include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -210,7 +211,6 @@ void check_solution(dataset_t *d_s, sol_t *s)
     {
       printf("Incoherent Solution\n");
       printf("Bin size: %f Filled: %f\n", d_s->bin_size, curr_size);
-      exit(-1);
     }
     curr_size = 0.0;
   }

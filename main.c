@@ -82,13 +82,13 @@ int main(int argc, char *argv[]){
     datasets[i].head = new_head;
     check_solution(&datasets[i], &solutions[i]);
     // VNS METHOD
-    vns_sol = VNSmethod(&datasets[i], &solutions[i], 7);
+    vns_sol = VNSmethod(&datasets[i], &solutions[i], 15);
     check_solution(&datasets[i], vns_sol);
     vns = vns_sol->n;
     printf("Solution VNS: %d\n", vns_sol->n);
     //VNS METHOD
     free_solution(&solutions[i]);
-    sampling_sol = MBSsampling(&datasets[i]);
+    sampling_sol = MBSsampling(&datasets[i], 100);
     check_solution(&datasets[i], sampling_sol);
     mbs_sampling = sampling_sol->n;
     printf("Solution MBSsampling: %d\n", mbs_sampling);

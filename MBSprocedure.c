@@ -164,9 +164,8 @@ void MBSmodified(dataset_t *d_s, sol_t *sol)
   hashset_destroy(curr_A_set);
 }
 
-sol_t * MBSsampling(dataset_t *d_s)
+sol_t * MBSsampling(dataset_t *d_s, int max_attempts)
 {
-  int max_attempts = 500;
   int curr_best = d_s->n;
   float sum=0;
   int num_el = d_s->n;

@@ -62,19 +62,12 @@ long random_at_most(long max)
 
 void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
 {
-  printf("I'm shaking\n");
-  char moves[50] = "tests/";
-  strcat(moves, d_s->name);
-  strcat(moves, "moves.txt");
-  FILE *filepointer;
-  filepointer = fopen(moves, "a");
   hashset_t items_set = hashset_create(d_s->bin_size);
   int k=0;
   int size_dataset = d_s->n;
   int num_bin = starting_sol->n;
   bin_t *bins = starting_sol->bins;
   int i = random_at_most(size_dataset-1);
-  //fprintf(filepointer, "\nk_curr: %d\n", k_curr);
   while(k<k_curr && (int)hashset_num_items(items_set)<d_s->n)
   {
     int num_swap, num_transf;
@@ -127,7 +120,6 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
     free(list_swaps);
   }
   hashset_destroy(items_set);
-  fclose(filepointer);
 }
 
 int getZbinNotFullFromSolution(node_t *items,  sol_t *starting_sol, int *bins_not_full, int *num_bin)
@@ -237,7 +229,6 @@ float getAndPerformBestMove(bin_t *bins, node_t *Z, sol_t *solution, int num_el,
 
 void localSearch(dataset_t *d_s, sol_t *curr_sol)
 {
-  printf("I'm doing the local search\n");
   float objectiveF = 0.0;
   int *bins_not_full = calloc(d_s->n, sizeof(int));
   int num_bin_not_full = 0;
@@ -249,7 +240,6 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
   }
   node_t *Z = (node_t *)calloc(d_s->n, sizeof(node_t));
   //printf("Before objectiveF: %f\n", objectiveF);
-  printf("-----------------------------IN--------------------------------------------\n");
   do
   {
     int num_el = getZbinNotFullFromSolution(Z, curr_sol, bins_not_full, &num_bin_not_full);
@@ -275,15 +265,13 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
     //printf("After transf move: %f\n", newObjectiveF);
     if((newObjectiveF - best_move)!=objectiveF)
     {
+      printf("difference newObjectiveF - best_move: %f, objectiveF: %f\n",(newObjectiveF - best_move), objectiveF);
       printf("Non coherent new objectiveF\n");
-      exit(-1);
     }
     objectiveF = newObjectiveF;
     num_bin_not_full = 0;
     num_el = 0;
-    printf("------[best move]-------: %f\n", best_move);
   }while(best_move>0.0);
-  printf("-------------------------------OUT-----------------------------\n");
   free(bins_not_full);
   free(Z);
 }
@@ -341,7 +329,6 @@ sol_t* VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
     check_solution(d_s, curr_sol);
     if(curr_sol->n < best_sol->n)
     {
-      printf("Entering the improving area k: %d\n",k);
       free_solution(best_sol);
       best_sol = calloc(1, sizeof(sol_t));
       initialize_solution(best_sol, d_s->bin_size, d_s->n, starting_sol->max_num_el);
@@ -352,7 +339,6 @@ sol_t* VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
     }
     else
     {
-      printf("Entering the non improving area k: %d\n", k);
       free_solution(curr_sol);
       curr_sol = calloc(1, sizeof(sol_t));
       initialize_solution(curr_sol, d_s->bin_size, d_s->n, starting_sol->max_num_el);
@@ -361,7 +347,6 @@ sol_t* VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
       free_solution(temp_sol);
       k++;
     }
-    //k++; // momentaneamente
   }
   return best_sol;
 }
