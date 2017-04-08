@@ -62,6 +62,7 @@ long random_at_most(long max)
 
 void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
 {
+  printf("I'm shaking\n");
   char moves[50] = "tests/";
   strcat(moves, d_s->name);
   strcat(moves, "moves.txt");
@@ -238,6 +239,7 @@ float getAndPerformBestMove(bin_t *bins, node_t *Z, sol_t *solution, int num_el,
 
 void localSearch(dataset_t *d_s, sol_t *curr_sol)
 {
+  printf("I'm doing the local search\n");
   float objectiveF = 0.0;
   int *bins_not_full = calloc(d_s->n, sizeof(int));
   int num_bin_not_full = 0;
@@ -281,6 +283,8 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
     num_bin_not_full = 0;
     num_el = 0;
   }while(best_move>0.0);
+  free(bins_not_full);
+  free(Z);
 }
 
 node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
@@ -332,25 +336,28 @@ sol_t* VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
     copy_solution(curr_sol, temp_sol);
     node_t *Z = getZFromSolution(d_s, curr_sol);
     shakingSolution(d_s, curr_sol, Z, k);
-
+    check_solution(d_s, curr_sol);
     localSearch(d_s, curr_sol);
+    check_solution(d_s, curr_sol);
     if(curr_sol->n < best_sol->n)
     {
-      printf("k: %d\n",k);
+      printf("Entering the improving area k: %d\n",k);
       free_solution(best_sol);
       best_sol = calloc(1, sizeof(sol_t));
       initialize_solution(best_sol, d_s->bin_size, d_s->n, starting_sol->max_num_el);
       copy_solution(curr_sol, best_sol);
+      check_solution(d_s, best_sol);
       k=1;
       free_solution(temp_sol);
     }
     else
     {
-      printf("k: %d\n", k);
+      printf("Entering the non improving area k: %d\n", k);
       free_solution(curr_sol);
       curr_sol = calloc(1, sizeof(sol_t));
       initialize_solution(curr_sol, d_s->bin_size, d_s->n, starting_sol->max_num_el);
       copy_solution(temp_sol, curr_sol);
+      check_solution(d_s, curr_sol);
       free_solution(temp_sol);
       k++;
     }
