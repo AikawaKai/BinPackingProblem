@@ -187,7 +187,7 @@ float getAndPerformBestMove(bin_t *bins, node_t *Z, sol_t *solution, int num_el,
   float best_swap = 0.0;
   swap_t *swap = calloc(1, sizeof(swap_t));
   swap_t *best_s = NULL;
-  for(int q=num_el; q>=0;q--)
+  for(int q=num_el-1; q>=0;q--)
   {
     node_t *curr_node = &Z[q];
     bin_t *curr_bin = &bins[curr_node->id];
@@ -226,13 +226,11 @@ float getAndPerformBestMove(bin_t *bins, node_t *Z, sol_t *solution, int num_el,
   if(best_swap>best_transf)
   {
     performSwapMove(best_s,  bins);
-    //printf("swap move: %f\n",best_swap);
     return best_swap;
   }
   else if(best_tr != NULL)
   {
     performTransfMove(best_tr, solution,  bins);
-    //printf("transf move: %f\n",best_transf);
   }
   return best_transf;
 }
@@ -251,6 +249,7 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
   }
   node_t *Z = (node_t *)calloc(d_s->n, sizeof(node_t));
   //printf("Before objectiveF: %f\n", objectiveF);
+  printf("-----------------------------IN--------------------------------------------\n");
   do
   {
     int num_el = getZbinNotFullFromSolution(Z, curr_sol, bins_not_full, &num_bin_not_full);
@@ -282,7 +281,9 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
     objectiveF = newObjectiveF;
     num_bin_not_full = 0;
     num_el = 0;
+    printf("------[best move]-------: %f\n", best_move);
   }while(best_move>0.0);
+  printf("-------------------------------OUT-----------------------------\n");
   free(bins_not_full);
   free(Z);
 }
