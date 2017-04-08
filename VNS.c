@@ -328,7 +328,6 @@ sol_t* VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
   initialize_solution(best_sol, d_s->bin_size, d_s->n, starting_sol->max_num_el);
   copy_solution(starting_sol, best_sol);
   int k=1;
-  sol_t *step;
   while(k<k_max)
   {
     temp_sol = calloc(1, sizeof(sol_t));
