@@ -194,7 +194,7 @@ Che poi sono servite da base per altre due meta euristiche:
 
 \subsection{FirstFit}
 Tale algoritmo è molto banale, e si basa sull'idea greedy che, scorrendo iterativamente la lista di oggetti, se nel contenitore $b_j$ corrente c'è abbastanza spazio, allora vi si inserisce l'oggetto corrente $o_i$. Altrimenti, se non c'è spazio tra i bin attualmente presenti, se ne genera uno nuovo.
-
+\newline
 \begin{algorithm}
 \caption{FirstFit}\label{FirstFit}
 \begin{algorithmic}[1]
@@ -215,10 +215,16 @@ Tale algoritmo è molto banale, e si basa sull'idea greedy che, scorrendo iterat
 \State{\textbf{end for}}
 \end{algorithmic}
 \end{algorithm}
-
-
+\newline
+\newline
+\newline
+Nel caso peggiore (quando ogni oggetto può essere inserito in un solo contenitore) tale algoritmo ha complessità $O(n^2)$.
+\newline
+\newline
+Una variante di questo algoritmo, il \textit{FirstFit Decreasing}, prende in considerazione l'idea che posizionare oggetti grandi sia più difficile che posizionarne di piccoli, e consiste nell' ordinamento decrescente della lista di oggetti del dataset, prima dell'esecuzione del FirstFit. 
 
 \subsection{Minimum Bin Slack}
+L'MBS è un'euristica orientata sui contenitori. Ad ogni passo, viene ricercato un set di oggetti, tra quelli non ancora inseriti, che meglio riempiono il contenitore corrente.
 
 \subsection{MBS Sampling}
 
