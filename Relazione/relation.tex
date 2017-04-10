@@ -35,6 +35,12 @@
 \usepackage{listings} % Required for insertion of code
 \usepackage{courier} % Required for the courier font
 \usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
 
 % Margins
 \topmargin=-0.45in
@@ -147,8 +153,8 @@
 
 % To have just one problem per page, simply put a \clearpage after each problem
 
-\section{Scopo del lavoro}
-Il lavoro propone una possibile implementazione in C di diversi metodi euristici applicati al problema del \textit{One Dimensional Bin Packing}, per la ricerca di soluzioni ottime o che comunque vi si avvicinano.
+\section{Introduzione}
+Lo scopo del lavoro è quello di proporre una possibile implementazione in C di diversi metodi euristici applicati al problema del \textit{One Dimensional Bin Packing}, per la ricerca di soluzioni ottime o che comunque vi si avvicinano.
 
 \subsection{One Dimensional Bin Packing}
 Dato un multiset di $n$ oggetti $O=\{o_1, o_2, o_3 \dots o_n\}$, ognuno con dimensione $d_i$, lo scopo è quello di minimizzare il numero di contenitori $b_j$ (bin) $M=\{b_1, b_2, b_3 \dots b_{n} \}$, ognuno con dimensione fissata $B$, che contengono tali oggetti.
@@ -165,13 +171,46 @@ Il problema è soggetto a diversi vincoli:
 \[
 min \sum_{j=1}^{n} y_j
 \]
-In cui $y_i$ è una variabile binaria associata agli $n$ possibili contenitori $b_j$ (il caso peggiore contempla un contenitore per ogni oggetto).
+In cui $y_i$ è una variabile binaria associata agli $n$ possibili contenitori $b_j$ (il caso peggiore contempla un contenitore per ogni oggetto presente nel multi insieme).
 
-Secondo la teoria della complessità, tale problema ha complessità \textit{NP-hard}. Per tale motivo sono state studiate diverse euristiche, con lo scopo di ottenere un trade-off tra velocità di esecuzione e ottimalità delle soluzioni generate.
+Secondo la teoria della complessità, tale problema ha complessità \textit{NP-hard}. Per tale motivo sono state studiate diverse tecniche euristiche, con lo scopo di ottenere un trade-off tra velocità di esecuzione e ottimalità delle soluzioni generate.
 
 \end{itemize}
 
-\subsection{Tecniche implementate}
+\section{Euristiche implementate}
+Per la risoluzione del problema sono state implementate due principali euristiche costruttive greedy:
+
+\begin{itemize}
+\item FirstFit
+\item Minimum Bin Slack (MBS)
+\end{itemize}
+
+Che poi sono servite da base per altre due meta euristiche:
+
+\begin{itemize}
+\item MBS Sampling
+\item Variable Neighbour Search (VNS)
+\end{itemize} 
+
+\subsection{FirstFit}
+Tale algoritmo è molto banale, e si basa sull'idea greedy che, scorrendo iterativamente la lista di oggetti, se nel contenitore $b_j$ corrente c'è abbastanza spazio, allora vi si inserisce l'oggetto corrente $o_i$.
+
+\begin{algorithm}
+\caption{FirstFit}\label{FirstFit}
+\begin{algorithmic}[1]
+\For {1  n } 
+\State {prova} 
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+
+
+\subsection{Minimum Bin Slack}
+
+\subsection{MBS Sampling}
+
+\subsection{Variable Neighbour Search}
 
 
 

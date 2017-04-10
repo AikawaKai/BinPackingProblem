@@ -1,5 +1,9 @@
 \select@language {italian}
 \select@language {italian}
-\contentsline {section}{\numberline {1}Scopo del lavoro}{4}
+\contentsline {section}{\numberline {1}Introduzione}{4}
 \contentsline {subsection}{\numberline {1.1}One Dimensional Bin Packing}{4}
-\contentsline {subsection}{\numberline {1.2}Tecniche implementate}{4}
+\contentsline {section}{\numberline {2}Euristiche implementate}{4}
+\contentsline {subsection}{\numberline {2.1}FirstFit}{4}
+\contentsline {subsection}{\numberline {2.2}Minimum Bin Slack}{5}
+\contentsline {subsection}{\numberline {2.3}MBS Sampling}{5}
+\contentsline {subsection}{\numberline {2.4}Variable Neighbour Search}{5}
