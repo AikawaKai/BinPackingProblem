@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// funzione di comparazione per il sort decrescente
 int compareNode(const void *v1, const void *v2)
 {
     const node_t *u1 = v1;
@@ -54,6 +55,7 @@ int remove_by_index(node_t ** head, int n) {
 
 }
 
+// rimuove il nodo che ha gli stessi valori del nodo passato come argomento
 int remove_by_node_value(node_t ** head, node_t *node_ind) {
     node_t * current = *head;
     node_t * prec;
@@ -95,6 +97,7 @@ void push(node_t * head, float val) {
     current->next->next = NULL;
 }
 
+// copia lista linkata
 node_t * copy(node_t * head)
 {
   node_t *head2=NULL,*previous=NULL;
@@ -146,6 +149,7 @@ void free_list(node_t *head){
   }
 }
 
+// ordinamento decrescente
 void sort_list(node_t * list, int size)
 {
   qsort(list, size, sizeof(node_t), compareNode);
