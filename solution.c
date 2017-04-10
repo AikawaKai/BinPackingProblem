@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+// inizializza il bin
 void initialize_bin(bin_t *b, float size, int num_items)
 {
   b->items = (float *) calloc(num_items, sizeof(float));
@@ -12,6 +13,7 @@ void initialize_bin(bin_t *b, float size, int num_items)
   b->slack = size;
 }
 
+// copia il contenuto di bin source in bin dest
 void copy_bin(bin_t *source, bin_t *dest)
 {
   for(int i=0; i<source->n; i++)
@@ -20,6 +22,7 @@ void copy_bin(bin_t *source, bin_t *dest)
   }
 }
 
+// libera l'area di memoria occupata dal bin passato come parametro
 void free_bin(bin_t *b)
 {
   // libero lo spazio occupato dal bin
@@ -31,6 +34,7 @@ void free_bin(bin_t *b)
   b->slack = 0;
 }
 
+// aggiunge un oggetto al bin
 void add_item_to_bin(bin_t *b, float item)
 {
   b->n = b->n + 1;
@@ -39,6 +43,7 @@ void add_item_to_bin(bin_t *b, float item)
   b->items[b->n-1] = item;
 }
 
+// rimuove un oggetto dal bin (passato come parametro)
 void removeItemFromBin(bin_t *bin, float value_to_remove)
 {
   int index;
@@ -72,6 +77,7 @@ void removeItemFromBin(bin_t *bin, float value_to_remove)
   bin->sum = bin->sum - value;
 }
 
+// controlla se il bin contiene l'oggetto passato come parametro
 int check_if_item_in_bin(bin_t *b, float item)
 {
   for(int i = 0; i<b->n;i++)
@@ -84,11 +90,13 @@ int check_if_item_in_bin(bin_t *b, float item)
   return 0;
 }
 
+// restituisce lo slack del bin
 int get_bin_slack(bin_t *b)
 {
   return b->slack;
 }
 
+// aggiunge un oggetto al bin se c'è abbastanza spazio
 bool add_item_to_bin_if_fits(bin_t *b, float item)
 {
   float partial = get_bin_slack(b) - item;
@@ -103,6 +111,7 @@ bool add_item_to_bin_if_fits(bin_t *b, float item)
   }
 }
 
+// inizializza la soluzione
 void initialize_solution(sol_t *s, float b_size, int num_items, int max_num_el)
 {
   s->n = 0;
@@ -119,6 +128,7 @@ void initialize_solution(sol_t *s, float b_size, int num_items, int max_num_el)
   s->bins[0] = b1;
 }
 
+// copia il contenuto di una soluzione in un'altra variabile result
 void copy_solution(sol_t *sol, sol_t *result)
 {
   result->n = sol->n;
@@ -131,6 +141,7 @@ void copy_solution(sol_t *sol, sol_t *result)
   }
 }
 
+// aggiunge un nuovo bin alla soluzione
 void add_new_bin(sol_t *s)
 {
   s->n = s->n+1;
@@ -139,6 +150,7 @@ void add_new_bin(sol_t *s)
   s->bins[s->n-1]=n_b;
 }
 
+// cancella un bin dalla soluzione
 void delete_bin_from_solution(sol_t *solution, int index_bin)
 {
   if(index_bin == solution->n-1)
@@ -153,6 +165,7 @@ void delete_bin_from_solution(sol_t *solution, int index_bin)
   solution->n = solution->n-1;
 }
 
+// libera l'area di memoria occupata dalla soluzione passata come parametro
 void free_solution(sol_t *s)
 {
   for(int i=0; i<s->n; i++)
@@ -162,34 +175,30 @@ void free_solution(sol_t *s)
   free(s->bins);
   s->bins = NULL;
   s->n = 0;
-  //printf("free(solution) ok\n");
 }
 
+// stampa nello stdout il bin
 void print_bin(bin_t *bin)
 {
-  //FILE *fp = fopen("check.txt", "a");
   printf("------\nItems:\n");
   for(int i=0;i<bin->n;i++)
   {
     printf("%f\n",bin->items[i]);
-    //fprintf(fp, " %f ",bin->items[i] );
   }
-  //fprintf(fp, " %f \n",bin->slack);
-  //fclose(fp);
   printf("slack: %f\n", bin->slack);
 }
 
+// stampa nello stdout la soluzione
 void print_solution(sol_t *s)
 {
   for(int i=0; i<s->n;i++)
   {
-    //printf("-------\n");
     printf("\nCURRENT BIN:%d\n", i);
     print_bin(&(s->bins[i]));
-    //printf("-------\n");
   }
 }
 
+// controlla che la soluzione sia coerente\corretta rispetto al dataset e ai vincoli
 void check_solution(dataset_t *d_s, sol_t *s)
 {
   bin_t *bins = s->bins;
