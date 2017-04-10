@@ -273,6 +273,7 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
     {
       printf("difference newObjectiveF - best_move: %f, objectiveF: %f\n",(newObjectiveF - best_move), objectiveF);
       printf("Non coherent new objectiveF\n");
+      exit(-1);
     }
     objectiveF = newObjectiveF;
     num_bin_not_full = 0;
@@ -282,6 +283,7 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
   free(Z);
 }
 
+// genera la lista di oggetti (in ordine decrescente) e relativa posizione nei bin della soluzione
 node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
 {
   int num_items = d_s->n;
@@ -312,6 +314,7 @@ node_t *getZFromSolution(dataset_t *d_s, sol_t *starting_sol)
   return items;
 }
 
+// metodo per shaking + ricerca locale
 sol_t* VNSmethod(dataset_t *d_s, sol_t *starting_sol, int k_max)
 {
   sol_t *curr_sol = calloc(1, sizeof(sol_t));
