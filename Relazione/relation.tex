@@ -148,7 +148,28 @@
 % To have just one problem per page, simply put a \clearpage after each problem
 
 \section{Scopo del lavoro}
-Il lavoro propone una possibile implementazione in C di diversi metodi euristici applicati al problema di One Dimensional Bin Packing, per la ricerca di soluzioni ottimali.
+Il lavoro propone una possibile implementazione in C di diversi metodi euristici applicati al problema del \textit{One Dimensional Bin Packing}, per la ricerca di soluzioni ottime o che comunque vi si avvicinano.
+
+\subsection{One Dimensional Bin Packing}
+Dato un multiset di $n$ oggetti $O=\{o_1, o_2, o_3 \dots o_n\}$, ognuno con dimensione $d_i$, lo scopo è quello di minimizzare il numero di contenitori $b_j$ (bin) $M=\{b_1, b_2, b_3 \dots b_{n} \}$, ognuno con dimensione fissata $B$, che contengono tali oggetti.
+\newline
+\newline
+Il problema è soggetto a diversi vincoli:
+\begin{itemize}
+\item Ogni oggetto deve essere inserito in un solo contenitore.
+\item La somma delle dimensioni $d_i$ degli oggetti $o_i$, nel contenitore $b_j$, non deve superare la dimensione del contenitore.
+\[
+\sum_{o_i \in b_j} d_i \le B
+\]
+\item Il numero dei contenitori $b_j$ deve essere il minimo possibile. Si cercherà quindi di minimizzare tale funzione:
+\[
+min \sum_{j=1}^{n} y_j
+\]
+In cui $y_i$ è una variabile binaria associata agli $n$ possibili contenitori $b_j$ (il caso peggiore contempla un contenitore per ogni oggetto).
+
+Secondo la teoria della complessità, tale problema ha complessità \textit{NP-hard}. Per tale motivo sono state studiate diverse euristiche, con lo scopo di ottenere un trade-off tra velocità di esecuzione e ottimalità delle soluzioni generate.
+
+\end{itemize}
 
 \subsection{Tecniche implementate}
 

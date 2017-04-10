@@ -1,4 +1,5 @@
 \select@language {italian}
 \select@language {italian}
 \contentsline {section}{\numberline {1}Scopo del lavoro}{4}
-\contentsline {subsection}{\numberline {1.1}Tecniche implementate}{4}
+\contentsline {subsection}{\numberline {1.1}One Dimensional Bin Packing}{4}
+\contentsline {subsection}{\numberline {1.2}Tecniche implementate}{4}
