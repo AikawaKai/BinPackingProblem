@@ -198,9 +198,21 @@ Tale algoritmo è molto banale, e si basa sull'idea greedy che, scorrendo iterat
 \begin{algorithm}
 \caption{FirstFit}\label{FirstFit}
 \begin{algorithmic}[1]
-\For {1  n } 
-\State {prova} 
+\For {obj in objectList} 
+\For {bin in binList}
+\If {obj fit in bin}
+\State Pack object in bin
+\State break
+\EndIf
+\State{\textbf{end if}}
 \EndFor
+\State{\textbf{end for}}
+\If {obj did not fit in any available bin}
+\State Create new bin and pack object in it
+\EndIf 
+\State{\textbf{end if}}
+\EndFor
+\State{\textbf{end for}}
 \end{algorithmic}
 \end{algorithm}
 
