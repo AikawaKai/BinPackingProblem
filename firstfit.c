@@ -1,6 +1,8 @@
 #include "firstfit.h"
 #include <stdio.h>
 
+
+// metodo firstfit
 void firstfit(dataset_t *ds, sol_t *sol)
 {
   bool fixed = FALSE;
@@ -12,8 +14,6 @@ void firstfit(dataset_t *ds, sol_t *sol)
     {
       if(add_item_to_bin_if_fits(&(sol->bins[j]), ds->items[i]))
       {
-        //printf("bin j: %d, added item %d: %d\n",j, i, ds->items[i]);
-        //printf("bin slack: %d\n", (sol->bins[j]).slack );
         fixed = TRUE;
         break;
       }
@@ -22,12 +22,11 @@ void firstfit(dataset_t *ds, sol_t *sol)
     {
       add_new_bin(sol);
       add_item_to_bin(&(sol->bins[(sol->n)-1]), ds->items[i]);
-      //printf("bin j: %d, added item %d: %d\n",j, i, ds->items[i]);
-      //printf("bin slack: %d\n", (sol->bins[j]).slack );
     }
   }
 }
 
+// variante del firstfit con lista di oggetti ordinata in maniera decrescente
 void firstfitdecreasing(dataset_t *ds, sol_t *sol)
 {
   bool fixed = FALSE;
@@ -39,8 +38,6 @@ void firstfitdecreasing(dataset_t *ds, sol_t *sol)
     {
       if(add_item_to_bin_if_fits(&(sol->bins[j]), ds->sorteditems[i]))
       {
-        //printf("bin j: %d, added item %d: %d\n",j, i, ds->sorteditems[i]);
-        //printf("bin slack: %d\n", (sol->bins[j]).slack );
         fixed = TRUE;
         break;
       }
@@ -49,8 +46,6 @@ void firstfitdecreasing(dataset_t *ds, sol_t *sol)
     {
       add_new_bin(sol);
       add_item_to_bin(&(sol->bins[(sol->n)-1]), ds->sorteditems[i]);
-      //printf("bin j: %d, added item %d: %d\n",j, i, ds->sorteditems[i]);
-      //printf("bin slack: %d\n", (sol->bins[j]).slack );
     }
   }
 }

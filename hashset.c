@@ -148,17 +148,7 @@ int hashset_is_member(hashset_t set, void *item)
     }
     return 0;
 }
-/*
-struct hashset_st {
-    size_t nbits;
-    size_t mask;
 
-    size_t capacity;
-    size_t *items;
-    size_t nitems;
-    size_t n_deleted_items;
-    int slack;
-};*/
 void deepCopy(hashset_t a, hashset_t b)
 {
   a->nbits = 3;
