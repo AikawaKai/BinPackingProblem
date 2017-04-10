@@ -213,10 +213,11 @@ void check_solution(dataset_t *d_s, sol_t *s)
       pos = pos + 1;
       curr_size = curr_size+bins[i].items[j];
     }
-    if (curr_size>d_s->bin_size)
+    if (curr_size-d_s->bin_size>0.0001)
     {
       printf("Incoherent Solution\n");
       printf("Bin size: %f Filled: %f\n", d_s->bin_size, curr_size);
+      exit(-1);
     }
     curr_size = 0.0;
   }
