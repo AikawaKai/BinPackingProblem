@@ -6,40 +6,7 @@
 #include "move.h"
 #include "VNS.h"
 #include "hashset.h"
-
-int fillArrayTransferWithMoves(int *num_transf, node_t *curr_node, transfer_t *list_transfers, bin_t *bin, int j)
-{
-  float val = curr_node->val;
-  float slack = bin->slack;
-  if ((slack - val)>=0)
-  {
-    list_transfers[*num_transf].item1 = curr_node;
-    list_transfers[*num_transf].index_bin = j;
-    *num_transf = *num_transf + 1;
-    return 1;
-  }
-  return 0;
-}
-
-int fillArraySwapWithMoves(int *num_swap, node_t *curr_node, node_t *curr_node_j, swap_t *list_swaps, bin_t *bins)
-{
-  //swap_t *move_swap;
-  int bin_index_i = curr_node->id;
-  int bin_index_j = curr_node_j->id;
-  float slack_i = bins[bin_index_i].slack;
-  float slack_j = bins[bin_index_j].slack;
-  float value_i = curr_node->val;
-  float value_j = curr_node_j->val;
-  if((slack_i+value_i-value_j)>=0 && (slack_j+value_j-value_i)>=0)
-  {
-    list_swaps[*num_swap].item1 = curr_node;
-    list_swaps[*num_swap].item2 = curr_node_j;
-    *num_swap = *num_swap + 1;
-    return 1;
-  }
-  return 0;
-}
-
+// genera un numero intero random tra 0 e max
 long random_at_most(long max)
 {
   unsigned long
@@ -60,6 +27,43 @@ long random_at_most(long max)
   return x/bin_size;
 }
 
+
+// riempie un array passato come parametro di mosse di tipo trasferimento
+int fillArrayTransferWithMoves(int *num_transf, node_t *curr_node, transfer_t *list_transfers, bin_t *bin, int j)
+{
+  float val = curr_node->val;
+  float slack = bin->slack;
+  if ((slack - val)>=0)
+  {
+    list_transfers[*num_transf].item1 = curr_node;
+    list_transfers[*num_transf].index_bin = j;
+    *num_transf = *num_transf + 1;
+    return 1;
+  }
+  return 0;
+}
+
+// riempie un array passato come parametro di mosse di tipo scambio
+int fillArraySwapWithMoves(int *num_swap, node_t *curr_node, node_t *curr_node_j, swap_t *list_swaps, bin_t *bins)
+{
+  //swap_t *move_swap;
+  int bin_index_i = curr_node->id;
+  int bin_index_j = curr_node_j->id;
+  float slack_i = bins[bin_index_i].slack;
+  float slack_j = bins[bin_index_j].slack;
+  float value_i = curr_node->val;
+  float value_j = curr_node_j->val;
+  if((slack_i+value_i-value_j)>=0 && (slack_j+value_j-value_i)>=0)
+  {
+    list_swaps[*num_swap].item1 = curr_node;
+    list_swaps[*num_swap].item2 = curr_node_j;
+    *num_swap = *num_swap + 1;
+    return 1;
+  }
+  return 0;
+}
+
+// funzione che genera lo shaking della soluzione passata come parametro (k_curr mosse)
 void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
 {
   hashset_t items_set = hashset_create(d_s->bin_size);
@@ -122,6 +126,7 @@ void shakingSolution(dataset_t *d_s, sol_t *starting_sol, node_t *Z, int k_curr)
   hashset_destroy(items_set);
 }
 
+// restituisce la lista di oggetti, in ordine decrescente, che appartengono a bin non pieni della soluzione
 int getZbinNotFullFromSolution(node_t *items,  sol_t *starting_sol, int *bins_not_full, int *num_bin)
 {
   bin_t *bins = starting_sol->bins;
@@ -144,6 +149,7 @@ int getZbinNotFullFromSolution(node_t *items,  sol_t *starting_sol, int *bins_no
   return num_el;
 }
 
+// genera la mossa migliore del neighbour corrente e la esegue
 float getAndPerformBestMove(bin_t *bins, node_t *Z, sol_t *solution, int num_el, int *bins_not_full, int num_bin_not_full)
 {
   transfer_t *transf = calloc(1, sizeof(transfer_t));
@@ -227,6 +233,8 @@ float getAndPerformBestMove(bin_t *bins, node_t *Z, sol_t *solution, int num_el,
   return best_transf;
 }
 
+
+// ricerca locale per massimizzare la funzione obiettivo
 void localSearch(dataset_t *d_s, sol_t *curr_sol)
 {
   float objectiveF = 0.0;
@@ -255,15 +263,13 @@ void localSearch(dataset_t *d_s, sol_t *curr_sol)
       }
     }
     best_move = getAndPerformBestMove(bins, Z, curr_sol, num_el, bins_not_full, num_bin_not_full);
-
-    //printf("best move %f\n", best_move);
     float newObjectiveF = 0.0;
     for(int i=0; i<curr_sol->n;i++)
     {
       newObjectiveF = newObjectiveF + (bins[i].sum * bins[i].sum);
     }
     //printf("After transf move: %f\n", newObjectiveF);
-    if((newObjectiveF - best_move)!=objectiveF)
+    if((newObjectiveF - best_move)-objectiveF>0.1)
     {
       printf("difference newObjectiveF - best_move: %f, objectiveF: %f\n",(newObjectiveF - best_move), objectiveF);
       printf("Non coherent new objectiveF\n");
