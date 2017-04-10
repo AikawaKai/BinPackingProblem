@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+// funzione di comparazione per l'ordinamento
 int compare_function(const void* p1, const void* p2)
 {
    float i1 = *(float*) p1;
@@ -14,7 +15,7 @@ int compare_function(const void* p1, const void* p2)
    /* or simply: return i1 - i2; */
  }
 
-
+// funzione per caricare il dataset
 void load_dataset(char *filename, dataset_t *d_s)
 {
   node_t *tmpN;
@@ -97,7 +98,6 @@ void load_dataset(char *filename, dataset_t *d_s)
   d_s->sorteditems = sorteditems;
 
   // creo la lista linkata di oggetti
-  // int a = (int)malloc(sizeof(int));
   d_s->head = malloc(sizeof(node_t));
   tmpN = malloc(sizeof(node_t));
   d_s->head->val = sorteditems[0];
@@ -116,6 +116,7 @@ void load_dataset(char *filename, dataset_t *d_s)
   printf("Items Loading done.\n\n");
 }
 
+// funzione per liberare l'area di memoria occupata dalla struttura dati del dataset
 void free_dataset(dataset_t *d_s)
 {
   // libero lo spazio occupato
@@ -130,6 +131,7 @@ void free_dataset(dataset_t *d_s)
   printf("free(dataset) ok\n");
 }
 
+// carica il dataset da un filepointer in input
 void load_dataset_from_file_pointer(FILE *fp, dataset_t *d_s)
 {
   char buff[255];
@@ -142,6 +144,7 @@ void load_dataset_from_file_pointer(FILE *fp, dataset_t *d_s)
 
   node_t *tmpN;
   node_t *prec;
+  
   // nome del caso di test specifico
   fscanf(fp, "%s", buff);
   problem_identifier = (char *)calloc(strlen(buff)+1, sizeof(char));
