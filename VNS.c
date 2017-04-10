@@ -11,7 +11,7 @@ int fillArrayTransferWithMoves(int *num_transf, node_t *curr_node, transfer_t *l
 {
   float val = curr_node->val;
   float slack = bin->slack;
-  if ((bin->slack - val)>=0)
+  if ((slack - val)>=0)
   {
     list_transfers[*num_transf].item1 = curr_node;
     list_transfers[*num_transf].index_bin = j;

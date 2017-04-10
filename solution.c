@@ -181,9 +181,6 @@ void print_bin(bin_t *bin)
 
 void print_solution(sol_t *s)
 {
-  char results[200];
-  //printf("BIN SIZE: %d\n",s->bin_size);
-
   for(int i=0; i<s->n;i++)
   {
     //printf("-------\n");
