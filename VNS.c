@@ -6,6 +6,7 @@
 #include "move.h"
 #include "VNS.h"
 #include "hashset.h"
+
 // genera un numero intero random tra 0 e max
 long random_at_most(long max)
 {

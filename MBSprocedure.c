@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <time.h>
 
-
+// distribuzione bernoulliana con probabilità p
 int bernoulli(float p){
     if(p < 0 || p > 1) return -1;
     float x = (float)rand()/(float)(RAND_MAX/1);
@@ -13,6 +13,7 @@ int bernoulli(float p){
     return 1;
 }
 
+// ordinamento probabilistico della lista di oggetti del dataset
 node_t * prob_sorting(node_t ** head_pointer, node_t * head, float sum, int num_el)
 {
   float p_i = 0.0;
@@ -75,6 +76,7 @@ node_t * prob_sorting(node_t ** head_pointer, node_t * head, float sum, int num_
   return head2;
 }
 
+// funzione ricorsiva dell'MBS
 void MBSsearch(int index, int n_max, float min_value, node_t *curr_node, hashset_t curr_set, hashset_t curr_best_set)
 {
   if (curr_set->slack >= min_value)
@@ -100,11 +102,11 @@ void MBSsearch(int index, int n_max, float min_value, node_t *curr_node, hashset
   }
   if(curr_set->slack < curr_best_set->slack) // if(s(A)<s(A*)) aggiorno se migliore
   {
-    // printf("S(A*): %d S(A):%d\n", curr_best_set->slack, curr_set->slack);
     deepCopy(curr_best_set, curr_set);
   }
 }
 
+// funzione greedy MBS
 void MBS(dataset_t *d_s, sol_t *sol)
 {
   node_t ** head_pointer;
@@ -118,8 +120,6 @@ void MBS(dataset_t *d_s, sol_t *sol)
     MBSsearch(0, elem_to_insert, d_s->sorteditems[(d_s->n)-1], d_s->head, curr_A_set, best_A_set);
     for(int i=0; i<best_A_set->nitems; i++)
     {
-      //printf("elem %d: %d |",i, ((node_t **)best_A_set->items)[i]->val);
-      //printf("%d\n", ((node_t **)best_A_set->items)[i]->val);
       add_item_to_bin(&(sol->bins[(sol->n)-1]), ((node_t **)best_A_set->items)[i]->val);
       remove_by_node_value(head_pointer, ((node_t **)best_A_set->items)[i]);
     }
@@ -133,6 +133,7 @@ void MBS(dataset_t *d_s, sol_t *sol)
   hashset_destroy(curr_A_set);
 }
 
+// variante dell'MBS
 void MBSmodified(dataset_t *d_s, sol_t *sol)
 {
   node_t ** head_pointer;
@@ -164,6 +165,7 @@ void MBSmodified(dataset_t *d_s, sol_t *sol)
   hashset_destroy(curr_A_set);
 }
 
+// metaeuristica dell'MBS
 sol_t * MBSsampling(dataset_t *d_s, int max_attempts)
 {
   int curr_best = d_s->n;
