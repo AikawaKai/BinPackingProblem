@@ -18,6 +18,8 @@ int main(int argc, char *argv[]){
   sol_t *vns_sol;
   FILE *filepointer;
   FILE *filepointeroutput;
+
+  // Caricamento del dataset e inizializzazione delle strutture dati
   filepointer = fopen(filename, "r");
   if (filepointer == NULL)
   {
@@ -35,7 +37,6 @@ int main(int argc, char *argv[]){
     initialize_solution(&solutions[i], datasets[i].bin_size, datasets[i].n, max_num_elem);
   }
   fclose(filepointer);
-  //print_list(copy(datasets[0].head));
   filepointeroutput = fopen(strcat(filename, ".csv"), "w");
   fprintf(filepointeroutput, "%s, %s, %s, %s, %s, %s, %s, %s\n","dataset", "firstfit", "firstfitdecreasing", "MBS", "MBS'", "MBS'sampling", "VNS", "best known solution");
   for(int i=0; i<num_cases; i++)
@@ -84,7 +85,7 @@ int main(int argc, char *argv[]){
     datasets[i].head = malloc(sizeof(node_t));
     datasets[i].head = new_head;
 
-    // VNS METHOD
+    // VNS METHOD (parte dalla soluzione generata dall'MBS modified)
     vns_sol = VNSmethod(&datasets[i], &solutions[i], 15);
     check_solution(&datasets[i], vns_sol);
     vns = vns_sol->n;
