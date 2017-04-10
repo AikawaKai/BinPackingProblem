@@ -3,6 +3,7 @@
 #include "linkedList.h"
 #include "move.h"
 
+// esegue la mossa di trasferimento
 void performTransfMove(transfer_t *transf, sol_t *solution , bin_t *bins)
 {
   node_t *item1 = transf->item1;
@@ -16,6 +17,8 @@ void performTransfMove(transfer_t *transf, sol_t *solution , bin_t *bins)
     delete_bin_from_solution(solution, bin_from);
   }
 }
+
+// esegue la mossa di scambio
 void performSwapMove(swap_t *transf, bin_t *bins)
 {
 
@@ -33,6 +36,7 @@ void performSwapMove(swap_t *transf, bin_t *bins)
   item2->id = bin_from;
 }
 
+// stampa sullo stdout la mossa di trasferimento
 void print_transfer_move(transfer_t *move)
 {
   printf("------------\n");
@@ -43,6 +47,7 @@ void print_transfer_move(transfer_t *move)
   printf("Bin dest: %d\n", move->index_bin);
 }
 
+// stampa su file la mossa di trasferimento
 void print_to_file_transfer_move(transfer_t *move, FILE *filepointer)
 {
   node_t *item1 = move->item1;
@@ -53,6 +58,7 @@ void print_to_file_transfer_move(transfer_t *move, FILE *filepointer)
 }
 
 
+// stampa su stdout la mossa di scambio
 void print_swap_move(swap_t *move)
 {
   printf("------------\n");
@@ -66,6 +72,7 @@ void print_swap_move(swap_t *move)
   printf("\n");
 }
 
+// stampa su file la mossa di scambio
 void print_to_file_swap_move(swap_t *move, FILE *filepointer)
 {
   node_t *item1 = move->item1;
