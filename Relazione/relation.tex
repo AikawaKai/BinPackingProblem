@@ -224,7 +224,23 @@ Nel caso peggiore (quando ogni oggetto può essere inserito in un solo contenito
 Una variante di questo algoritmo, il \textit{FirstFit Decreasing}, prende in considerazione l'idea che posizionare oggetti grandi sia più difficile che posizionarne di piccoli, e consiste nell' ordinamento decrescente della lista di oggetti del dataset, prima dell'esecuzione del FirstFit. 
 
 \subsection{Minimum Bin Slack}
-L'MBS è un'euristica greedy orientata sui contenitori. L'algoritmo consiste nel mantenere, ad ogni passo, una lista di oggetti $Z$ non ancora inseriti, con un ordinamento decrescente, ricercando tra questi il set di oggetti che meglio riempiono il contenitore corrente (idealmente non lasciando spazio libero).
+L'MBS è un'euristica greedy orientata sui contenitori. L'algoritmo consiste nel mantenere, ad ogni passo, una lista di oggetti $Z$ non ancora inseriti, con un ordinamento decrescente, ricercando tra questi l'insieme di oggetti che meglio riempiono il contenitore corrente (idealmente non lasciando spazio libero).
+\newline
+\newline
+La ricerca del sottoinsieme di oggetti da inserire nel contenitore corrente, avviene tramite una procedura ricorsiva, la quale testa tutti i possibili sottoinsiemi della lista Z. Se durante la ricerca si trova una soluzione che riempie totalmente il contenitore, questa viene interrotta, poiché non ci può essere una soluzione migliore per il contenitore corrente, ma al massimo equivalente (da notare comunque che il sottoinsieme generato potrebbe non essere ottimo per la soluzione globale).
+\newline
+\begin{algorithm}
+\caption{MBSSearch}\label{MBSsearch}
+\begin{algorithmic}[2]
+\For {r=q to n} 
+\State i = $Z_r$
+\If{$t_i \le s(A)$}
+\State $A = A U \{i\}$
+\EndIf
+\EndFor
+\State{\textbf{end for}}
+\end{algorithmic}
+\end{algorithm}
 
 \subsection{MBS Sampling}
 
