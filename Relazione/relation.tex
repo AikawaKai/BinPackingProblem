@@ -230,15 +230,27 @@ L'MBS è un'euristica greedy orientata sui contenitori. L'algoritmo consiste nel
 La ricerca del sottoinsieme di oggetti da inserire nel contenitore corrente, avviene tramite una procedura ricorsiva, la quale testa tutti i possibili sottoinsiemi della lista Z. Se durante la ricerca si trova una soluzione che riempie totalmente il contenitore, questa viene interrotta, poiché non ci può essere una soluzione migliore per il contenitore corrente, ma al massimo equivalente (da notare comunque che il sottoinsieme generato potrebbe non essere ottimo per la soluzione globale).
 \newline
 \begin{algorithm}
-\caption{MBSSearch}\label{MBSsearch}
+\caption{MBSsearch}\label{MBSsearch}
 \begin{algorithmic}[2]
-\For {r=q to n} 
-\State i = $Z_r$
-\If{$t_i \le s(A)$}
-\State $A = A U \{i\}$
+\State \textbf{Procedure MBSsearch(q)}
+\For {$int \; r=q$ to $n$} 
+\State $obj_{r} = Z[r]$
+\If{$size_{obj_{r}} \le slack(A)$}
+\State $A = A \cup \{obj_{r}\}$
+\State $MBSsearch(r+1)$
+\State $A = A - \{obj_{r}\}$
+\If{$slack(A^*) = 0$}
+\State $exit$
 \EndIf
+\State{\textbf{end if}}
+\EndIf 
+\State{\textbf{end if}}
 \EndFor
 \State{\textbf{end for}}
+\If{$slack(A) < slack(A^*)$}
+\State $A^* = A$
+\EndIf
+\State{\textbf{end if}}
 \end{algorithmic}
 \end{algorithm}
 
