@@ -195,7 +195,7 @@ Che poi sono servite da base per altre due meta euristiche:
 \subsection{FirstFit}
 Tale algoritmo è molto banale, e si basa sull'idea greedy che, scorrendo iterativamente la lista di oggetti, se nel contenitore $b_j$ corrente c'è abbastanza spazio, allora vi si inserisce l'oggetto corrente $o_i$. Altrimenti, se non c'è spazio tra i bin attualmente presenti, se ne genera uno nuovo.
 \newline
-\begin{algorithm}
+\begin{algorithm}[h]
 \caption{FirstFit}\label{FirstFit}
 \begin{algorithmic}[1]
 \For {obj in objectList} 
@@ -222,20 +222,21 @@ Nel caso peggiore (quando ogni oggetto può essere inserito in un solo contenito
 \newline
 \newline
 Una variante di questo algoritmo, il \textit{FirstFit Decreasing}, prende in considerazione l'idea che posizionare oggetti grandi sia più difficile che posizionarne di piccoli, e consiste nell' ordinamento decrescente della lista di oggetti del dataset, prima dell'esecuzione del FirstFit. 
-
+\newline
+\newline
 \subsection{Minimum Bin Slack}
 L'MBS è un'euristica greedy orientata sui contenitori. L'algoritmo consiste nel mantenere, ad ogni passo, una lista di oggetti $Z$ non ancora inseriti, con un ordinamento decrescente, ricercando tra questi l'insieme di oggetti che meglio riempiono il contenitore corrente (idealmente non lasciando spazio libero).
 \newline
 \newline
 La ricerca del sottoinsieme di oggetti da inserire nel contenitore corrente, avviene tramite una procedura ricorsiva, la quale testa tutti i possibili sottoinsiemi della lista Z. Se durante la ricerca si trova una soluzione che riempie totalmente il contenitore, questa viene interrotta, poiché non ci può essere una soluzione migliore per il contenitore corrente, ma al massimo equivalente (da notare comunque che il sottoinsieme generato potrebbe non essere ottimo per la soluzione globale).
 \newline
-\begin{algorithm}
+\begin{algorithm}[h]
 \caption{MBSsearch}\label{MBSsearch}
 \begin{algorithmic}[2]
 \State \textbf{Procedure MBSsearch(q)}
 \For {$int \; r=q$ to $n$} 
 \State $obj_{r} = Z[r]$
-\If{$size_{obj_{r}} \le slack(A)$}
+\If{$size(obj_{r}) \le slack(A)$}
 \State $A = A \cup \{obj_{r}\}$
 \State $MBSsearch(r+1)$
 \State $A = A - \{obj_{r}\}$
@@ -253,7 +254,8 @@ La ricerca del sottoinsieme di oggetti da inserire nel contenitore corrente, avv
 \State{\textbf{end if}}
 \end{algorithmic}
 \end{algorithm}
-
+\newpage
+Dato che in linea teorica questa procedura cerca tutte le possibili combinazioni di elementi da inserire in un contenitore, questa ha complessita $O(2^n)$. Nella pratica è possibile velocizzare l'algoritmo con alcuni accorgimenti. Ad esempio, se lo slack del sottoinsieme corrente è più piccolo del più piccolo elemento dell'insieme di oggetti, cioè che $slack(A) < size(obj_{min})$, allora il ciclo for viene saltato, in quanto per il sottoinsieme $A$ non esiste miglioramento possibile.
 \subsection{MBS Sampling}
 
 \subsection{Variable Neighbour Search}

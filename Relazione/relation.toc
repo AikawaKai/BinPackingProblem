@@ -5,5 +5,5 @@
 \contentsline {section}{\numberline {2}Euristiche implementate}{4}
 \contentsline {subsection}{\numberline {2.1}FirstFit}{4}
 \contentsline {subsection}{\numberline {2.2}Minimum Bin Slack}{5}
-\contentsline {subsection}{\numberline {2.3}MBS Sampling}{5}
-\contentsline {subsection}{\numberline {2.4}Variable Neighbour Search}{5}
+\contentsline {subsection}{\numberline {2.3}MBS Sampling}{6}
+\contentsline {subsection}{\numberline {2.4}Variable Neighbour Search}{6}
