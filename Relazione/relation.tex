@@ -258,6 +258,11 @@ La ricerca del sottoinsieme di oggetti da inserire nel contenitore corrente, avv
 Dato che in linea teorica questa procedura cerca tutte le possibili combinazioni di elementi da inserire in un contenitore, questa ha complessita $O(2^n)$. Nella pratica è possibile velocizzare l'algoritmo con alcuni accorgimenti. Ad esempio, se lo slack del sottoinsieme corrente è più piccolo del più piccolo elemento dell'insieme di oggetti, cioè che $slack(A) < size(obj_{min})$, allora il ciclo for viene saltato, in quanto per il sottoinsieme $A$ non esiste miglioramento possibile.
 \newline
 \newline
+Una variante di questo algoritmo è il \textit{modified MBS} (definito semplicemente come $MBS'$), che crea dei sottoinsiemi per i contenitori del problema alla stessa maniera dell' $MBS\;base$, con la differenza che, prima di eseguire la procedura di ricerca, un oggetto preso dalla lista $Z$ viene sempre fissato all'interno del contenitore corrente.
+\newline
+\newline
+A differenza dell'$MBS\;base$ che rischia di sfruttare subito gli oggetti di piccola dimensione, l'$MBS'$ si forza nel fissare almeno un oggetto grande (il più grande tra i rimanenti nella lista $Z$, al momento corrente), generando soluzioni differenti, e potenzialmente migliori.
+ 
 \subsection{MBS Sampling}
 
 \subsection{Variable Neighbour Search}
