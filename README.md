@@ -6,4 +6,4 @@ gcc -o a.out data.c solution.c hashset.c linkedList.c move.c firstfit.c MBSproce
 
 # Execution 
 ./a.out dataset/[datasetname].txt 
-
+./a.out datasetFloat/[datasetname].txt
