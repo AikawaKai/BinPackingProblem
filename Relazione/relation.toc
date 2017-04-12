@@ -6,4 +6,4 @@
 \contentsline {subsection}{\numberline {2.1}FirstFit}{5}
 \contentsline {subsection}{\numberline {2.2}Minimum Bin Slack}{5}
 \contentsline {subsection}{\numberline {2.3}MBS Sampling}{6}
-\contentsline {subsection}{\numberline {2.4}Variable Neighbourhood Search}{6}
+\contentsline {subsection}{\numberline {2.4}Variable Neighbourhood Search}{7}
