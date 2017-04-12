@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.29)  12 APR 2017 17:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.29)  12 APR 2017 17:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -630,6 +630,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 293--300
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 304--309
+
+ []
+
+
 AED: lastpage setting LastPage
 [7] (./relation.aux) ) 
 Here is how much of TeX's memory you used:
@@ -658,7 +663,7 @@ m/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on relation.pdf (7 pages, 213572 bytes).
+Output written on relation.pdf (7 pages, 214740 bytes).
 PDF statistics:
  104 PDF objects out of 1000 (max. 8388607)
  75 compressed objects within 1 object stream
