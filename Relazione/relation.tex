@@ -264,8 +264,17 @@ Una variante di questo algoritmo è il \textit{modified MBS} (definito semplicem
 A differenza dell'$MBS\;base$ che rischia di sfruttare subito gli oggetti di piccola dimensione, l'$MBS'$ si forza nel fissare almeno un oggetto grande (il più grande tra i rimanenti nella lista $Z$, al momento corrente), generando soluzioni differenti, e potenzialmente migliori.
  
 \subsection{MBS Sampling}
+Questo algoritmo invoca diverse volte l'euristica $MBS'$, cambiando l'ordine degli oggetti nella lista $Z$ ad ogni esecuzione, e adottando la soluzione migliore trovata.
+\newline
+\newline
+L'ordinamento del vettore $Z$ è basato probabilisticamente sull'ordine decrescente delle dimensioni degli oggetti, con la probabilità di selezionare un oggetto $o_i$ a di riempire il vettore ordinato di ogni step, pari a:
+\[
+p_i = \frac{size(o_i)^{2}}{\sum_{o_{j} \in A }size(o_{j})^{2}}
+\]
 
-\subsection{Variable Neighbour Search}
+Dove $A$ in questo caso rappresenta il multiset di oggetti $o_j$ non ancora inseriti nella lista.
+
+\subsection{Variable Neighbourhood Search}
 
 
 
