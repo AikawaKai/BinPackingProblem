@@ -281,6 +281,17 @@ Dove $A$ in questo caso rappresenta il multiset di oggetti $o_j$ non ancora inse
 \subsection{Variable Neighbourhood Search}
 
 Questo tipo di meta euristica sfrutta la variazione sistematica ed incrementale dell'intorno di una soluzione di partenza, applicando poi degli algoritmi di ricerca del minimo, come ad esempio l'algoritmo di \textit{discesa del gradiente}.
+\newline
+\newline
+La tecnica si compone di tre fasi principali:
+\begin{enumerate}
+\item Shaking
+\item Local Search
+\item Move or not
+\end{enumerate}
+
+\textbf{Shaking} - Questa fase consiste nel perturbare una soluzione $x$ di partenza (presa ad esempio dall'$MBS'$) per muoversi nel suo intorno $N(x)$ generando una nuova soluzione $x'$. L'intorno incrementale della soluzione $x$ di partenza $N_{k}(x)$ viene definito dal numero di mosse $k$ utilizzate per ottenere la perturbazione. 
+
 
 
 %----------------------------------------------------------------------------------------
