@@ -291,6 +291,9 @@ La tecnica si compone di tre fasi principali:
 \end{enumerate}
 
 \textbf{Shaking} - Questa fase consiste nel perturbare una soluzione $x$ di partenza (presa ad esempio dall'$MBS'$) per muoversi nel suo intorno $N(x)$ generando una nuova soluzione $x'$. L'intorno incrementale della soluzione $x$ di partenza $N_{k}(x)$ viene definito dal numero di mosse $k$ utilizzate per ottenere la perturbazione. 
+\newline
+\newline
+Le mosse utilizzate possono essere di due tipi, e cioè di \textit{swap} o di \textit{transfer}. Lo swap consiste nello scambiare due oggetti presenti in due contenitori differenti, mentre il trasferimento porta allo spostamento di un oggetto da un contenitore ad un altro. Chiaramente queste mosse devono essere sensate e consentite. Cioè devono portare ad una effettiva variazione del problema e non ne devono violare i vincoli\footnote{Ad esempio scambiare due oggetti uguali non modifica la soluzione.}. 
 
 
 
