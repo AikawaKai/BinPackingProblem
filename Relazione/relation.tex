@@ -293,7 +293,15 @@ La tecnica si compone di tre fasi principali:
 \textbf{Shaking} - Questa fase consiste nel perturbare una soluzione $x$ di partenza (presa ad esempio dall'$MBS'$) per muoversi nel suo intorno $N(x)$ generando una nuova soluzione $x'$. L'intorno incrementale della soluzione $x$ di partenza $N_{k}(x)$ viene definito dal numero di mosse $k$ utilizzate per ottenere la perturbazione. 
 \newline
 \newline
-Le mosse utilizzate possono essere di due tipi, e cioè di \textit{swap} o di \textit{transfer}. Lo swap consiste nello scambiare due oggetti presenti in due contenitori differenti, mentre il trasferimento porta allo spostamento di un oggetto da un contenitore ad un altro. Chiaramente queste mosse devono essere sensate e consentite. Cioè devono portare ad una effettiva variazione del problema e non ne devono violare i vincoli\footnote{Ad esempio scambiare due oggetti uguali non modifica la soluzione.}. 
+Le mosse utilizzate possono essere di due tipi, e cioè di \textit{swap} o di \textit{transfer}. Lo swap consiste nello scambiare due oggetti presenti in due contenitori differenti, mentre il trasferimento porta allo spostamento di un oggetto da un contenitore ad un altro. Chiaramente queste mosse devono essere sensate e consentite. Cioè devono portare ad una effettiva variazione della soluzione e non ne devono violare i vincoli\footnote{Ad esempio scambiare due oggetti uguali non modifica la soluzione.}. 
+\newline
+\newline
+\textbf{Local Search} - La ricerca locale di un minimo nell'intorno avviene tramite la \textit{discesa del gradiente}. In questo caso specifico è utile pensare alla funzione obiettivo come ad una funzione da massimizzare piuttosto che da minimizzare (numero di contenitori). Viene infatti massimizzata la somma quadratica della dimensione degli oggetti in un contenitore:
+\[
+max\;f(x) = \sum_{a=1}^{m} (l(a))^2
+\]
+
+Dove $l(a)$ indica la somma delle dimensioni degli oggetti presenti nel bin $a$.
 
 
 
