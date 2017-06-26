@@ -32,6 +32,7 @@ if __name__ == '__main__':
         title = titles[j]
         i=0;
         patches = []
+        plt.figure(figsize=(10,5))
         for col in file_:
             xAxis = []
             yAxis = []
@@ -45,4 +46,4 @@ if __name__ == '__main__':
         j+=1;
         plt.title('Solution Quality Distribution '+title)
         plt.legend(bbox_to_anchor=(1, 1), loc=2, handles=patches)
-        plt.show()
+        plt.savefig(title+".png")
