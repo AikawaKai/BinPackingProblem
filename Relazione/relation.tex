@@ -306,7 +306,35 @@ La discesa avviene tramite una ricerca iterativa ad ogni step della miglior moss
 \newline
 \textbf{Move or not} - Se la ricerca locale ha portato ad un effettivo miglioramento della soluzione, ci si muove verso la nuova soluzione, facendola diventare quella corrente e si prova ad esplorare il suo intorno, altrimenti si prova ad allargare l'intorno della soluzione originale. L'allargamento dell'intorno avviene tramite l'aumento del numero di mosse utilizzate per perturbare la soluzione ($k=k+1$). Quando si trova una soluzione migliore invece, si ritorna ad un intorno più piccolo ($k=1$). Chiaramente bisogna settare un confine all'intorno, fissando un $k_{max}$, che se raggiunto termina la ricerca.
 
+\section{Dataset di test}
 
+Il dataset utilizzato\cite{Falkenauer} per testare i diversi algoritmi è suddiviso in 2 classi principali. La prima, che va dal $binpack1$ al $binpack4$, consiste di oggetti uniformemente distribuiti in $(20, 100)$ (interi), che devono essere inseriti in contenitori di dimensione 150. La seconda classe, composta dai file che vanno da $binpack5$ a $binpack8$, consiste invece di oggetti uniformemente distribuiti in $(25, 50)$(reali), che devono essere inseriti in contenitori di dimensione 100.
+\newline
+\newline
+Sia per la prima classe che per la seconda classe vi sono 80 problemi differenti, i quali variano per il numero di oggetti totali da inserire nei contenitori.
+
+\section{Valutazione degli algoritmi}
+
+Per la valutazione dei diversi algoritmi si sono utilizzate diverse metriche. In particolar modo, per valutarne l'efficacia si sono utilizzate:
+
+\begin{itemize}
+\item Media
+\item Varianza
+\end{itemize}
+Come statistiche descrittive classiche.
+
+Mentre per verificare la robustezza dell'algoritmo sulle diverse istanze, si è utilizzata la Solution Quality Distribution, la quale ci ha permesso inoltre di confrontare le diverse performarce.
+
+\subsection{Metriche Classiche}
+
+\subsection{SQD}
 %----------------------------------------------------------------------------------------
+\begin{thebibliography}{9}
 
+\bibitem{Falkenauer}
+  E.Falkenauer,
+  \textit {"A Hybrid Grouping Genetic Algorithm for Bin Packing"},
+ Working paper CRIF Industrial Management and Automation, CP 106 - P4, 50
+av. F.D.Roosevelt, B-1050 Brussels (1994)
+\end{thebibliography}
 \end{document}

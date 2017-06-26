@@ -7,3 +7,7 @@
 \contentsline {subsection}{\numberline {2.2}Minimum Bin Slack}{5}
 \contentsline {subsection}{\numberline {2.3}MBS Sampling}{6}
 \contentsline {subsection}{\numberline {2.4}Variable Neighbourhood Search}{7}
+\contentsline {section}{\numberline {3}Dataset di test}{7}
+\contentsline {section}{\numberline {4}Valutazione degli algoritmi}{8}
+\contentsline {subsection}{\numberline {4.1}Metriche Classiche}{8}
+\contentsline {subsection}{\numberline {4.2}SQD}{8}
