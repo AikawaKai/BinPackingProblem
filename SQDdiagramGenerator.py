@@ -3,6 +3,9 @@ import os
 import csv
 import matplotlib.pyplot as plt
 
+dict_class = {"d1":"firstfit", "d2":"firstfitdecreasing", "d3": "MBS", "d4":"MBS'", "d5":"MBS'sampling", "d6": "VNS"}
+colors = ["r", "g", "b", "y", "w", "v"]
+
 
 if __name__ == '__main__':
 
@@ -24,11 +27,13 @@ if __name__ == '__main__':
     relativeDifference = [[[(row[len(row)-1], row[i], i/(len(row)-1)) for i in range(len(row)-1)]for row in file_] for file_ in relativeDifference]
 
     for file_ in relativeDifference:
+        i=0;
         for col in file_:
             xAxis = []
             yAxis = []
             for c, x, y in col:
                 xAxis.append(x)
                 yAxis.append(y)
-            plt.plot(xAxis, yAxis)
+            plt.plot(xAxis, yAxis, colors[i])
+            i+=1
             plt.show()
