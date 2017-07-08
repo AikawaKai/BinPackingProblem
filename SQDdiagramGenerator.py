@@ -4,7 +4,7 @@ import csv
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
-dict_class = {"d1":"firstfit", "d2":"firstfitdecreasing", "d3": "MBS", "d4":"MBS'", "d5":"MBS'sampling", "d6": "VNS"}
+dict_class = {"d1":"firstfit", "d2":"firstfitD", "d3": "MBS", "d4":"MBS'", "d5":"MBS'S", "d6": "VNS"}
 colors = ["r", "g", "b", "y", "k", "m"]
 
 
@@ -32,7 +32,7 @@ if __name__ == '__main__':
         title = titles[j]
         i=0;
         patches = []
-        plt.figure(figsize=(10,5))
+        plt.figure(figsize=(15,5))
         for col in file_:
             xAxis = []
             yAxis = []
