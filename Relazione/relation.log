@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.29)  8 JUL 2017 16:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.29)  8 JUL 2017 17:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -480,6 +480,22 @@ LaTeX Warning: File `binpack3.csv' already exists on the system.
 LaTeX Warning: File `binpack4.csv' already exists on the system.
                Not generating it from this source.
 
+
+LaTeX Warning: File `binpack5.csv' already exists on the system.
+               Not generating it from this source.
+
+
+LaTeX Warning: File `binpack6.csv' already exists on the system.
+               Not generating it from this source.
+
+
+LaTeX Warning: File `binpack7.csv' already exists on the system.
+               Not generating it from this source.
+
+
+LaTeX Warning: File `binpack8.csv' already exists on the system.
+               Not generating it from this source.
+
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
@@ -491,31 +507,31 @@ File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 ) (./relation.aux)
 \openout1 = `relation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Info: Redefining \it@ocap on input line 157.
-LaTeX Info: Redefining \it@ccap on input line 157.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 177.
+LaTeX Font Info:    ... okay on input line 177.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 177.
+LaTeX Font Info:    ... okay on input line 177.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 177.
+LaTeX Font Info:    ... okay on input line 177.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 177.
+LaTeX Font Info:    ... okay on input line 177.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 177.
+LaTeX Font Info:    ... okay on input line 177.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 177.
+LaTeX Font Info:    ... okay on input line 177.
+LaTeX Info: Redefining \it@ocap on input line 177.
+LaTeX Info: Redefining \it@ccap on input line 177.
 
 File italian.ldf warning: 
 italian.ldf    With OT1 encoding guillemets are poorly faked
 italian.ldf    Use T1 encoding
 italian.ldf    or specify a font with command \CaporaliFrom
 italian.ldf    See the documentation concerning the babel-italian typesetting 
-italian.ldf    on input line 157.
+italian.ldf    on input line 177.
 
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 157.
+(lastpage)             ! on input line 177.
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count126
@@ -587,155 +603,175 @@ e
 
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 182--186
+Underfull \hbox (badness 10000) in paragraph at lines 202--206
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 187.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 207.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 187.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 207.
  [4]
-Underfull \hbox (badness 10000) in paragraph at lines 218--249
+Underfull \hbox (badness 10000) in paragraph at lines 238--269
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 218--249
+Underfull \hbox (badness 10000) in paragraph at lines 238--269
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 218--249
+Underfull \hbox (badness 10000) in paragraph at lines 238--269
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 218--249
+Underfull \hbox (badness 10000) in paragraph at lines 238--269
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 218--249
+Underfull \hbox (badness 10000) in paragraph at lines 238--269
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 250--254
+Underfull \hbox (badness 10000) in paragraph at lines 270--274
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 255--290
+Underfull \hbox (badness 10000) in paragraph at lines 275--310
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 255--290
+Underfull \hbox (badness 10000) in paragraph at lines 275--310
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 255--290
+Underfull \hbox (badness 10000) in paragraph at lines 275--310
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 292--296
+Underfull \hbox (badness 10000) in paragraph at lines 312--316
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 304--308
+Underfull \hbox (badness 10000) in paragraph at lines 324--328
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 314--321
+Underfull \hbox (badness 10000) in paragraph at lines 334--341
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 314--321
+Underfull \hbox (badness 10000) in paragraph at lines 334--341
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 325--330
+Underfull \hbox (badness 10000) in paragraph at lines 345--350
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 333--337
+Underfull \hbox (badness 10000) in paragraph at lines 353--357
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 351--358
+Underfull \hbox (badness 10000) in paragraph at lines 368--372
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 351--358
+Underfull \hbox (badness 10000) in paragraph at lines 379--386
 
  []
 
 
-Overfull \hbox (36.13081pt too wide) in paragraph at lines 366--367
+Underfull \hbox (badness 10000) in paragraph at lines 379--386
+
+ []
+
+
+Overfull \hbox (36.13081pt too wide) in paragraph at lines 394--395
 [][] 
  []
 
 
-Overfull \hbox (44.25804pt too wide) in paragraph at lines 377--378
+Overfull \hbox (44.25804pt too wide) in paragraph at lines 405--406
 [][] 
  []
 
 
-Overfull \hbox (58.64687pt too wide) in paragraph at lines 388--389
+Overfull \hbox (58.64687pt too wide) in paragraph at lines 416--417
 [][] 
  []
 
 
-Overfull \hbox (55.14687pt too wide) in paragraph at lines 399--400
+Overfull \hbox (55.14687pt too wide) in paragraph at lines 427--428
 [][] 
  []
 
-[8] 
+[8]
+Overfull \hbox (4.72742pt too wide) in paragraph at lines 453--454
+[][] 
+ []
+
+
+Overfull \hbox (44.64688pt too wide) in paragraph at lines 464--465
+[][] 
+ []
+
+
+Overfull \hbox (46.59131pt too wide) in paragraph at lines 475--476
+[][] 
+ []
+
+[9] 
 AED: lastpage setting LastPage
-[9] (./relation.aux) ) 
+[10] (./relation.aux) ) 
 Here is how much of TeX's memory you used:
- 6689 strings out of 493085
- 102190 string characters out of 6136917
- 303824 words of memory out of 5000000
+ 6693 strings out of 493085
+ 102222 string characters out of 6136917
+ 304824 words of memory out of 5000000
  10043 multiletter control sequences out of 15000+600000
  10376 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,11n,49p,824b,340s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on relation.pdf (9 pages, 226679 bytes).
+ 40i,11n,49p,824b,330s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl1
+0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on relation.pdf (10 pages, 232378 bytes).
 PDF statistics:
- 110 PDF objects out of 1000 (max. 8388607)
- 79 compressed objects within 1 object stream
+ 113 PDF objects out of 1000 (max. 8388607)
+ 81 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -11,3 +11,4 @@
 \contentsline {section}{\numberline {4}Valutazione degli algoritmi}{8}
 \contentsline {subsection}{\numberline {4.1}Metriche Classiche}{8}
 \contentsline {subsection}{\numberline {4.2}SQD}{9}
+\contentsline {section}{\numberline {5}Lavori futuri}{9}

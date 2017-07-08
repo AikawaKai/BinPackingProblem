@@ -60,6 +60,26 @@ stats,firstfit,firstfitdecreasing,MBS,MBS',MBS samipling,VNS
 media,0.052298090963001455,0.01211464883863295,0.0019852702126259138,0.0019852702126259138,0.00012165450121654502,0.00024330900243309004
 varianza,9.026227982643407e-06,5.59518009011169e-06,3.5310023285136244e-06,3.5310023285136244e-06,2.959963533249271e-07,1.1839854132997084e-06
 \end{filecontents*}
+\begin{filecontents*}{binpack5.csv}
+stats,firstfit,firstfitdecreasing,MBS,MBS',MBS samipling,VNS
+media,0.14750000000000002,0.1625,0.33499999999999996,0.275,0.075,0.05
+varianza,0.0006513157894736842,0.0004934210526315793,0.0008157894736842105,0.0009210526315789469,0.0006578947368421052,0.0
+\end{filecontents*}
+\begin{filecontents*}{binpack6.csv}
+stats,firstfit,firstfitdecreasing,MBS,MBS',MBS samipling,VNS
+media,0.12,0.1475,0.22749999999999998,0.22749999999999998,0.07625,0.025
+varianza,0.0003684210526315788,0.00012499999999999995,0.00012499999999999995,0.00012499999999999995,3.125000000000002e-05,0.0
+\end{filecontents*}
+\begin{filecontents*}{binpack7.csv}
+stats,firstfit,firstfitdecreasing,MBS,MBS',MBS samipling,VNS
+media,0.11144578313253013,0.14578313253012049,0.19819277108433736,0.19698795180722892,0.08795180722891566,0.012048192771084338
+varianza,0.00012032912881710738,7.487145793064456e-05,8.365739432046505e-05,8.060141644574486e-05,3.208776768456202e-05,0.0
+\end{filecontents*}
+\begin{filecontents*}{binpack8.csv}
+stats,firstfit,firstfitdecreasing,MBS,MBS',MBS samipling,VNS
+media,0.10868263473053892,0.1404191616766467,0.17395209580838325,0.1715568862275449,0.09491017964071856,0.005988023952095809
+varianza,8.78482555846391e-05,1.6890266111332283e-05,2.0664627253529534e-05,1.990975502509012e-05,1.2361032740695731e-05,0.0
+\end{filecontents*}
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
 \makeatother
@@ -340,12 +360,20 @@ Sia per la prima classe che per la seconda classe vi sono 80 problemi differenti
 Per la valutazione dei diversi algoritmi si sono utilizzate diverse metriche. In particolar modo, per valutarne l'efficacia si sono utilizzate:
 
 \begin{itemize}
-\item Media
-\item Varianza
+\item \textbf{Media}
+\item \textbf{Varianza}
 \end{itemize}
-della differenza relativa, come statistiche descrittive classiche.
+della differenza relativa rispetto all'ottimo conosciuto, come statistiche descrittive classiche.
 
 Mentre per verificare la robustezza dell'algoritmo sulle diverse istanze, si è utilizzata la Solution Quality Distribution, la quale ci ha permesso inoltre di confrontare le diverse performarce.
+\newline
+\newline
+Essendo le meta euristiche parametriche, ci si è concentrati su delle configurazioni specifiche\footnote{Ci si è limitati ad individuare delle configurazioni capaci di superare le euristiche base.}
+
+\begin{itemize}
+\item \textbf{MBS Sampling} - 100 tentativi
+\item \textbf{VNS} - $K_{max} = 15$ 
+\end{itemize}
 
 \subsection{Metriche Classiche}
 Per quanto riguarda la prima classe del dataset, tra le euristiche base, l'\textit{MBS} risulta essere il migliore a livello di performance, mentre la sua controparte modificata (\textit{MBS'}) non sembra apportare un miglioramento significativo del risultato (Solo in un dataset risulta essere migliore, mentre in un altro risulta addirittura peggiore).  
@@ -354,7 +382,7 @@ Per quanto riguarda la prima classe del dataset, tra le euristiche base, l'\text
 Si può notare inoltre di come la semplice euristica costruttiva \textit{firstfit decreasing}, porti ad un significativo vantaggio a livello di performance, rispetto alla controparte base.
 \newline
 \newline
-Per le meta euristiche ad essere migliore a livello di performance media è il \textit{VNS}, anche se il risultato sembra suggerire il contrario, in quanto il valore superiore di differenza relativa media è dato dalla capacità dell'algoritmo di individuare una soluzione migliore rispetto all'ottimo conosciuto, a differenza dell'\textit{MBS sampling}.
+Le meta euristiche, invece, sono state capaci di individuare soluzioni migliori di quelle ottenute dalle euristiche base che nel caso del VNS, per alcuni problemi, superano addirittura la soluzione ottima conosciuta.
 
 \begin{table}[H]
 \scalebox{0.7}{
@@ -399,8 +427,58 @@ Per le meta euristiche ad essere migliore a livello di performance media è il \
     }
     \caption{Binpack4}
  \end{table}
+ 
+Per la seconda classe del dataset, le differenze di performance tra gli algoritmi appaiono più nette. Vi è inoltre uno stravolgimento della situazione vista in precedenza, in cui \textit{MBS} dominava tra le euristiche base. Qui a dominare è il \textit{firstfit}, che risulta essere addirittura migliore della sua versione modificata \textit{firstfit decreasing} \footnote{Questa situazione è data forse dal modo in cui è stata generata la seconda classe del dataset.\cite{Falkenauer}}.
 
+
+Si nota inoltre un calo generale della qualità dei risultati, facendo intuire la presenza di difficoltà maggiori nel problema affrontato.
+ 
+  \begin{table}[H]
+\scalebox{0.7}{
+\begin{tabular}{l|l|l|l|l|l|l}%
+    \bfseries STATS & \bfseries firstfit & \bfseries firstfitD & \bfseries MBS & \bfseries MBS'& \bfseries MBS sampling  & \bfseries VNS% specify table head
+    \csvreader[head to column names]{binpack5.csv}{}% use head of csv as column names
+    {\\\hline\csvcoli&\csvcolii&\csvcoliii&\csvcoliv&\csvcolv&\csvcolvi&\csvcolvii}% specify your coloumns here
+    \end{tabular}
+    }
+    \caption{Binpack5}
+ \end{table}
+   \begin{table}[H]
+\scalebox{0.7}{
+\begin{tabular}{l|l|l|l|l|l|l}%
+    \bfseries STATS & \bfseries firstfit & \bfseries firstfitD & \bfseries MBS & \bfseries MBS'& \bfseries MBS sampling  & \bfseries VNS% specify table head
+    \csvreader[head to column names]{binpack6.csv}{}% use head of csv as column names
+    {\\\hline\csvcoli&\csvcolii&\csvcoliii&\csvcoliv&\csvcolv&\csvcolvi&\csvcolvii}% specify your coloumns here
+    \end{tabular}
+    }
+    \caption{Binpack6}
+ \end{table}
+ 
+  \begin{table}[H]
+\scalebox{0.7}{
+\begin{tabular}{l|l|l|l|l|l|l}%
+    \bfseries STATS & \bfseries firstfit & \bfseries firstfitD & \bfseries MBS & \bfseries MBS'& \bfseries MBS sampling  & \bfseries VNS% specify table head
+    \csvreader[head to column names]{binpack7.csv}{}% use head of csv as column names
+    {\\\hline\csvcoli&\csvcolii&\csvcoliii&\csvcoliv&\csvcolv&\csvcolvi&\csvcolvii}% specify your coloumns here
+    \end{tabular}
+    }
+    \caption{Binpack7}
+ \end{table}
+ 
+   \begin{table}[H]
+\scalebox{0.7}{
+\begin{tabular}{l|l|l|l|l|l|l}%
+    \bfseries STATS & \bfseries firstfit & \bfseries firstfitD & \bfseries MBS & \bfseries MBS'& \bfseries MBS sampling  & \bfseries VNS% specify table head
+    \csvreader[head to column names]{binpack8.csv}{}% use head of csv as column names
+    {\\\hline\csvcoli&\csvcolii&\csvcoliii&\csvcoliv&\csvcolv&\csvcolvi&\csvcolvii}% specify your coloumns here
+    \end{tabular}
+    }
+    \caption{Binpack8}
+ \end{table}
 \subsection{SQD}
+\section{Lavori futuri}
+Tra i possibili lavori futuri, oltre all'espansione del dataset di test e all'utilizzo di altre metriche di valutazione, tra cui quelle temporali, si propone un possibile confronto diretto delle meta euristiche MBS sampling e VNS, fissando diversi tempi di esecuzione dei due algoritmi, in maniera tale da generare soluzioni equamente comparabili.
+\newpage
 %----------------------------------------------------------------------------------------
 \begin{thebibliography}{9}
 
