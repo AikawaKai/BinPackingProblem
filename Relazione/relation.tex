@@ -482,7 +482,7 @@ I seguenti grafici \textit{SQD} si sono ottenuti tramite il plotting della funzi
 Essendo dei semplici plot qualitativi, questi grafici sono da intendersi come puramente indicativi di una possibile dominanza, la quale può essere verificata, in maniera quantitativamente significativa, tramite dei test di ipotesi, quali ad esempio il  Test di Wilcoxon.
 \newline
 \newline
-Per quanto riguarda il primo dataset (Tabella 9), è interessante notare la presenza di una dominanza probabilistica del \textit{firstfit decreasing} rispetto al \textit{firstfit} base, a differenza invece delle due euristiche \textit{MBS} e \textit{MBS'}, che, come avevamo verificato anche in precedenza, non lasciano intuire una differenza netta a livello di performance. È inoltre evidente la scarsa "robustezza" del firstfit decreasing rispetto alle altre euristiche, il quale si distribuisce su di un range più grande, avendo una varianza dei risultati più elevata.
+Per i dataset della prima classe (Tabella 9), è interessante notare la presenza di una dominanza probabilistica del \textit{firstfit decreasing} rispetto al \textit{firstfit} base, a differenza invece delle due euristiche \textit{MBS} e \textit{MBS'}, che, come avevamo verificato anche in precedenza, non lasciano intuire una differenza netta a livello di performance. È inoltre evidente la scarsa "robustezza" del \textit{firstfit} rispetto alle altre euristiche, il quale si distribuisce su di un range più grande, avendo una varianza dei risultati più elevata. 
 
 \begin{table}[H]
 \label{tab1}
@@ -494,7 +494,9 @@ Per quanto riguarda il primo dataset (Tabella 9), è interessante notare la pres
 \caption{La prima classe del dataset.}
 \end{table}
 
-Per la seconda classe di problemi (Tabella 10), gli algoritmi si differenziano in maniera più netta.
+Per la seconda classe di problemi (Tabella 10), gli algoritmi si differenziano in maniera più netta. A differenza della prima classe poi, vi è uno stravolgimento delle performance degli algoritmi euristici costruttivi. Infatti a dominare è il \textit{firstfit}, che risulta migliore del \textit{firstfit decreasing} e delle due versioni dell'\textit{MBS}. Inoltre vi è una dominanza stretta dell'\textit{MBS'} rispetto all'\textit{MBS base}.
+
+Per le metaeuristiche è interessante notare la robustezza del VNS, che risulta essere praticamente costante a livello di performance rispetto all'ottimo conosciuto.
 \begin{table}[H]
 \includegraphics[scale=0.23]{pic/binpack5}
 \includegraphics[scale=0.23]{pic/binpack6}
