@@ -343,7 +343,7 @@ max\;f(x) = \sum_{a=1}^{m} (l(a))^2
 \]
 
 Dove $l(a)$ indica la somma delle dimensioni degli oggetti presenti nel bin $a$.
-La discesa avviene tramite una ricerca iterativa ad ogni step della miglior mossa possibile di swap o di transfer, che migliora la funzione obiettivo. La ricerca termina se non esistono mosse possibile che migliorano la soluzione.
+La discesa avviene tramite una ricerca iterativa ad ogni step della miglior mossa possibile di swap o di transfer, che migliora la funzione obiettivo. La ricerca termina se non esistono mosse possibili che migliorano la soluzione.
 \newline
 \newline
 \textbf{Move or not} - Se la ricerca locale ha portato ad un effettivo miglioramento della soluzione, ci si muove verso la nuova soluzione, facendola diventare quella corrente e si prova ad esplorare il suo intorno, altrimenti si prova ad allargare l'intorno della soluzione originale. L'allargamento dell'intorno avviene tramite l'aumento del numero di mosse utilizzate per perturbare la soluzione ($k=k+1$). Quando si trova una soluzione migliore invece, si ritorna ad un intorno più piccolo ($k=1$). Chiaramente bisogna settare un confine all'intorno, fissando un $k_{max}$, che se raggiunto termina la ricerca.
