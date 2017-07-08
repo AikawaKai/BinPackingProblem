@@ -38,6 +38,28 @@
 \usepackage{amsmath}
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
+\usepackage{csvsimple}
+
+\begin{filecontents*}{binpack1.csv}
+stats,firstfit,firstfitdecreasing,MBS,MBS',MBS samipling,VNS
+media,0.06199095122999032,0.012425417491411279,0.008154591267945304,0.009133332764543945,0.0,0.001980392156862745
+varianza,0.0003160755569282529,0.00010859439331332344,0.0001898696343497463,0.00010757261599727328,0.0,3.715939213662761e-05
+\end{filecontents*}
+\begin{filecontents*}{binpack2.csv}
+stats,firstfit,firstfitdecreasing,MBS,MBS',MBS samipling,VNS
+media,0.06287314534450404,0.013780965806614049,0.0058278313046767,0.0034141083317763125,0.0009523809523809525,0.0009523809523809525
+varianza,8.481613778490945e-05,3.51600865218429e-05,4.351508405400733e-05,3.23532434800901e-05,8.592910848549947e-06,8.592910848549947e-06
+\end{filecontents*}
+\begin{filecontents*}{binpack3.csv}
+stats,firstfit,firstfitdecreasing,MBS,MBS',MBS samipling,VNS
+media,0.05738235568611945,0.013431342057856469,0.002961404441721627,0.002961404441721627,0.00048664393293549306,0.0007293623795374347
+varianza,4.6551822475101435e-05,8.192502711833259e-06,1.3829946717064544e-05,1.3829946717064544e-05,2.2437126679395375e-06,3.173289218671757e-06
+\end{filecontents*}
+\begin{filecontents*}{binpack4.csv}
+stats,firstfit,firstfitdecreasing,MBS,MBS',MBS samipling,VNS
+media,0.052298090963001455,0.01211464883863295,0.0019852702126259138,0.0019852702126259138,0.00012165450121654502,0.00024330900243309004
+varianza,9.026227982643407e-06,5.59518009011169e-06,3.5310023285136244e-06,3.5310023285136244e-06,2.959963533249271e-07,1.1839854132997084e-06
+\end{filecontents*}
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
 \makeatother
@@ -321,11 +343,54 @@ Per la valutazione dei diversi algoritmi si sono utilizzate diverse metriche. In
 \item Media
 \item Varianza
 \end{itemize}
-Come statistiche descrittive classiche.
+della differenza relativa, come statistiche descrittive classiche.
 
 Mentre per verificare la robustezza dell'algoritmo sulle diverse istanze, si è utilizzata la Solution Quality Distribution, la quale ci ha permesso inoltre di confrontare le diverse performarce.
 
 \subsection{Metriche Classiche}
+\begin{table}[H]
+\scalebox{0.7}{
+\begin{tabular}{l|l|l|l|l|l|l}%
+    \bfseries STATS & \bfseries firstfit & \bfseries firstfitD & \bfseries MBS & \bfseries MBS'& \bfseries MBS sampling  & \bfseries VNS% specify table head
+    \csvreader[head to column names]{binpack1.csv}{}% use head of csv as column names
+    {\\\hline\csvcoli&\csvcolii&\csvcoliii&\csvcoliv&\csvcolv&\csvcolvi&\csvcolvii}% specify your coloumns here
+    \end{tabular}
+    }
+    \caption{Dataset 1}
+ \end{table}
+ 
+ \begin{table}[H]
+\scalebox{0.7}{
+\begin{tabular}{l|l|l|l|l|l|l}%
+    \bfseries STATS & \bfseries firstfit & \bfseries firstfitD & \bfseries MBS & \bfseries MBS'& \bfseries MBS sampling  & \bfseries VNS% specify table head
+    \csvreader[head to column names]{binpack2.csv}{}% use head of csv as column names
+    {\\\hline\csvcoli&\csvcolii&\csvcoliii&\csvcoliv&\csvcolv&\csvcolvi&\csvcolvii}% specify your coloumns here
+    \end{tabular}
+    }
+    \caption{Dataset 2}
+ \end{table}
+ 
+ \begin{table}[H]
+\scalebox{0.7}{
+\begin{tabular}{l|l|l|l|l|l|l}%
+    \bfseries STATS & \bfseries firstfit & \bfseries firstfitD & \bfseries MBS & \bfseries MBS'& \bfseries MBS sampling  & \bfseries VNS% specify table head
+    \csvreader[head to column names]{binpack3.csv}{}% use head of csv as column names
+    {\\\hline\csvcoli&\csvcolii&\csvcoliii&\csvcoliv&\csvcolv&\csvcolvi&\csvcolvii}% specify your coloumns here
+    \end{tabular}
+    }
+    \caption{Dataset 3}
+ \end{table}
+ 
+  \begin{table}[H]
+\scalebox{0.7}{
+\begin{tabular}{l|l|l|l|l|l|l}%
+    \bfseries STATS & \bfseries firstfit & \bfseries firstfitD & \bfseries MBS & \bfseries MBS'& \bfseries MBS sampling  & \bfseries VNS% specify table head
+    \csvreader[head to column names]{binpack4.csv}{}% use head of csv as column names
+    {\\\hline\csvcoli&\csvcolii&\csvcoliii&\csvcoliv&\csvcolv&\csvcolvi&\csvcolvii}% specify your coloumns here
+    \end{tabular}
+    }
+    \caption{Dataset 4}
+ \end{table}
 
 \subsection{SQD}
 %----------------------------------------------------------------------------------------
