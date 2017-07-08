@@ -348,6 +348,14 @@ della differenza relativa, come statistiche descrittive classiche.
 Mentre per verificare la robustezza dell'algoritmo sulle diverse istanze, si è utilizzata la Solution Quality Distribution, la quale ci ha permesso inoltre di confrontare le diverse performarce.
 
 \subsection{Metriche Classiche}
+Per quanto riguarda la prima classe del dataset, tra le euristiche base, l'\textit{MBS} risulta essere il migliore a livello di performance, mentre la sua controparte modificata (\textit{MBS'}) non sembra apportare un miglioramento significativo del risultato (Solo in un dataset risulta essere migliore, mentre in un altro risulta addirittura peggiore).  
+\newline
+\newline
+Si può notare inoltre di come la semplice euristica costruttiva \textit{firstfit decreasing}, porti ad un significativo vantaggio a livello di performance, rispetto alla controparte base.
+\newline
+\newline
+Per le meta euristiche ad essere migliore a livello di performance media è il \textit{VNS}, anche se il risultato sembra suggerire il contrario, in quanto il valore superiore di differenza relativa media è dato dalla capacità dell'algoritmo di individuare una soluzione migliore rispetto all'ottimo conosciuto, a differenza dell'\textit{MBS sampling}.
+
 \begin{table}[H]
 \scalebox{0.7}{
 \begin{tabular}{l|l|l|l|l|l|l}%
@@ -356,7 +364,7 @@ Mentre per verificare la robustezza dell'algoritmo sulle diverse istanze, si è 
     {\\\hline\csvcoli&\csvcolii&\csvcoliii&\csvcoliv&\csvcolv&\csvcolvi&\csvcolvii}% specify your coloumns here
     \end{tabular}
     }
-    \caption{Dataset 1}
+    \caption{Binpack1}
  \end{table}
  
  \begin{table}[H]
@@ -367,7 +375,7 @@ Mentre per verificare la robustezza dell'algoritmo sulle diverse istanze, si è 
     {\\\hline\csvcoli&\csvcolii&\csvcoliii&\csvcoliv&\csvcolv&\csvcolvi&\csvcolvii}% specify your coloumns here
     \end{tabular}
     }
-    \caption{Dataset 2}
+    \caption{Binpack2}
  \end{table}
  
  \begin{table}[H]
@@ -378,7 +386,7 @@ Mentre per verificare la robustezza dell'algoritmo sulle diverse istanze, si è 
     {\\\hline\csvcoli&\csvcolii&\csvcoliii&\csvcoliv&\csvcolv&\csvcolvi&\csvcolvii}% specify your coloumns here
     \end{tabular}
     }
-    \caption{Dataset 3}
+    \caption{Binpack3}
  \end{table}
  
   \begin{table}[H]
@@ -389,7 +397,7 @@ Mentre per verificare la robustezza dell'algoritmo sulle diverse istanze, si è 
     {\\\hline\csvcoli&\csvcolii&\csvcoliii&\csvcoliv&\csvcolv&\csvcolvi&\csvcolvii}% specify your coloumns here
     \end{tabular}
     }
-    \caption{Dataset 4}
+    \caption{Binpack4}
  \end{table}
 
 \subsection{SQD}
