@@ -365,7 +365,7 @@ Per la valutazione dei diversi algoritmi si sono utilizzate diverse metriche. In
 \end{itemize}
 della differenza relativa rispetto all'ottimo conosciuto, come statistiche descrittive classiche.
 
-Mentre per verificare la robustezza dell'algoritmo sulle diverse istanze, si è utilizzata la Solution Quality Distribution, la quale ci ha permesso inoltre di confrontare le diverse performarce.
+Mentre per verificare la robustezza dell'algoritmo sulle diverse istanze, si è utilizzata la \textit{Solution Quality Distribution}, la quale ci ha permesso inoltre di confrontare le diverse performarce, identificando possibili dominanze probabilistiche.
 \newline
 \newline
 Essendo le meta euristiche parametriche, ci si è concentrati su delle configurazioni specifiche\footnote{Ci si è limitati ad individuare delle configurazioni capaci di superare le euristiche base.}
@@ -376,7 +376,7 @@ Essendo le meta euristiche parametriche, ci si è concentrati su delle configura
 \end{itemize}
 
 \subsection{Metriche Classiche}
-Per quanto riguarda la prima classe del dataset, tra le euristiche base, l'\textit{MBS} risulta essere il migliore a livello di performance, mentre la sua controparte modificata (\textit{MBS'}) non sembra apportare un miglioramento significativo del risultato (Solo in un dataset risulta essere migliore, mentre in un altro risulta addirittura peggiore).  
+Per quanto riguarda la prima classe del dataset (Tabelle 1, 2, 3, 4), tra le euristiche base, l'\textit{MBS} risulta essere il migliore a livello di performance, mentre la sua controparte modificata (\textit{MBS'}) non sembra apportare un miglioramento significativo del risultato (Solo in un dataset risulta essere migliore, mentre in un altro risulta addirittura peggiore).  
 \newline
 \newline
 Si può notare inoltre di come la semplice euristica costruttiva \textit{firstfit decreasing}, porti ad un significativo vantaggio a livello di performance, rispetto alla controparte base.
@@ -385,7 +385,7 @@ Si può notare inoltre di come la semplice euristica costruttiva \textit{firstfi
 Le meta euristiche, invece, sono state capaci di individuare soluzioni migliori di quelle ottenute dalle euristiche base che nel caso del VNS, per alcuni problemi, superano addirittura la soluzione ottima conosciuta.
 
 \begin{table}[H]
-\scalebox{0.7}{
+\scalebox{0.6}{
 \begin{tabular}{l|l|l|l|l|l|l}%
     \bfseries STATS & \bfseries firstfit & \bfseries firstfitD & \bfseries MBS & \bfseries MBS'& \bfseries MBS sampling  & \bfseries VNS% specify table head
     \csvreader[head to column names]{binpack1.csv}{}% use head of csv as column names
@@ -396,7 +396,7 @@ Le meta euristiche, invece, sono state capaci di individuare soluzioni migliori 
  \end{table}
  
  \begin{table}[H]
-\scalebox{0.7}{
+\scalebox{0.6}{
 \begin{tabular}{l|l|l|l|l|l|l}%
     \bfseries STATS & \bfseries firstfit & \bfseries firstfitD & \bfseries MBS & \bfseries MBS'& \bfseries MBS sampling  & \bfseries VNS% specify table head
     \csvreader[head to column names]{binpack2.csv}{}% use head of csv as column names
@@ -407,7 +407,7 @@ Le meta euristiche, invece, sono state capaci di individuare soluzioni migliori 
  \end{table}
  
  \begin{table}[H]
-\scalebox{0.7}{
+\scalebox{0.6}{
 \begin{tabular}{l|l|l|l|l|l|l}%
     \bfseries STATS & \bfseries firstfit & \bfseries firstfitD & \bfseries MBS & \bfseries MBS'& \bfseries MBS sampling  & \bfseries VNS% specify table head
     \csvreader[head to column names]{binpack3.csv}{}% use head of csv as column names
@@ -418,7 +418,7 @@ Le meta euristiche, invece, sono state capaci di individuare soluzioni migliori 
  \end{table}
  
   \begin{table}[H]
-\scalebox{0.7}{
+\scalebox{0.6}{
 \begin{tabular}{l|l|l|l|l|l|l}%
     \bfseries STATS & \bfseries firstfit & \bfseries firstfitD & \bfseries MBS & \bfseries MBS'& \bfseries MBS sampling  & \bfseries VNS% specify table head
     \csvreader[head to column names]{binpack4.csv}{}% use head of csv as column names
@@ -428,13 +428,13 @@ Le meta euristiche, invece, sono state capaci di individuare soluzioni migliori 
     \caption{Binpack4}
  \end{table}
  
-Per la seconda classe del dataset, le differenze di performance tra gli algoritmi appaiono più nette. Vi è inoltre uno stravolgimento della situazione vista in precedenza, in cui \textit{MBS} dominava tra le euristiche base. Qui a dominare è il \textit{firstfit}, che risulta essere addirittura migliore della sua versione modificata \textit{firstfit decreasing} \footnote{Questa situazione è data forse dal modo in cui è stata generata la seconda classe del dataset.\cite{Falkenauer}}.
+Per la seconda classe del dataset (Tabelle 5, 6, 7, 8), le differenze di performance tra gli algoritmi appaiono più nette. Vi è inoltre uno stravolgimento della situazione vista in precedenza, in cui \textit{MBS} dominava tra le euristiche base. Qui a dominare è il \textit{firstfit}, che risulta essere addirittura migliore della sua versione modificata \textit{firstfit decreasing} \footnote{Questa situazione è data forse dal modo in cui è stata generata la seconda classe del dataset.\cite{Falkenauer}}.
 
 
 Si nota inoltre un calo generale della qualità dei risultati, facendo intuire la presenza di difficoltà maggiori nel problema affrontato.
  
   \begin{table}[H]
-\scalebox{0.7}{
+\scalebox{0.6}{
 \begin{tabular}{l|l|l|l|l|l|l}%
     \bfseries STATS & \bfseries firstfit & \bfseries firstfitD & \bfseries MBS & \bfseries MBS'& \bfseries MBS sampling  & \bfseries VNS% specify table head
     \csvreader[head to column names]{binpack5.csv}{}% use head of csv as column names
@@ -444,7 +444,7 @@ Si nota inoltre un calo generale della qualità dei risultati, facendo intuire l
     \caption{Binpack5}
  \end{table}
    \begin{table}[H]
-\scalebox{0.7}{
+\scalebox{0.6}{
 \begin{tabular}{l|l|l|l|l|l|l}%
     \bfseries STATS & \bfseries firstfit & \bfseries firstfitD & \bfseries MBS & \bfseries MBS'& \bfseries MBS sampling  & \bfseries VNS% specify table head
     \csvreader[head to column names]{binpack6.csv}{}% use head of csv as column names
@@ -455,7 +455,7 @@ Si nota inoltre un calo generale della qualità dei risultati, facendo intuire l
  \end{table}
  
   \begin{table}[H]
-\scalebox{0.7}{
+\scalebox{0.6}{
 \begin{tabular}{l|l|l|l|l|l|l}%
     \bfseries STATS & \bfseries firstfit & \bfseries firstfitD & \bfseries MBS & \bfseries MBS'& \bfseries MBS sampling  & \bfseries VNS% specify table head
     \csvreader[head to column names]{binpack7.csv}{}% use head of csv as column names
@@ -466,7 +466,7 @@ Si nota inoltre un calo generale della qualità dei risultati, facendo intuire l
  \end{table}
  
    \begin{table}[H]
-\scalebox{0.7}{
+\scalebox{0.6}{
 \begin{tabular}{l|l|l|l|l|l|l}%
     \bfseries STATS & \bfseries firstfit & \bfseries firstfitD & \bfseries MBS & \bfseries MBS'& \bfseries MBS sampling  & \bfseries VNS% specify table head
     \csvreader[head to column names]{binpack8.csv}{}% use head of csv as column names
@@ -476,8 +476,40 @@ Si nota inoltre un calo generale della qualità dei risultati, facendo intuire l
     \caption{Binpack8}
  \end{table}
 \subsection{SQD}
+I seguenti grafici \textit{SQD} si sono ottenuti tramite il plotting della funzione di ripartizione empirica, generata dalla distribuzione di probabilità delle differenze relative (all'ottimo conosciuto). 
+\newline
+\newline
+Essendo dei semplici plot qualitativi, questi grafici sono da intendersi come puramente indicativi di una possibile dominanza, la quale può essere verificata, in maniera quantitativamente significativa, tramite dei test di ipotesi, quali ad esempio il  Test di Wilcoxon.
+\newline
+\newline
+Per quanto riguarda il primo dataset (Tabella 9), è interessante notare la presenza di una dominanza probabilistica del \textit{firstfit decreasing} rispetto al \textit{firstfit} base, a differenza invece delle due euristiche \textit{MBS} e \textit{MBS'}, che, come avevamo verificato anche in precedenza, non lasciano intuire una differenza netta a livello di performance. È inoltre evidente la scarsa "robustezza" del firstfit decreasing rispetto alle altre euristiche, il quale si distribuisce su di un range più grande, avendo una varianza dei risultati più elevata.
+
+\begin{table}[H]
+\label{tab1}
+\includegraphics[scale=0.23]{pic/binpack1}
+\includegraphics[scale=0.23]{pic/binpack2}
+
+\includegraphics[scale=0.23]{pic/binpack3}
+\includegraphics[scale=0.23]{pic/binpack4}
+\caption{La prima classe del dataset.}
+\end{table}
+
+Per la seconda classe di problemi (Tabella 10), gli algoritmi si differenziano in maniera più netta.
+\begin{table}[H]
+\includegraphics[scale=0.23]{pic/binpack5}
+\includegraphics[scale=0.23]{pic/binpack6}
+
+\includegraphics[scale=0.23]{pic/binpack7}
+\includegraphics[scale=0.23]{pic/binpack8}
+\caption{La seconda classe del dataset.}
+\end{table}
 \section{Lavori futuri}
-Tra i possibili lavori futuri, oltre all'espansione del dataset di test e all'utilizzo di altre metriche di valutazione, tra cui quelle temporali, si propone un possibile confronto diretto delle meta euristiche MBS sampling e VNS, fissando diversi tempi di esecuzione dei due algoritmi, in maniera tale da generare soluzioni equamente comparabili.
+Tra i possibili lavori futuri, oltre all'espansione del dataset di test e all'utilizzo di altre metriche di valutazione, tra cui quelle temporali, si propongono
+\begin{itemize}
+\item variazioni dei parametri delle metaeuristiche MBS sampling e VNS, con relativo confronto.
+\item un possibile confronto diretto delle meta euristiche MBS sampling e VNS, fissando diversi tempi di esecuzione dei due algoritmi, in maniera tale da generare soluzioni equamente comparabili.
+\item test di Wilcoxon per stabilire se due algoritmi comparabili siano significativamente distinti a livello di performance.
+\end{itemize}  
 \newpage
 %----------------------------------------------------------------------------------------
 \begin{thebibliography}{9}

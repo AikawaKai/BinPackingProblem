@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.29)  8 JUL 2017 17:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.29)  9 JUL 2017 00:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -704,49 +704,90 @@ Underfull \hbox (badness 10000) in paragraph at lines 379--386
 
  []
 
-
-Overfull \hbox (36.13081pt too wide) in paragraph at lines 394--395
-[][] 
- []
-
-
-Overfull \hbox (44.25804pt too wide) in paragraph at lines 405--406
-[][] 
- []
-
-
-Overfull \hbox (58.64687pt too wide) in paragraph at lines 416--417
-[][] 
- []
-
-
-Overfull \hbox (55.14687pt too wide) in paragraph at lines 427--428
-[][] 
- []
-
 [8]
-Overfull \hbox (4.72742pt too wide) in paragraph at lines 453--454
-[][] 
+Underfull \hbox (badness 10000) in paragraph at lines 479--486
+
  []
 
 
-Overfull \hbox (44.64688pt too wide) in paragraph at lines 464--465
-[][] 
+Underfull \hbox (badness 10000) in paragraph at lines 479--486
+
  []
 
+<pic/binpack1.png, id=47, 1084.05pt x 361.35pt>
+File: pic/binpack1.png Graphic file (type png)
+ <use pic/binpack1.png>
+Package pdftex.def Info: pic/binpack1.png used on input line 489.
+(pdftex.def)             Requested size: 249.32625pt x 83.10875pt.
 
-Overfull \hbox (46.59131pt too wide) in paragraph at lines 475--476
-[][] 
+<pic/binpack2.png, id=49, 1084.05pt x 361.35pt>
+File: pic/binpack2.png Graphic file (type png)
+ <use pic/binpack2.png>
+Package pdftex.def Info: pic/binpack2.png used on input line 490.
+(pdftex.def)             Requested size: 249.32625pt x 83.10875pt.
+
+Overfull \hbox (31.11972pt too wide) in paragraph at lines 489--491
+[][] [] 
  []
 
-[9] 
+<pic/binpack3.png, id=50, 1084.05pt x 361.35pt>
+File: pic/binpack3.png Graphic file (type png)
+ <use pic/binpack3.png>
+Package pdftex.def Info: pic/binpack3.png used on input line 492.
+(pdftex.def)             Requested size: 249.32625pt x 83.10875pt.
+
+<pic/binpack4.png, id=51, 1084.05pt x 361.35pt>
+File: pic/binpack4.png Graphic file (type png)
+ <use pic/binpack4.png>
+Package pdftex.def Info: pic/binpack4.png used on input line 493.
+(pdftex.def)             Requested size: 249.32625pt x 83.10875pt.
+
+Overfull \hbox (31.11972pt too wide) in paragraph at lines 492--494
+[][] [] 
+ []
+
+[9] <pic/binpack5.png, id=55, 1084.05pt x 361.35pt>
+File: pic/binpack5.png Graphic file (type png)
+ <use pic/binpack5.png>
+Package pdftex.def Info: pic/binpack5.png used on input line 499.
+(pdftex.def)             Requested size: 249.32625pt x 83.10875pt.
+
+<pic/binpack6.png, id=56, 1084.05pt x 361.35pt>
+File: pic/binpack6.png Graphic file (type png)
+ <use pic/binpack6.png>
+Package pdftex.def Info: pic/binpack6.png used on input line 500.
+(pdftex.def)             Requested size: 249.32625pt x 83.10875pt.
+
+Overfull \hbox (31.11972pt too wide) in paragraph at lines 499--501
+[][] [] 
+ []
+
+<pic/binpack7.png, id=57, 1084.05pt x 361.35pt>
+File: pic/binpack7.png Graphic file (type png)
+ <use pic/binpack7.png>
+Package pdftex.def Info: pic/binpack7.png used on input line 502.
+(pdftex.def)             Requested size: 249.32625pt x 83.10875pt.
+
+<pic/binpack8.png, id=58, 1084.05pt x 361.35pt>
+File: pic/binpack8.png Graphic file (type png)
+ <use pic/binpack8.png>
+Package pdftex.def Info: pic/binpack8.png used on input line 503.
+(pdftex.def)             Requested size: 249.32625pt x 83.10875pt.
+
+Overfull \hbox (31.11972pt too wide) in paragraph at lines 502--504
+[][] [] 
+ []
+
+[10 <./pic/binpack1.png> <./pic/binpack2.png> <./pic/binpack3.png> <./pic/binpa
+ck4.png> <./pic/binpack5.png> <./pic/binpack6.png> <./pic/binpack7.png> <./pic/
+binpack8.png>] 
 AED: lastpage setting LastPage
-[10] (./relation.aux) ) 
+[11] (./relation.aux) ) 
 Here is how much of TeX's memory you used:
- 6693 strings out of 493085
- 102222 string characters out of 6136917
+ 6729 strings out of 493085
+ 102940 string characters out of 6136917
  304824 words of memory out of 5000000
- 10043 multiletter control sequences out of 15000+600000
+ 10077 multiletter control sequences out of 15000+600000
  10376 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  40i,11n,49p,824b,330s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -768,10 +809,10 @@ cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl1
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on relation.pdf (10 pages, 232378 bytes).
+Output written on relation.pdf (11 pages, 488066 bytes).
 PDF statistics:
- 113 PDF objects out of 1000 (max. 8388607)
- 81 compressed objects within 1 object stream
+ 133 PDF objects out of 1000 (max. 8388607)
+ 84 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
